@@ -1,0 +1,7 @@
+{
+  "name": "studyStar",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
