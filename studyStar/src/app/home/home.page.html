@@ -6,26 +6,34 @@
   </ion-header>
   <ion-content class="ion-padding">
     <!-- This is the menu content. -->
-      <ion-list [inset]="true">
-    <ion-item [button]="true">
-      <ion-icon color="danger" slot="start" name="list-circle" size="large"></ion-icon>
-      <ion-label>Profile</ion-label>
-    </ion-item>
-    <ion-item [button]="true">
-      <ion-icon color="tertiary" slot="start" name="list-circle" size="large"></ion-icon>
-      <ion-label>Flashcards</ion-label>
-    </ion-item>
-    <ion-item [button]="true">
-      <ion-icon color="success" slot="start" name="list-circle" size="large"></ion-icon>
-      <ion-label>Agenda</ion-label>
-    </ion-item>
-  </ion-list>
+    <ion-list [inset]="true">
+      <ion-item [button]="true">
+        <ion-icon color="danger" slot="start" name="list-circle" size="large"></ion-icon>
+        <ion-label>Profile</ion-label>
+      </ion-item>
+      <ion-item [button]="true">
+        <ion-icon color="tertiary" slot="start" name="list-circle" size="large"></ion-icon>
+        <ion-label>Flashcards</ion-label>
+      </ion-item>
+      <ion-item [button]="true">
+        <ion-icon color="success" slot="start" name="list-circle" size="large"></ion-icon>
+        <ion-label>Agenda</ion-label>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-menu>
 <div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>StudyStars</ion-title>
+      <ion-grid>
+        <ion-row>
+          <ion-title>
+            StudyStars
+          </ion-title>
+          <ion-searchbar class=searchBar search-icon="star" placeholder="Search">
+          </ion-searchbar>
+        </ion-row>
+      </ion-grid>
       <ion-buttons slot="end">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
