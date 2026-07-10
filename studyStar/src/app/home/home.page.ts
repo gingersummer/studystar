@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,17 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private router: Router) {}
 
+  redirectToProfile() {
+this.router.navigate(['/profile']);
+  }
+
+  redirectToFlashcards() {
+this.router.navigate(['/flashcards']);
+  }
+
+  redirectToAgenda() {
+this.router.navigate(['/agenda']);
+  }
 }
