@@ -32,4 +32,10 @@ export class HomePage {
     this.menuCtrl.close('home')
 
   }
+
+  redirectToLogin() {
+    this.router.navigate(['/login'])
+    this.menuCtrl.close('home')
+
+  }
 }
