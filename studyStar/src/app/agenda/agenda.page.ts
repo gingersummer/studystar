@@ -13,7 +13,6 @@ export class AgendaPage implements OnInit {
   constructor(private router: Router, private menuCtrl: MenuController) { }
 
   openMenu() {
-    console.log(this.menuCtrl.open('agenda'))
     this.menuCtrl.open('agenda')
   }
 

@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-menu side="end" contentId="main-content">
+  <ion-menu side="end" menuId="profile" contentId="main-content">
     <ion-header>
       <ion-toolbar>
         <ion-title>Menu</ion-title>
@@ -40,7 +40,7 @@
           </ion-row>
         </ion-grid>
         <ion-buttons slot="end">
-          <ion-menu-button></ion-menu-button>
+          <ion-menu-button (click)="openMenu()"></ion-menu-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
