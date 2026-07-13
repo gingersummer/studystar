@@ -35,8 +35,6 @@
           <ion-title>
             StudyStars
           </ion-title>
-          <ion-searchbar class=searchBar search-icon="star" placeholder="Search">
-          </ion-searchbar>
         </ion-row>
       </ion-grid>
       <ion-buttons slot="end">
@@ -44,5 +42,70 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
+   <div class="profile-page-items">
+      
+    <h1>
+      Agenda
+    </h1>
+    
+    <ion-grid>
+      <ion-row>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col>
+<ion-card class="to-do-card">
+  <h1>
+    To-Do
+  </h1>
+  <ion-list>
+    <ion-item>
+      <ion-label>Task 1</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Task 2</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Task 3</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Task 4</ion-label>
+    </ion-item>
+  </ion-list>
+  </ion-card>
+  <ion-card class="upcoming-card">
+  <h1>
+    Upcoming
+  </h1>
+  <ion-list>
+    <ion-item>
+      <ion-label>Event 1</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Event 2</ion-label>
+    </ion-item>
+  </ion-list>
+  </ion-card>
+  </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+  <ion-button class="add-event">
+Add Event
+  </ion-button>
+  </ion-col>
+  <ion-col>
+  <ion-button class="add-deadline">
+Add Deadline
+  </ion-button>
+  </ion-col>
+  <ion-col>
+  <ion-button class="add-task">
+Add Task
+  </ion-button>
+  </ion-col>
+  </ion-row>
+  </ion-grid>
+
+</div>
 </div>
 </ion-content>
