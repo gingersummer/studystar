@@ -19,4 +19,8 @@ export class FlashcardComponent  implements OnInit {
   switchSides(){
     this.flashcardIn.frontSide = !this.flashcardIn.frontSide
   }
+  selectC(numIn: number){
+    this.flashcardIn.confidenceLevel = numIn
+    
+  }
 }

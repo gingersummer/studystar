@@ -6,11 +6,18 @@
 
 <ion-content [fullscreen]="true">
 
-  @for(item of flashcardSet; track $index){
+<p>
+  Progress: {{indexOfCards +1}}/{{flashcardSet.length}}
+</p>
 
-  <app-flashcard [flashcardIn]="item">
+  <app-flashcard [flashcardIn]="cardToDisplay">
 
   </app-flashcard>
-  }
+   <ion-button (click)="previousCard()">
+Previous Card
+  </ion-button>
+  <ion-button (click)="nextCard()">
+Next Card
+  </ion-button>
 
 </ion-content>
