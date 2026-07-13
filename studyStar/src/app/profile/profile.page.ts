@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { User } from '../models/user';
+import { UserService } from '../services/user/user-service';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +12,11 @@ import { MenuController } from '@ionic/angular';
 })
 export class ProfilePage implements OnInit {
 
-  constructor(private router: Router, private menuCtrl: MenuController) { }
+  currentUser: User
+
+  constructor(private router: Router, private menuCtrl: MenuController, private userService: UserService,) {
+    this.currentUser = new User("", "", "", "", 0, "", "")
+  }
 
   openMenu() {
     this.menuCtrl.open('profile')
