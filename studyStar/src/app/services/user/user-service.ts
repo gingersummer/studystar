@@ -13,7 +13,7 @@ export class UserService {
   private firebaseObservable?: Subscription
   constructor(private firebaseService: Firebaseservice) {
     this.getData()
-    this.selectedUser = new User("", "", "", "", 0, "", "")
+    this.selectedUser = new User("", "", "", 0, "", "")
   }
   getData() {
     try {

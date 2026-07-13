@@ -7,7 +7,9 @@
 <ion-card class="login-card">
   <ion-header>
     Login
+    <ion-button (click)="redirectToHome()">LOGIN</ion-button>
   </ion-header>
   <ion-input label="Username: " placeholder=""></ion-input>
   <ion-input label="Password: " placeholder=""></ion-input>
 </ion-card>
+<ion-button (click)="presentCreateModal()">Register New User</ion-button>

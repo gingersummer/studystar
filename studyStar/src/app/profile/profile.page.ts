@@ -15,7 +15,7 @@ export class ProfilePage implements OnInit {
   currentUser: User
 
   constructor(private router: Router, private menuCtrl: MenuController, private userService: UserService,) {
-    this.currentUser = new User("", "", "", "", 0, "", "")
+    this.currentUser = new User("", "", "", 0, "")
   }
 
   openMenu() {
