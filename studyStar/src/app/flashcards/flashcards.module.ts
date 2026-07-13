@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { FlashcardsPageRoutingModule } from './flashcards-routing.module';
 
 import { FlashcardsPage } from './flashcards.page';
+import { FlashcardcollectionComponent } from '../components/flashcardcollection/flashcardcollection.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { FlashcardsPage } from './flashcards.page';
     IonicModule,
     FlashcardsPageRoutingModule
   ],
-  declarations: [FlashcardsPage]
+  declarations: [FlashcardsPage, FlashcardcollectionComponent]
 })
 export class FlashcardsPageModule {}
