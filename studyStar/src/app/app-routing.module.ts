@@ -22,6 +22,10 @@ const routes: Routes = [
     path: 'agenda',
     loadChildren: () => import('./agenda/agenda.module').then( m => m.AgendaPageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
 
 ];
 
