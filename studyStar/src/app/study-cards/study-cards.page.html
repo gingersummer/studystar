@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Study Cards</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  @for(item of flashcardSet; track $index){
+
+  <app-flashcard [flashcardIn]="item">
+
+  </app-flashcard>
+  }
+
+</ion-content>
