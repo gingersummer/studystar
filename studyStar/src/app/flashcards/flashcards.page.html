@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-menu side="end" menuId="flashcards" contentId="main-content">
+  <ion-menu side="end" menuId="collection" contentId="main-content">
     <ion-header>
       <ion-toolbar>
         <ion-title>Menu</ion-title>
@@ -45,4 +45,13 @@
       </ion-toolbar>
     </ion-header>
   </div>
+</ion-content>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      @for(item of arrayOfSets; track $index) {
+        <app-flashcardcollection [flashcardToDisplay]="item"></app-flashcardcollection>
+      }
+    </ion-row>
+  </ion-grid>
 </ion-content>
