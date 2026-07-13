@@ -13,6 +13,10 @@ export class HomePage {
 
   constructor(private router: Router, private menuCtrl: MenuController) { }
 
+  openMenu() {
+    this.menuCtrl.open('home')
+  }
+
   redirectToProfile() {
     this.router.navigate(['/profile'])
     this.menuCtrl.close('home')
