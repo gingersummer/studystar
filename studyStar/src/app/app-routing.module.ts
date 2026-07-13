@@ -10,7 +10,8 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },  {
+  },
+  {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
@@ -22,6 +23,15 @@ const routes: Routes = [
     path: 'agenda',
     loadChildren: () => import('./agenda/agenda.module').then( m => m.AgendaPageModule)
   },
+  {
+    path: 'study-cards',
+    loadChildren: () => import('./study-cards/study-cards.module').then( m => m.StudyCardsPageModule)
+ 
+  },
+  {
+       path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  }
 
 ];
 
