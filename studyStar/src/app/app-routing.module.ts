@@ -26,9 +26,8 @@ const routes: Routes = [
   {
     path: 'study-cards',
     loadChildren: () => import('./study-cards/study-cards.module').then( m => m.StudyCardsPageModule)
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },
+  }
+  
 
 ];
 
