@@ -1,0 +1,26 @@
+<ion-content>
+  <ion-grid (click)="switchSides()">
+    <ion-row class="ion-justify-content-center">
+      <!-- 
+        Setting col-12 on mobile, col-4 on tablets/desktop 
+        means the card takes up 1/3 of the width of the row.
+      -->
+      <ion-col size="15" size-md="5">
+        <ion-card class="ratio-3x4">
+          <ion-card-header>
+            <ion-card-title>3x4 Card</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+               @if(flashcardIn.frontSide){
+    {{flashcardIn.term}}
+               }
+               @else{
+                {{flashcardIn.definition}}
+               }
+        
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
