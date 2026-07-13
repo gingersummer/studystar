@@ -1,114 +1,131 @@
 <ion-content>
-<ion-menu side="end" menuId="home" contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding">
-    <!-- This is the menu content. -->
-    <ion-list [inset]="true">
-      <ion-item [button]="true" (click)="redirectToProfile()">
-        <ion-icon color="danger" slot="start" name="list-circle" size="large"></ion-icon>
-        <ion-label>Profile</ion-label>
-      </ion-item>
-      <ion-item [button]="true" (click)="redirectToFlashcards()">
-        <ion-icon color="tertiary" slot="start" name="list-circle" size="large"></ion-icon>
-        <ion-label>Flashcards</ion-label>
-      </ion-item>
-      <ion-item [button]="true" (click)="redirectToAgenda()">
-        <ion-icon color="success" slot="start" name="list-circle" size="large"></ion-icon>
-        <ion-label>Agenda</ion-label>
-      </ion-item>
-      <ion-item [button]="true" (click)="redirectToLogin()">
+  <!-- End Side Menu -->
+  <ion-menu side="end" menuId="home" contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-list [inset]="true">
+        <ion-item [button]="true" (click)="redirectToProfile()">
+          <ion-icon color="danger" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-item>
+        <ion-item [button]="true" (click)="redirectToFlashcards()">
+          <ion-icon color="tertiary" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-label>Flashcards</ion-label>
+        </ion-item>
+        <ion-item [button]="true" (click)="redirectToAgenda()">
+          <ion-icon color="success" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-label>Agenda</ion-label>
+        </ion-item>
+        <ion-item [button]="true" (click)="redirectToLogin()">
         <ion-icon color="danger" slot="start" name="list-circle" size="large"></ion-icon>
         <ion-label>Login</ion-label>
       </ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-<div class="ion-page" id="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-grid>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <!-- Main Screen View Container -->
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-grid>
+          <ion-row>
+            <ion-title>StudyStars</ion-title>
+            <ion-searchbar class="searchBar" search-icon="star" placeholder="Search"></ion-searchbar>
+          </ion-row>
+        </ion-grid>
+        <ion-buttons slot="end">
+          <ion-menu-button (click)="openMenu()"></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- Main Content Grid Dashboard Elements -->
+    <div class="profile-page-items ion-padding dashboard-background">
+      
+      <!-- Date Banner Header -->
+      <div class="dashboard-header">
+        <p class="date-subtitle">Today's Date</p>
+        <h1 class="date-title">{{ today | date:'MMMM d, y' }}</h1>
+      </div>
+
+      <!-- Symmetrical Responsive Row Grid split layout -->
+      <ion-grid class="ion-no-padding">
         <ion-row>
-          <ion-title>
-            StudyStars
-          </ion-title>
-          <ion-searchbar class=searchBar search-icon="star" placeholder="Search">
-          </ion-searchbar>
-          <img class="fire-icon-image" src="data:image/webp;base64,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"/>
+          
+          <!-- Left Column: Study Suggestions Card Container -->
+          <ion-col size="12" size-md="6">
+            <ion-card class="dashboard-card">
+              <ion-card-header>
+                <ion-card-title>Study Suggestions</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-list lines="none" class="dashboard-list">
+                  <ion-item class="suggestion-item">
+                    <ion-icon name="checkmark" slot="start" color="#8940b3"></ion-icon>
+                    <ion-label>
+                      <h3>Time: Flashcards:</h3>
+                      <p>subtitle</p>
+                    </ion-label>
+                    <ion-badge slot="end" color="#8238b7">20 mins</ion-badge>
+                  </ion-item>
+                  <ion-item class="suggestion-item">
+                    <ion-icon name="checkmark" slot="start" color="#8940b3"></ion-icon>
+                    <ion-label>
+                      <h3>Time: Flashcards:</h3>
+                      <p>subtitle</p>
+                    </ion-label>
+                    <ion-badge slot="end" color="#8238b7">15 mins</ion-badge>
+                  </ion-item>
+                  <ion-item class="suggestion-item">
+                    <ion-icon name="checkmark" slot="start" color="#8238b7"></ion-icon>
+                    <ion-label>
+                      <h3>Time: Flashcards:</h3>
+                      <p>subtitle</p>
+                    </ion-label>
+                    <ion-badge slot="end" color="#8238b7">10 mins</ion-badge>
+                  </ion-item>
+                </ion-list>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+
+          <!-- Right Column: Today's Tasks Card Container -->
+          <ion-col size="12" size-md="6">
+            <ion-card class="dashboard-card">
+              <ion-card-header>
+                <ion-card-title>Today's Tasks</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-list lines="inset" class="dashboard-list">
+                  <ion-item>
+                    <ion-checkbox slot="start"></ion-checkbox>
+                    <ion-label>Task 1</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-checkbox slot="start"></ion-checkbox>
+                    <ion-label>Task 1</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-checkbox slot="start"></ion-checkbox>
+                    <ion-label>Task 1</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-checkbox slot="start"></ion-checkbox>
+                    <ion-label>Task 1</ion-label>
+                  </ion-item>
+                </ion-list>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+
         </ion-row>
       </ion-grid>
-      <ion-buttons slot="end">
-        <ion-menu-button (click)="openMenu()"></ion-menu-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-   <div class="profile-page-items">
-       <ion-grid>
-        <ion-col>
-      <ion-row>
-    <p>
-      Todays Date: {{ today | date:'MMMM d, y' }}
-    </p>
-      </ion-row>
-      <ion-row>
-StudySuggestions
-      </ion-row>
-      <ion-row>
-        <ion-col>
-        <ion-list>
-          <ion-item>
-            <ion-label>
-              Time: Flashcards:
-            </ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              Time: Flashcards:
-            </ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              Time: Flashcards:
-            </ion-label>
-          </ion-item>
-        </ion-list>
-        </ion-col>
-        <ion-col></ion-col>
-        <ion-col>
-           <ion-card class="tasks-card">
-        <h1>
-          Today's Tasks
-        </h1>
-        <ion-list>
-          <ion-item>
-            <ion-label>
-            Task 1
-            </ion-label>
-          </ion-item>
-        </ion-list>
-         <ion-item>
-            <ion-label>
-            Task 1
-            </ion-label>
-          </ion-item>
-           <ion-item>
-            <ion-label>
-            Task 1
-            </ion-label>
-          </ion-item>
-           <ion-item>
-            <ion-label>
-            Task 1
-            </ion-label>
-          </ion-item>
-      </ion-card>
-      </ion-col>
-      </ion-row>
-      </ion-col>
-  </ion-grid>
-</div>
-</div>
+
+    </div>
+  </div>
 </ion-content>

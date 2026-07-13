@@ -32,22 +32,21 @@
 }
 
 .profile-page-items {
+  padding: 1em;
   margin-bottom: 30em;
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--ion-color-dark);
+  color: #003d6b;
 }
 
 .tasks-card {
+  padding: 1em;
     width: 40em;
-    height: 20em;
+    height: 23em;
     margin-top: 0px;
+    color: #003d6b;
+    background-color: #b8ccda;
+    color: #dda3ff;
+    color: #8940b3
 }
 
-.fire-icon-image {
-  width: 3%;
-  height: 3%;
-  object-fit: scale-down;
-  position: relative;
-  float: right;
-}
