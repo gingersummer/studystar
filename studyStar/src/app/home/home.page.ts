@@ -9,6 +9,7 @@ import { MenuController } from '@ionic/angular';
   standalone: false,
 })
 export class HomePage {
+  today = new Date();
 
   constructor(private router: Router, private menuCtrl: MenuController) { }
 
