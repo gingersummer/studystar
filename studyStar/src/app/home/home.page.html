@@ -9,19 +9,19 @@
     <ion-content class="ion-padding">
       <ion-list [inset]="true">
         <ion-item [button]="true" (click)="redirectToProfile()">
-          <ion-icon color="danger" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-icon class="sidebar-icon" color="7e4ca2" slot="start" name="star" size="large"></ion-icon>
           <ion-label>Profile</ion-label>
         </ion-item>
         <ion-item [button]="true" (click)="redirectToFlashcards()">
-          <ion-icon color="tertiary" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-icon color="t#8238b7" slot="start" name="copy" size="large"></ion-icon>
           <ion-label>Flashcards</ion-label>
         </ion-item>
         <ion-item [button]="true" (click)="redirectToAgenda()">
-          <ion-icon color="success" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-icon color="#8238b7" slot="start" name="today" size="large"></ion-icon>
           <ion-label>Agenda</ion-label>
         </ion-item>
         <ion-item [button]="true" (click)="redirectToLogin()">
-        <ion-icon color="danger" slot="start" name="list-circle" size="large"></ion-icon>
+        <ion-icon color="#8238b7" slot="start" name="person" size="large"></ion-icon>
         <ion-label>Login</ion-label>
       </ion-item>
       </ion-list>
@@ -34,7 +34,7 @@
       <ion-toolbar>
         <ion-grid>
           <ion-row>
-            <ion-title>StudyStars</ion-title>
+            <ion-title style="font-size: 30px;" class="title-icon">StudyStar</ion-title>
             <ion-searchbar class="searchBar" search-icon="star" placeholder="Search"></ion-searchbar>
           </ion-row>
         </ion-grid>
@@ -49,7 +49,8 @@
       
       <!-- Date Banner Header -->
       <div class="dashboard-header">
-        <ion-header class="ion-padding"><strong>Today is {{ today | date:'MMMM d, y' }}</strong></ion-header>
+        <p class="date-subtitle" style="text-align: center;">Today's Date</p>
+        <h1 class="date-title" style="text-align: center;">{{ today | date:'MMMM d, y' }}</h1>
       </div>
 
       <!-- Symmetrical Responsive Row Grid split layout -->
@@ -60,12 +61,12 @@
           <ion-col size="12" size-md="6">
             <ion-card class="dashboard-card">
               <ion-card-header>
-                <ion-card-title>Study Suggestions</ion-card-title>
+                <ion-card-title class="suggestions-title">Study Suggestions</ion-card-title>
               </ion-card-header>
               <ion-card-content>
                 <ion-list lines="none" class="dashboard-list">
                   <ion-item class="suggestion-item">
-                    <ion-icon name="checkmark" slot="start" color="#8940b3"></ion-icon>
+                    <ion-icon name="checkmark" slot="start" color="dark-purple"></ion-icon>
                     <ion-label>
                       <h3>"Flashcard Set"</h3>
                       <p>Geography</p>
@@ -97,24 +98,24 @@
           <ion-col size="12" size-md="6">
             <ion-card class="dashboard-card">
               <ion-card-header>
-                <ion-card-title>Today's Tasks</ion-card-title>
+                <ion-card-title class="tasks-header">Today's Tasks</ion-card-title>
               </ion-card-header>
               <ion-card-content>
                 <ion-list lines="inset" class="dashboard-list">
                   <ion-item>
-                    <ion-checkbox slot="start"></ion-checkbox>
+                    <ion-checkbox slot="start" class="custom-task-checkbox"></ion-checkbox>
                     <ion-label>Task 1</ion-label>
                   </ion-item>
                   <ion-item>
-                    <ion-checkbox slot="start"></ion-checkbox>
+                    <ion-checkbox slot="start" class="custom-task-checkbox"></ion-checkbox>
                     <ion-label>Task 1</ion-label>
                   </ion-item>
                   <ion-item>
-                    <ion-checkbox slot="start"></ion-checkbox>
+                    <ion-checkbox slot="start" class="custom-task-checkbox"></ion-checkbox>
                     <ion-label>Task 1</ion-label>
                   </ion-item>
                   <ion-item>
-                    <ion-checkbox slot="start"></ion-checkbox>
+                    <ion-checkbox slot="start" class="custom-task-checkbox"></ion-checkbox>
                     <ion-label>Task 1</ion-label>
                   </ion-item>
                 </ion-list>
