@@ -13,9 +13,12 @@ import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
 })
 export class FlashcardsPage implements OnInit {
 
+
+  addingSet: boolean = false
+  newSetName:string = ''
   arrayOfSets: Set[] = [
     new Set("BIOLOGY", false, "https://static.vecteezy.com/system/resources/previews/068/271/762/large_2x/biology-icon-illustration-free-png.png", [new FlashCard("skibidi", "a brainrot term used in contexts"), new FlashCard("Logan", "Supa Cool and sigma dev"), new FlashCard("2", "number only even prime (prime like KSI)")]),
-    new Set("Chemistry", false, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWjqdA78r60V5lQGsuZJn4444_nWWruaecNmhC-elL5g&s=10", [new FlashCard('helium', 'gas lol')])
+    new Set("Chemistry", false, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWjqdA78r60V5lQGsuZJn4444_nWWruaecNmhC-elL5g&s=10", [new FlashCard('helium', 'gas lol'), new FlashCard('Are you sure', 'pretty sure, threw a trashbag into space... at work, are you sure')])
   ]
 
   constructor(private router: Router, private menuCtrl: MenuController, private flashCardService: Flashcardsets) { }
@@ -48,6 +51,22 @@ export class FlashcardsPage implements OnInit {
 this.flashCardService.selectSet(setIn.setOfCards)
     this.router.navigate(['/study-cards'])
     this.menuCtrl.close('collection')
+  }
+
+  addNewSet()
+  {
+    this.addingSet = true
+  }
+  createNewSet()
+  {
+    this.arrayOfSets.push(new Set(this.newSetName, false, '', [new FlashCard("Card 1", "Enter a Definition")]))
+    this.flashCardService.selectSet(this.arrayOfSets[this.arrayOfSets.length - 1].setOfCards)
+      this.addingSet = false
+
+    this.router.navigate(['/study-cards'])
+    this.menuCtrl.close('collection')
+    console.log('waht the sigma')
+    this.newSetName = ''
   }
 
 
