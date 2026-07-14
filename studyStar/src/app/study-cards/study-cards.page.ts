@@ -21,8 +21,6 @@ export class StudyCardsPage implements OnInit {
   ngOnInit() {
     this.flashcardSet = this.setService.selectedSet
     this.cardToDisplay = this.flashcardSet[this.indexOfCards]
-
-
   }
 
   redirectToHome() {
