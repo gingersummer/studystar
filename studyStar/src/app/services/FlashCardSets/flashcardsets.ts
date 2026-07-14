@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FlashCard } from 'src/app/models/flashcard';
+import { Set } from 'src/app/models/Set';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Flashcardsets {
-  selectedSet: FlashCard[] = [new FlashCard("Logan", "Supa Cool and sigma dev"), new FlashCard("2", "number only even prime (prime like KSI)")]
+  selectedSet: Set = new Set("", false, "", [])
 
-  selectSet(setIn: FlashCard[]) {
+  selectSet(setIn: Set) {
     this.selectedSet = setIn
   }
 

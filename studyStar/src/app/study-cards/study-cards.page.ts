@@ -3,6 +3,7 @@ import { FlashCard } from '../models/flashcard';
 import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { Set } from '../models/Set';
 
 @Component({
   selector: 'app-study-cards',
@@ -12,15 +13,17 @@ import { MenuController } from '@ionic/angular';
 })
 export class StudyCardsPage implements OnInit {
 
-  flashcardSet: FlashCard[] = [new FlashCard("Carson", "A sigma product owner")]
+  flashcardSet: Set = new Set('', false, '', [])
+
   indexOfCards: number = 0
-  cardToDisplay: FlashCard = this.flashcardSet[0]
+  cardToDisplay: FlashCard = this.flashcardSet.setOfCards[0]
 
   constructor(private setService: Flashcardsets, private router: Router, private menuCtrl: MenuController) { }
 
   ngOnInit() {
     this.flashcardSet = this.setService.selectedSet
-    this.cardToDisplay = this.flashcardSet[this.indexOfCards]
+    this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
+    
   }
 
   redirectToHome() {
@@ -46,16 +49,16 @@ export class StudyCardsPage implements OnInit {
   previousCard() {
     if (this.indexOfCards > 0) {
       this.indexOfCards--
-      this.cardToDisplay = this.flashcardSet[this.indexOfCards]
+      this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
     }
 
   }
   nextCard() {
-    if(this.indexOfCards < this.flashcardSet.length -1){
+    if(this.indexOfCards < this.flashcardSet.setOfCards.length -1){
     this.indexOfCards++
     }
 
-    this.cardToDisplay = this.flashcardSet[this.indexOfCards]
+    this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
   }
 
 }

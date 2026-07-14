@@ -48,7 +48,7 @@ export class FlashcardsPage implements OnInit {
   }
 
     redirectToStudyCards(setIn: Set) {
-this.flashCardService.selectSet(setIn.setOfCards)
+this.flashCardService.selectSet(setIn)
     this.router.navigate(['/study-cards'])
     this.menuCtrl.close('collection')
   }
@@ -60,7 +60,7 @@ this.flashCardService.selectSet(setIn.setOfCards)
   createNewSet()
   {
     this.arrayOfSets.push(new Set(this.newSetName, false, '', [new FlashCard("Card 1", "Enter a Definition")]))
-    this.flashCardService.selectSet(this.arrayOfSets[this.arrayOfSets.length - 1].setOfCards)
+    this.flashCardService.selectSet(this.arrayOfSets[this.arrayOfSets.length - 1])
       this.addingSet = false
 
     this.router.navigate(['/study-cards'])

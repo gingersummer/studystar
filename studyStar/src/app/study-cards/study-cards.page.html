@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-    <ion-title>Study Cards</ion-title>
+    <ion-title> {{flashcardSet.name}} </ion-title>
   <ion-menu side="end" menuId="collection" contentId="main-content">
     <ion-header>
       <ion-toolbar>
@@ -46,6 +46,6 @@ Previous Card
   <ion-button class="next-button-style" (click)="nextCard()">
 Next Card
   </ion-button>
-  <p class="progress-p-style">Progress: {{indexOfCards +1}}/{{flashcardSet.length}}</p>
+  <p class="progress-p-style">Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}</p>
 
 </ion-content>
