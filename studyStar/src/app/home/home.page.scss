@@ -45,8 +45,44 @@
     height: 23em;
     margin-top: 0px;
     color: #003d6b;
-    background-color: #b8ccda;
-    color: #dda3ff;
-    color: #8940b3
 }
+.dashboard-card {
+  --background: #ffffff;
+}
+.dashboard-card ion-list,
+.dashboard-card .suggestion-list {
+  background: transparent !important;
+  --background: transparent !important;
+}
+.dashboard-card ion-item,
+.dashboard-card .suggestion-item {
+  --background: transparent !important;
+  background: transparent !important;
 
+}
+.custom-task-checkbox {
+  --checkbox-background-checked: #b58ad3;
+  --border-color-checked: #7e4ca2;
+  --checkmark-color: #ffffff;
+  --checkbox-background: #ecf7ff;
+
+}
+.date-subtitle{
+  font-size: 40px;
+  line-height: 0.5;
+}
+.date-title{
+  font-size: 36px;
+  line-height: 1.0;
+}
+.suggestions-title{
+  font-size: 26px;
+  text-align: center;
+}
+.tasks-header{
+  font-size: 26px;
+  text-align: center;
+}
+.sidebar-icon{
+  icon-color:#7e4ca2;
+}
