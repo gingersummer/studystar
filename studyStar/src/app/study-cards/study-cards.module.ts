@@ -9,6 +9,7 @@ import { StudyCardsPageRoutingModule } from './study-cards-routing.module';
 import { StudyCardsPage } from './study-cards.page';
 import { FlashCard } from '../models/flashcard';
 import { FlashcardComponent } from '../components/flashcard/flashcard.component';
+import { ConfidenceComponent } from '../confidence/confidence.component';
 
 @NgModule({
   imports: [
@@ -16,8 +17,7 @@ import { FlashcardComponent } from '../components/flashcard/flashcard.component'
     FormsModule,
     IonicModule,
     StudyCardsPageRoutingModule,
-    
   ],
-  declarations: [StudyCardsPage, FlashcardComponent]
+  declarations: [StudyCardsPage, FlashcardComponent, ConfidenceComponent]
 })
 export class StudyCardsPageModule {}
