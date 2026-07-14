@@ -37,15 +37,15 @@
   <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
 
   </app-flashcard>
-  <app-confidence [flashcardIn]="cardToDisplay">
+  <!-- <app-confidence [flashcardIn]="cardToDisplay"> -->
 
-  </app-confidence>
-   <ion-button (click)="previousCard()">
+  <!-- </app-confidence> -->
+   <ion-button class="prev-button-style" (click)="previousCard()">
 Previous Card
   </ion-button>
-  <ion-button (click)="nextCard()">
+  <ion-button class="next-button-style" (click)="nextCard()">
 Next Card
   </ion-button>
-  <div>Progress: {{indexOfCards +1}}/{{flashcardSet.length}}</div>
+  <p class="progress-p-style">Progress: {{indexOfCards +1}}/{{flashcardSet.length}}</p>
 
 </ion-content>
