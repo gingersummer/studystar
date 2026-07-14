@@ -2,22 +2,52 @@
   <ion-toolbar>
     <ion-title>Study Cards</ion-title>
   </ion-toolbar>
+  <ion-menu side="end" menuId="collection" contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <!-- This is the menu content. -->
+      <ion-list [inset]="true">
+        <ion-item [button]="true" (click)="redirectToProfile()">
+          <ion-icon color="danger" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-item>
+        <ion-item [button]="true" (click)="redirectToFlashcards()">
+          <ion-icon color="tertiary" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-label>Flashcards</ion-label>
+        </ion-item>
+        <ion-item [button]="true" (click)="redirectToAgenda()">
+          <ion-icon color="success" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-label>Agenda</ion-label>
+        </ion-item>
+        <ion-item [button]="true" (click)="redirectToHome()">
+          <ion-icon color="success" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-<p>
-  Progress: {{indexOfCards +1}}/{{flashcardSet.length}}
-</p>
+  <div class="first-div"></div>
 
-  <app-flashcard [flashcardIn]="cardToDisplay">
+  <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
 
   </app-flashcard>
+  <app-confidence [flashcardIn]="cardToDisplay">
+
+  </app-confidence>
    <ion-button (click)="previousCard()">
 Previous Card
   </ion-button>
   <ion-button (click)="nextCard()">
 Next Card
   </ion-button>
+  <div>Progress: {{indexOfCards +1}}/{{flashcardSet.length}}</div>
 
 </ion-content>

@@ -49,8 +49,7 @@
       
       <!-- Date Banner Header -->
       <div class="dashboard-header">
-        <p class="date-subtitle">Today's Date</p>
-        <h1 class="date-title">{{ today | date:'MMMM d, y' }}</h1>
+        <ion-header class="ion-padding"><strong>Today is {{ today | date:'MMMM d, y' }}</strong></ion-header>
       </div>
 
       <!-- Symmetrical Responsive Row Grid split layout -->
@@ -68,24 +67,24 @@
                   <ion-item class="suggestion-item">
                     <ion-icon name="checkmark" slot="start" color="#8940b3"></ion-icon>
                     <ion-label>
-                      <h3>Time: Flashcards:</h3>
-                      <p>subtitle</p>
+                      <h3>"Flashcard Set"</h3>
+                      <p>Geography</p>
                     </ion-label>
                     <ion-badge slot="end" color="#8238b7">20 mins</ion-badge>
                   </ion-item>
                   <ion-item class="suggestion-item">
                     <ion-icon name="checkmark" slot="start" color="#8940b3"></ion-icon>
                     <ion-label>
-                      <h3>Time: Flashcards:</h3>
-                      <p>subtitle</p>
+                      <h3>"Flashcard Set"</h3>
+                      <p>History</p>
                     </ion-label>
                     <ion-badge slot="end" color="#8238b7">15 mins</ion-badge>
                   </ion-item>
                   <ion-item class="suggestion-item">
                     <ion-icon name="checkmark" slot="start" color="#8238b7"></ion-icon>
                     <ion-label>
-                      <h3>Time: Flashcards:</h3>
-                      <p>subtitle</p>
+                      <h3>"Flashcard Set"</h3>
+                      <p>Science</p>
                     </ion-label>
                     <ion-badge slot="end" color="#8238b7">10 mins</ion-badge>
                   </ion-item>
