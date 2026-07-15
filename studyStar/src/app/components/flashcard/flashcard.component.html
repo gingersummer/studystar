@@ -1,23 +1,26 @@
-<ion-content>
-  <ion-grid (click)="switchSides()">
-    <ion-row class="ion-justify-content-center">
-      <!-- 
+<ion-grid>
+    <ion-row>
+        <!-- 
         Setting col-12 on mobile, col-4 on tablets/desktop 
         means the card takes up 1/3 of the width of the row.
       -->
-      <ion-col size="15" size-md="5">
-        <ion-card class="ratio-3x4">
-          <ion-card-content>
-               @if(flashcardIn.frontSide){
-    {{flashcardIn.term}}
-               }
-               @else{
-                {{flashcardIn.definition}}
-               }
-        
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
+        <ion-col size="15" size-md="5">
+            <ion-card class="ratio-3x4">
+                <ion-card-content (click)="switchSides()">
+                    @if(flashcardIn.frontSide){
+
+                    <ion-title>
+                        {{flashcardIn.term}}
+                    </ion-title>
+                    Confidence: {{flashcardIn.confidenceLevel}}
+                    }
+                    @else{
+                        
+                    {{flashcardIn.definition}}
+                    }
+
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
     </ion-row>
-  </ion-grid>
-</ion-content>
+</ion-grid>

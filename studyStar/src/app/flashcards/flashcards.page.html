@@ -1,3 +1,10 @@
+@if(addingSet){
+<ion-input placeholder="Enter Name" label="Name Of Set" [(ngModel)]="newSetName"></ion-input>
+<ion-button (click)="createNewSet()"> Create </ion-button>
+}
+
+@else{
+
 <ion-content>
   <ion-menu side="end" menuId="collection" contentId="main-content">
     <ion-header>
@@ -45,13 +52,15 @@
       </ion-toolbar>
     </ion-header>
   </div>
+
+  <div class="smallcard">
+    <ion-button (click)="addNewSet()"> Add Set </ion-button>
+
+    @for(item of arrayOfSets; track $index) {
+    <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item)"></app-flashcardcollection>
+    }
+  </div>
+
+
 </ion-content>
-<ion-content>
-  <ion-grid>
-    <ion-row>
-      @for(item of arrayOfSets; track $index) {
-        <app-flashcardcollection [flashcardToDisplay]="item"></app-flashcardcollection>
-      }
-    </ion-row>
-  </ion-grid>
-</ion-content>
+}
