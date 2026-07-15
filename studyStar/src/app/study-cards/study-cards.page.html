@@ -1,12 +1,9 @@
 <ion-header>
-    <ion-title class="ion-padding"> StudyStar </ion-title>
+  <ion-title class="ion-padding"> StudyStar </ion-title>
   <ion-menu side="end" menuId="collection" contentId="main-content">
-    <ion-header>
-      <ion-card class="ion-padding"> {{flashcardSet.name}} </ion-card>
       <ion-toolbar>
         <ion-title>Menu</ion-title>
       </ion-toolbar>
-    </ion-header>
     <ion-content class="ion-padding">
       <!-- This is the menu content. -->
       <ion-list [inset]="true">
@@ -33,6 +30,10 @@
 
 <ion-content [fullscreen]="true">
 
+  <div class="second-div"></div>
+  
+  <ion-card class="set-name-card-style">{{flashcardSet.name}}</ion-card>
+
   <div class="first-div"></div>
 
   <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
@@ -41,11 +42,11 @@
   <!-- <app-confidence [flashcardIn]="cardToDisplay"> -->
 
   <!-- </app-confidence> -->
-   <ion-button class="prev-button-style" (click)="previousCard()">
-Previous Card
+  <ion-button class="prev-button-style" (click)="previousCard()">
+    Previous Card
   </ion-button>
   <ion-button class="next-button-style" (click)="nextCard()">
-Next Card
+    Next Card
   </ion-button>
   <p class="progress-p-style">Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}</p>
 
