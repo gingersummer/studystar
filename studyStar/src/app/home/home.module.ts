@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { FlashcardcollectionComponent } from '../components/flashcardcollection/flashcardcollection.component';
+import { MbscModule } from '@mobiscroll/angular';
 
 
 @NgModule({
@@ -13,8 +13,9 @@ import { FlashcardcollectionComponent } from '../components/flashcardcollection/
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    MbscModule
   ],
-  declarations: [HomePage, ]
+  declarations: [HomePage] 
 })
 export class HomePageModule {}
