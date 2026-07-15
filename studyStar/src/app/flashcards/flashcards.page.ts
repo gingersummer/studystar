@@ -46,6 +46,10 @@ export class FlashcardsPage implements OnInit {
     this.router.navigate(['/agenda'])
     this.menuCtrl.close('collection')
   }
+  redirectToLogin() {
+    this.router.navigate(['/login'])
+    this.menuCtrl.close('collection')
+  }
 
     redirectToStudyCards(setIn: Set) {
 this.flashCardService.selectSet(setIn)
