@@ -61,4 +61,6 @@ export class StudyCardsPage implements OnInit {
     this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
   }
 
+  
+
 }

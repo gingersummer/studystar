@@ -40,7 +40,7 @@
         <ion-grid>
           <ion-row>
             <ion-title>
-              StudyStars
+              StudyStar
             </ion-title>
             <ion-searchbar class=searchBar search-icon="star" placeholder="Search">
             </ion-searchbar>
@@ -56,9 +56,19 @@
   <div class="smallcard">
     <ion-button (click)="addNewSet()"> Add Set </ion-button>
 
-    @for(item of arrayOfSets; track $index) {
-    <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item)"></app-flashcardcollection>
-    }
+
+    <ion-grid>
+      <ion-row>
+        @for(item of arrayOfSets; track $index) {
+        <ion-col>
+          <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item)">
+
+          </app-flashcardcollection>
+        </ion-col>
+        }
+      </ion-row>
+    </ion-grid>
+
   </div>
 
 
