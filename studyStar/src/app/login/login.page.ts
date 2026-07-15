@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MenuController, ModalController } from '@ionic/angular';
 import { UsercreationComponent } from '../components/usercreation/usercreation.component';
 import { AuthService } from '../services/auth/auth';
+import { UserService } from '../services/user/user-service';
 
 @Component({
   selector: 'app-login',
@@ -20,9 +21,14 @@ export class LoginPage implements OnInit {
     private menuCtrl: MenuController,
     private modalController: ModalController,
     private authService: AuthService,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    this.clearFields()
   }
 
   openMenu() {
@@ -40,7 +46,8 @@ export class LoginPage implements OnInit {
     if (result != null) {
       this.redirectToHome()
     } else {
-      window.alert('Incorrect Login')
+      window.alert('Incorrect Login'),
+      this.clearFields()
     }
   }
 
@@ -49,6 +56,11 @@ export class LoginPage implements OnInit {
       component: UsercreationComponent
     })
     await modal.present()
+  }
+
+  clearFields() {
+    this.emailIn = '',
+    this.passwordIn = ''
   }
 
 }

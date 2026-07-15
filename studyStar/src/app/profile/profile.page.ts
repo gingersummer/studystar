@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { User } from '../models/user';
 import { UserService } from '../services/user/user-service';
+import { AuthService } from '../services/auth/auth';
+import { Firebaseservice } from '../services/firebase/firebaseservice';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -12,10 +15,32 @@ import { UserService } from '../services/user/user-service';
 })
 export class ProfilePage implements OnInit {
 
-  currentUser: User
+  currentUser?: User
 
-  constructor(private router: Router, private menuCtrl: MenuController, private userService: UserService,) {
-    this.currentUser = new User("", "", "", 0, "")
+  userSubscription?: Subscription;
+
+  constructor(
+    private router: Router,
+    private menuCtrl: MenuController,
+    private userService: UserService,
+    private authService: AuthService,
+  ) {
+
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe()
+    }
+  }
+
+  ionViewDidEnter() {
+    this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+      if (data.length > 1) {
+        throw Error("Multiple user profiles found!")
+      }
+      this.currentUser = data[0]
+    })
   }
 
   openMenu() {
@@ -43,6 +68,12 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  async signOut() {
+    await this.authService.logout()
+    this.router.navigateByUrl('login')
+    this.userService.reset()
   }
 
 }

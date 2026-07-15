@@ -2,27 +2,31 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { Firebaseservice } from 'src/app/services/firebase/firebaseservice';
 import { User } from 'src/app/models/user';
+import { AuthService } from '../auth/auth';
+import { getAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  selectedUser: User
+
   private _users: BehaviorSubject<User[]> = new BehaviorSubject([] as
     User[])
-  private firebaseObservable?: Subscription
-  constructor(private firebaseService: Firebaseservice) {
-    this.getData()
-    this.selectedUser = new User("", "", "", 0, "", "")
+  private firebaseSubscription?: Subscription
+  constructor(
+    private firebaseService: Firebaseservice,
+  ) {
+    
   }
-  getData() {
+
+  getData(uid: string) {
     try {
-      this.firebaseService.readCollection("users").subscribe(
+      this.firebaseSubscription = this.firebaseService.readCollectionByUid("users", uid).subscribe(
         (res: any[]) => {
           //map JSON from firebase to User
           let users = res.map((user: any) => new
-            User(user.username, user.email, user.password,
-              user.picture, user.setsCompleted, user.lastSet, user.id))
+            User(user.username, user.email, user.setsCompleted, user.lastSet, user.uid,
+              user.picture, user.id))
           //update BehaviorSubject to have newest Firebase values
           this._users.next(users)
         },
@@ -45,8 +49,16 @@ export class UserService {
   async deleteUser(user: User) {
     await this.firebaseService.deleteDoc(`users/${user.id}`)
   }
+
+  reset() {
+    if (this.firebaseSubscription) {
+      this.firebaseSubscription?.unsubscribe()
+    }
+    this._users.next([])
+  }
+
   ngOnDestroy() {
-    this.firebaseObservable?.unsubscribe()
+    this.firebaseSubscription?.unsubscribe()
   }
 
 }

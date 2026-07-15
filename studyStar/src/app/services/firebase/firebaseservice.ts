@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Firestore, DocumentReference, doc, setDoc, CollectionReference, collection, collectionData, deleteDoc, addDoc } from '@angular/fire/firestore';
+import { Firestore, DocumentReference, doc, setDoc, CollectionReference, collection, collectionData, deleteDoc, addDoc, getDoc, Query, query, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Auth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,7 @@ export class Firebaseservice {
     Observable<T[]> {
     let collectionRef: CollectionReference = collection(this.firestore,
       collectionName)
-    return collectionData(collectionRef, {idField: 'id'}) as Observable<T[]>
+    return collectionData(collectionRef, { idField: 'id' }) as Observable<T[]>
   }
   /**
   * Update
@@ -49,5 +50,12 @@ export class Firebaseservice {
   async deleteDoc(path: string) {
     let documentRef: DocumentReference = doc(this.firestore, path);
     await deleteDoc(documentRef)
+  }
+
+  readCollectionByUid<T extends Object>(collectionName: string, uid: string): Observable<T[]> {
+    let collectionRef: CollectionReference = collection(this.firestore,
+      collectionName)
+    let q: Query = query(collectionRef, where('uid', '==', uid))
+    return collectionData(q) as Observable<T[]>
   }
 }

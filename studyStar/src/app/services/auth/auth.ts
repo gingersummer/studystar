@@ -4,7 +4,9 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  User,
 } from '@angular/fire/auth';
+import { UserService } from '../user/user-service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +14,14 @@ import {
 export class AuthService {
 
   constructor(
-    private auth: Auth
-  ) { }
+    private auth: Auth,
+    private userService: UserService,
+  ) {
+    auth.onAuthStateChanged(() => {
+      this.userService.reset();
+      this.userService.getData(this.getCurrentUserUid());
+    })
+  }
 
   async register(email: string, password: string, passwordConf: string) {
     if (password != passwordConf) {
@@ -39,6 +47,14 @@ export class AuthService {
 
   async logout() {
     return signOut(this.auth)
+  }
+
+  getCurrentUserUid(): string {
+    if (this.auth.currentUser != null) {
+      console.log(this.auth.currentUser)
+      return this.auth.currentUser.uid
+    }
+    throw new Error('no user logged in')
   }
 
 

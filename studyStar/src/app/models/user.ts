@@ -4,15 +4,15 @@ export class User {
     picture?: string = "studystar/studyStar/src/assets/default.png"
     username: string
     email: string
-    password: string
+    uid?: string
     setsCompleted: number
     lastSet: string
 
 
-    constructor(usernameIn: string, emailIn: string, passwordIn: string, setsCompletedIn: number, lastSetIn: string, pictureIn?: string, idIn?: string) {
+    constructor(usernameIn: string, emailIn: string, setsCompletedIn: number, lastSetIn: string, uidIn?: string, pictureIn?: string, idIn?: string) {
         this.username = usernameIn,
         this.email = emailIn,
-        this.password = passwordIn,
+        this.uid = uidIn,
         this.setsCompleted = setsCompletedIn,
         this.lastSet = lastSetIn,
         this.picture = pictureIn,

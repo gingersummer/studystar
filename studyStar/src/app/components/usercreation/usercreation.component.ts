@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth/auth';
 import { UserService } from 'src/app/services/user/user-service';
 
 @Component({
@@ -11,41 +13,59 @@ import { UserService } from 'src/app/services/user/user-service';
 })
 export class UsercreationComponent implements OnInit {
 
-  usernameIn: string = ""
-  emailIn: string = ""
-  passwordIn: string = ""
+  regUsernameIn: string = ""
+  regEmailIn: string = ""
+  regPasswordIn: string = ""
+  regPasswordConfIn: string = ""
 
 
   constructor(
     private userService: UserService,
+    private router: Router,
     private modalController: ModalController,
     private alertController: AlertController,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() { }
+
+  ionViewWillEnter() {
+    this.clearFields()
+  }
 
   dismissModal() {
     this.modalController.dismiss()
   }
 
-  async newUser() {
+  async register() {
     try {
-      let userToAdd: User = new User(this.usernameIn, this.emailIn, this.passwordIn, 0, "no sets completed")
+      let result = await this.authService.register(this.regEmailIn, this.regPasswordIn, this.regPasswordConfIn)
+      let userToAdd: User = new User(this.regUsernameIn, this.regEmailIn, 0, "no sets completed", this.authService.getCurrentUserUid())
       this.userService.saveUser(userToAdd)
 
-      this.usernameIn = ""
-      this.emailIn = ""
-      this.passwordIn = ""
 
-      this.dismissModal()
-
+      if (result != null) {
+        this.router.navigateByUrl('home')
+        this.dismissModal()
+      } else {
+        window.alert('Registration Failed'),
+          this.clearPasswords()
+      }
     } catch (err: any) {
-      let alert = await this.alertController.create({
-        header: "Try Again",
-        message: "An error has occurred"
-      })
-      await alert.present()
+      window.alert(err.message)
     }
+  }
+
+  clearFields() {
+    this.regEmailIn = '',
+    this.regPasswordIn = '',
+    this.regUsernameIn = '',
+    this.regPasswordConfIn = ''
+  }
+
+  clearPasswords() {
+    this.regPasswordIn = '',
+    this.regPasswordConfIn = ''
   }
 
 }

@@ -30,6 +30,7 @@
   <div class="ion-page" id="main-content">
     <ion-header>
       <ion-toolbar>
+        <ion-button (click)="signOut()" slot="start">Log Out</ion-button>
         <ion-grid>
           <ion-row>
             <ion-title>
@@ -44,30 +45,30 @@
     </ion-header>
     <div class="profile-page-items">
       <ion-card>
-    <h1>
-      Profile
-    </h1>
-    </ion-card>
-<ion-avatar class="profile-picture">
-  <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-</ion-avatar>
-<ion-card class="profile-card">
-<h1>
-  Username: 
-</h1>
-<h1>
- Email: 
-</h1>
-<h1>
- Most Recent Study Set:
-</h1>
-<h1>
-  Sets Completed: 
-</h1>
-</ion-card>
-</div>
+        <h1>
+          Profile
+        </h1>
+      </ion-card>
+      <ion-avatar class="profile-picture">
+        <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
+
+      @if(currentUser) {
+      <ion-card class="profile-card">
+        <h1>
+          Username: {{currentUser.username}}
+        </h1>
+        <h1>
+          Email: {{currentUser.email}}
+        </h1>
+        <h1>
+          Most Recent Study Set: {{currentUser.lastSet}}
+        </h1>
+        <h1>
+          Sets Completed: {{currentUser.setsCompleted}}
+        </h1>
+      </ion-card>
+      }
+    </div>
   </div>
 </ion-content>
-
-
- 

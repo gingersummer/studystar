@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>New Account</ion-title>
+    <ion-title>Register Account</ion-title>
     <ion-button slot="end" (click)="dismissModal()">X</ion-button>
   </ion-toolbar>
 </ion-header>
@@ -9,13 +9,16 @@
   <ion-card>
     <ion-list>
       <ion-item>
-        <ion-input label="Email: " [(ngModel)]="emailIn"></ion-input>
+        <ion-input label="Email: " [(ngModel)]="regEmailIn"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label="Username: " [(ngModel)]="usernameIn"></ion-input>
+        <ion-input label="Username: " [(ngModel)]="regUsernameIn"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label="Password: " type="password" [(ngModel)]="passwordIn"></ion-input>
+        <ion-input label="Password: " type="password" [(ngModel)]="regPasswordIn"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Confirm Password: " type="password" [(ngModel)]="regPasswordConfIn"></ion-input>
       </ion-item>
     </ion-list>
   </ion-card>
@@ -23,6 +26,6 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button slot="start" (click)="newUser()">Register Account</ion-button>
+    <ion-button slot="start" (click)="register()">Register Account</ion-button>
   </ion-toolbar>
 </ion-footer>
