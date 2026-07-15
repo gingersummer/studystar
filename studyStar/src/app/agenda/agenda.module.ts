@@ -5,16 +5,18 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { AgendaPageRoutingModule } from './agenda-routing.module';
-
+import { CalendarComponent } from '../components/calendar/calendar.component';
 import { AgendaPage } from './agenda.page';
+import { MbscModule } from '@mobiscroll/angular';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AgendaPageRoutingModule
+    AgendaPageRoutingModule,
+    MbscModule
   ],
-  declarations: [AgendaPage]
+  declarations: [AgendaPage, CalendarComponent]
 })
 export class AgendaPageModule {}
