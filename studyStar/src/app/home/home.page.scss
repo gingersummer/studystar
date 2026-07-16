@@ -86,3 +86,13 @@
 .sidebar-icon{
   icon-color:#7e4ca2;
 }
+
+ion-content.homepage-content {
+  --background: #dcb5f7;
+  --background: radial-gradient(circle, rgba(240, 214, 255, 1) 0%, rgba(196, 233, 255, 1) 100%);
+}
+
+ion-header ion-toolbar {
+  --background: #8238B7;
+  --background: linear-gradient(90deg,rgb(225, 199, 275) 0%, rgba(225, 199, 275, 1.0) 100%);
+}
