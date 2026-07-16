@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { Set } from '../models/Set';
+import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
+import { FlashcardsPage } from '../flashcards/flashcards.page';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +13,12 @@ import { MenuController } from '@ionic/angular';
 })
 export class HomePage {
   today = new Date();
+  set: Set = new Set('', false, '', [], '');
+  arrayOfSets: Set[] = []
 
-  constructor(private router: Router, private menuCtrl: MenuController) { }
+  constructor(private router: Router, private menuCtrl: MenuController, private flashCardService: Flashcardsets) {
+    this.arrayOfSets=this.flashCardService.arrayOfSets
+   }
 
   openMenu() {
     this.menuCtrl.open('home')
@@ -39,5 +46,8 @@ export class HomePage {
 
   }
 
-  redirectToStudyCards() {}
+  redirectToStudyCards(setToOpen: Set) {
+    this.flashCardService.selectSet(setToOpen)
+    this.router.navigate(['/study-cards'])
+  }
 }
