@@ -5,3 +5,8 @@
   margin-left: 40px;    /* Spaces it away from the left edge */
   margin-right: auto;   /* Prevents it from centering */    /* Prevents the card from expanding too much */
 }
+
+.searchBar {
+  max-width: unset;
+  width: 30em;
+}
