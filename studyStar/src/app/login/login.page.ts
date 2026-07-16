@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
   }
 
   redirectToHome() {
-    this.router.navigate(['/profile'])
+    this.router.navigate(['/home'])
     this.menuCtrl.close('login')
   }
 

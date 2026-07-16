@@ -1,7 +1,7 @@
 export class User {
     // class variables
     id?: string
-    picture?: string = "studystar/studyStar/src/assets/default.png"
+    picture?: string
     username: string
     email: string
     uid?: string
