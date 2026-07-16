@@ -38,4 +38,6 @@ export class HomePage {
     this.menuCtrl.close('home')
 
   }
+
+  redirectToStudyCards() {}
 }
