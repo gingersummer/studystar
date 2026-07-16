@@ -1,31 +1,20 @@
 <ion-header>
-  <ion-title class="ion-padding"> StudyStar </ion-title>
-  <ion-menu side="end" menuId="collection" contentId="main-content">
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-    <ion-content class="ion-padding">
-      <!-- This is the menu content. -->
-      <ion-list [inset]="true">
-        <ion-item [button]="true" (click)="redirectToProfile()">
-          <ion-icon color="danger" slot="start" name="list-circle" size="large"></ion-icon>
-          <ion-label>Profile</ion-label>
-        </ion-item>
-        <ion-item [button]="true" (click)="redirectToFlashcards()">
-          <ion-icon color="tertiary" slot="start" name="list-circle" size="large"></ion-icon>
-          <ion-label>Flashcards</ion-label>
-        </ion-item>
-        <ion-item [button]="true" (click)="redirectToAgenda()">
-          <ion-icon color="success" slot="start" name="list-circle" size="large"></ion-icon>
-          <ion-label>Agenda</ion-label>
-        </ion-item>
-        <ion-item [button]="true" (click)="redirectToHome()">
-          <ion-icon color="success" slot="start" name="list-circle" size="large"></ion-icon>
-          <ion-label>Home</ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+  <ion-grid>
+    <ion-row>
+      <ion-title>
+        {{flashcardSet.name}}
+      </ion-title>
+
+      <ion-item [button]="true" (click)="redirectToFlashcards()">
+
+        <ion-icon name="close-circle-outline" color="danger">
+
+        </ion-icon>
+
+      </ion-item>
+
+    </ion-row>
+  </ion-grid>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -33,36 +22,21 @@
 
     <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
 
-      <div class="second-div"></div>
-
-      <ion-card class="set-name-card-style">
-        <ion-grid>
-          <ion-row>
-            <ion-col>{{flashcardSet.name}}</ion-col>
-            <ion-col class="progress-column">Progress: {{progressPercent}}%</ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card>
-
-      <div class="first-div"></div>
-
-      <!-- </app-confidence> -->
-      <ion-button class="prev-button-style" (click)="previousCard()">
-        Previous Card
-      </ion-button>
-
-      <ion-button class="next-button-style" (click)="nextCard()">
-        Next Card
-      </ion-button>
-
-      <!-- </app-confidence> -->
-      <ion-button class="prev-button-style" (click)="previousCard()">
-        Previous Card
-      </ion-button>
-      <ion-button class="next-button-style" (click)="nextCard()">
-        Next Card
-      </ion-button>
-      <p class="progress-p-style">Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}</p>
     </app-flashcard>
+    <!-- <app-confidence [flashcardIn]="cardToDisplay"> -->
+
+    <!-- </app-confidence> -->
+    <ion-button class="prev-button-style" (click)="previousCard()">
+      Previous Card
+    </ion-button>
+
+    <ion-button class="next-button-style" (click)="nextCard()">
+      Next Card
+    </ion-button>
+
+    <p class="progress-p-style">
+      Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
+    </p>
+
   </div>
 </ion-content>
