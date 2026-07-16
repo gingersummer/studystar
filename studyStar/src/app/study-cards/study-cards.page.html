@@ -31,21 +31,10 @@
 <ion-content [fullscreen]="true">
   <div class="first-div">
 
+
     <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
 
       <div class="second-div"></div>
-
-      <ion-card class="set-name-card-style">
-        <ion-grid>
-          <ion-row>
-            <ion-col>{{flashcardSet.name}}</ion-col>
-            <ion-col class="progress-column">Progress: {{progressPercent}}%</ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card>
-
-      <div class="first-div"></div>
-
       <!-- </app-confidence> -->
       <ion-button class="prev-button-style" (click)="previousCard()">
         Previous Card
