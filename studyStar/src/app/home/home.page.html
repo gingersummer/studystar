@@ -37,6 +37,8 @@
         <ion-grid>
           <ion-row>
             <ion-title style="font-size: 30px;" class="title-icon">StudyStar</ion-title>
+            <ion-icon name="flame-outline" class="streak-icon" color="danger"></ion-icon>
+            Amount of days
             <ion-searchbar class="searchBar" search-icon="star" placeholder="Search"></ion-searchbar>
           </ion-row>
         </ion-grid>
@@ -71,7 +73,7 @@
                     <ion-icon name="checkmark" slot="start" color="dark-purple"></ion-icon>
                     <ion-label>
                       <h3>"Flashcard Set"</h3>
-                      <p>Geography</p>
+                      <ion-item [button]="true" (click)="redirectToStudyCards()">flashcard</ion-item>
                     </ion-label>
                     <ion-badge slot="end" color="#8238b7">20 mins</ion-badge>
                   </ion-item>
