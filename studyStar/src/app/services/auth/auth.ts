@@ -51,7 +51,6 @@ export class AuthService {
 
   getCurrentUserUid(): string {
     if (this.auth.currentUser != null) {
-      console.log(this.auth.currentUser)
       return this.auth.currentUser.uid
     }
     throw new Error('no user logged in')
