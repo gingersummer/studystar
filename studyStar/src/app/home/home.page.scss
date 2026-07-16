@@ -32,14 +32,57 @@
 }
 
 .profile-page-items {
+  padding: 1em;
   margin-bottom: 30em;
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--ion-color-dark);
+  color: #003d6b;
 }
 
 .tasks-card {
+  padding: 1em;
     width: 40em;
-    height: 20em;
+    height: 23em;
     margin-top: 0px;
+    color: #003d6b;
+}
+.dashboard-card {
+  --background: #ffffff;
+}
+.dashboard-card ion-list,
+.dashboard-card .suggestion-list {
+  background: transparent !important;
+  --background: transparent !important;
+}
+.dashboard-card ion-item,
+.dashboard-card .suggestion-item {
+  --background: transparent !important;
+  background: transparent !important;
+
+}
+.custom-task-checkbox {
+  --checkbox-background-checked: #b58ad3;
+  --border-color-checked: #7e4ca2;
+  --checkmark-color: #ffffff;
+  --checkbox-background: #ecf7ff;
+
+}
+.date-subtitle{
+  font-size: 40px;
+  line-height: 0.5;
+}
+.date-title{
+  font-size: 36px;
+  line-height: 1.0;
+}
+.suggestions-title{
+  font-size: 26px;
+  text-align: center;
+}
+.tasks-header{
+  font-size: 26px;
+  text-align: center;
+}
+.sidebar-icon{
+  icon-color:#7e4ca2;
 }

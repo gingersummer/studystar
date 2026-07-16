@@ -66,7 +66,10 @@ export class ProfilePage implements OnInit {
     this.router.navigate(['/agenda'])
     this.menuCtrl.close('profile')
   }
-
+redirectToLogin() {
+    this.router.navigate(['/login'])
+    this.menuCtrl.close('collection')
+  }
   ngOnInit() {
   }
 
