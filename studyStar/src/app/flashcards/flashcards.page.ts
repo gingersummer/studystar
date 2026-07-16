@@ -23,10 +23,33 @@ export class FlashcardsPage implements OnInit {
   newSetName: string = ''
   arrayOfSets: Set[] = []
 
-  constructor(private router: Router, private menuCtrl: MenuController, private flashCardService: Flashcardsets) {
-    this.arrayOfSets=this.flashCardService.arrayOfSets
-   }
+  currentUser?: CurrentUser
 
+  userSubscription?: Subscription;
+
+
+  constructor(private router: Router, private menuCtrl: MenuController, private flashCardService: Flashcardsets, private userService: UserService) { }
+
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe()
+    }
+    this.arrayOfSets.splice(0, this.arrayOfSets.length)
+  }
+
+  ionViewDidEnter() {
+    this.userSubscription = this.userService.users.subscribe((data: CurrentUser[]) => {
+      if (data.length > 1) {
+        throw Error("Multiple user profiles found!")
+      }
+      this.currentUser = data[0]
+    })
+    console.log( this.currentUser!.allSets.length - 1)
+    for (let i = 0; i < this.currentUser!.allSets.length - 1; i++) {
+      this.arrayOfSets.push(this.currentUser!.allSets[i])
+    }
+  }
   openMenu() {
     this.menuCtrl.open('collection')
   }
@@ -75,6 +98,7 @@ export class FlashcardsPage implements OnInit {
     this.menuCtrl.close('collection')
     console.log('waht the sigma')
     this.newSetName = ''
+
   }
 
 
