@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { User } from '../models/user';
+import { CurrentUser } from '../models/user';
 import { UserService } from '../services/user/user-service';
 import { AuthService } from '../services/auth/auth';
 import { Firebaseservice } from '../services/firebase/firebaseservice';
@@ -15,9 +15,10 @@ import { Subscription } from 'rxjs';
 })
 export class ProfilePage implements OnInit {
 
-  currentUser?: User
+  currentUser?: CurrentUser
 
   userSubscription?: Subscription;
+  
 
   constructor(
     private router: Router,
@@ -35,7 +36,7 @@ export class ProfilePage implements OnInit {
   }
 
   ionViewDidEnter() {
-    this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+    this.userSubscription = this.userService.users.subscribe((data: CurrentUser[]) => {
       if (data.length > 1) {
         throw Error("Multiple user profiles found!")
       }

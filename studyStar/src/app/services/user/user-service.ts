@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { Firebaseservice } from 'src/app/services/firebase/firebaseservice';
-import { User } from 'src/app/models/user';
+import { CurrentUser} from 'src/app/models/user';
 import { AuthService } from '../auth/auth';
 import { getAuth } from '@angular/fire/auth';
 
@@ -10,8 +10,8 @@ import { getAuth } from '@angular/fire/auth';
 })
 export class UserService {
 
-  private _users: BehaviorSubject<User[]> = new BehaviorSubject([] as
-    User[])
+  private _users: BehaviorSubject<CurrentUser[]> = new BehaviorSubject([] as
+    CurrentUser[])
   private firebaseSubscription?: Subscription
   constructor(
     private firebaseService: Firebaseservice,
@@ -25,7 +25,7 @@ export class UserService {
         (res: any[]) => {
           //map JSON from firebase to User
           let users = res.map((user: any) => new
-            User(user.username, user.email, user.setsCompleted, user.lastSet, user.uid,
+            CurrentUser(user.username, user.email, user.setsCompleted, user.lastSet, user.uid,
               user.picture, user.id))
           //update BehaviorSubject to have newest Firebase values
           this._users.next(users)
@@ -35,18 +35,18 @@ export class UserService {
       console.log(err)
     }
   }
-  get users(): Observable<User[]> {
+  get users(): Observable<CurrentUser[]> {
     //turn behaviorSubject into observale we can subscribe to
     return this._users.asObservable()
   }
-  async saveUser(user: User) {
+  async saveUser(user: CurrentUser) {
 
     await this.firebaseService.createDoc(user, `users`)
   }
-  async updateUser(user: User) {
+  async updateUser(user: CurrentUser) {
     await this.firebaseService.updateDoc(user, `users/${user.id}`)
   }
-  async deleteUser(user: User) {
+  async deleteUser(user: CurrentUser) {
     await this.firebaseService.deleteDoc(`users/${user.id}`)
   }
 

@@ -4,6 +4,11 @@ import { MenuController } from '@ionic/angular';
 import { Set } from '../models/Set';
 import { FlashCard } from '../models/flashcard';
 import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
+import { User } from '@angular/fire/auth';
+import { Subscription } from 'rxjs';
+import { UserService } from '../services/user/user-service';
+import { CurrentUser } from '../models/user';
+
 
 @Component({
   selector: 'app-flashcards',
@@ -60,7 +65,9 @@ export class FlashcardsPage implements OnInit {
     this.addingSet = true
   }
   createNewSet() {
-    this.arrayOfSets.push(new Set(this.newSetName, false, '', [new FlashCard("Card 1", "Enter a Definition")], ''))
+    let newSet: Set = new Set(this.newSetName, false, '', [new FlashCard("Card 1", "Enter a Definition")], '')
+    this.currentUser?.allSets.push(newSet)
+    this.arrayOfSets.push(newSet)
     this.flashCardService.selectSet(this.arrayOfSets[this.arrayOfSets.length - 1])
     this.addingSet = false
 
