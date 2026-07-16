@@ -3,13 +3,13 @@
     <ion-title>Study Star</ion-title>
   </ion-toolbar>
 </ion-header>
-<div class="div-one"></div>
 <ion-card class="login-card">
+  <ion-button class="login-button" size="small" fill="clear" (click)="login()">LOGIN</ion-button>
+  <ion-button class="login-button" size="small" fill="clear" (click)="presentCreateModal()">Register New User</ion-button>
   <ion-header>
     Login
-    <ion-button (click)="login()">LOGIN</ion-button>
   </ion-header>
   <ion-input type="email" label="Email: " placeholder="" [(ngModel)]="emailIn"></ion-input>
   <ion-input type="password" label="Password: " placeholder="" [(ngModel)]="passwordIn"></ion-input>
 </ion-card>
-<ion-button (click)="presentCreateModal()">Register New User</ion-button>
+<div class="div-one"></div>

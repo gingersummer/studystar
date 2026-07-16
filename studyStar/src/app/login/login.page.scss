@@ -11,5 +11,9 @@
 
 .login-card{
     width: 20%;
-    height: 12%;
+    height: auto;
+}
+
+.login-button{
+    --color: var(--ion-text-color-step-350);
 }
