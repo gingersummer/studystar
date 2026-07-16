@@ -34,7 +34,7 @@ export class FlashcardsPage implements OnInit {
 
   redirectToProfile() {
     this.router.navigate(['/profile'])
-    this.menuCtrl.close('colletion')
+    this.menuCtrl.close('collection')
   }
 
   redirectToFlashcards() {

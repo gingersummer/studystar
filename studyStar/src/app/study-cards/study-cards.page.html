@@ -33,35 +33,36 @@
 
     <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
 
-  <div class="second-div"></div>
+      <div class="second-div"></div>
 
-  <ion-card class="set-name-card-style">
-    <ion-grid>
-      <ion-row>
-        <ion-col>{{flashcardSet.name}}</ion-col>
-        <ion-col class="progress-column">Progress: {{progressPercent}}%</ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
+      <ion-card class="set-name-card-style">
+        <ion-grid>
+          <ion-row>
+            <ion-col>{{flashcardSet.name}}</ion-col>
+            <ion-col class="progress-column">Progress: {{progressPercent}}%</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
 
-  <div class="first-div"></div>
+      <div class="first-div"></div>
 
-    <!-- </app-confidence> -->
-    <ion-button class="prev-button-style" (click)="previousCard()">
-      Previous Card
-    </ion-button>
+      <!-- </app-confidence> -->
+      <ion-button class="prev-button-style" (click)="previousCard()">
+        Previous Card
+      </ion-button>
 
-    <ion-button class="next-button-style" (click)="nextCard()">
-      Next Card
-    </ion-button>
+      <ion-button class="next-button-style" (click)="nextCard()">
+        Next Card
+      </ion-button>
 
-  <!-- </app-confidence> -->
-  <ion-button class="prev-button-style" (click)="previousCard()">
-    Previous Card
-  </ion-button>
-  <ion-button class="next-button-style" (click)="nextCard()">
-    Next Card
-  </ion-button>
-  <p class="progress-p-style">Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}</p>
-
+      <!-- </app-confidence> -->
+      <ion-button class="prev-button-style" (click)="previousCard()">
+        Previous Card
+      </ion-button>
+      <ion-button class="next-button-style" (click)="nextCard()">
+        Next Card
+      </ion-button>
+      <p class="progress-p-style">Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}</p>
+    </app-flashcard>
+  </div>
 </ion-content>
