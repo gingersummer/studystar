@@ -13,8 +13,7 @@ import { Set } from '../models/Set';
 })
 export class StudyCardsPage implements OnInit {
 
-  flashcardSet: Set = new Set('', false, '', [])
-
+  flashcardSet: Set = new Set('', false, '', [], '')
   indexOfCards: number = 0
   cardToDisplay: FlashCard = this.flashcardSet.setOfCards[0]
   progressPercent: number = 0;
