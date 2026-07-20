@@ -43,18 +43,9 @@
                 To-Do
               </ion-header>
               <ion-list>
-                <ion-item>
-                  <ion-label>Task 1</ion-label>
-                </ion-item>
-                <ion-item>
-                  <ion-label>Task 2</ion-label>
-                </ion-item>
-                <ion-item>
-                  <ion-label>Task 3</ion-label>
-                </ion-item>
-                <ion-item>
-                  <ion-label>Task 4</ion-label>
-                </ion-item>
+                @for(task of tasksArray; track $index) {
+                  <app-task [taskToDisplay]="task"></app-task>
+                }
               </ion-list>
             </ion-card>
             <ion-card class="upcoming-card">
@@ -84,7 +75,7 @@
             </ion-button>
           </ion-col>
           <ion-col>
-            <ion-button class="add-task">
+            <ion-button (click)="presentCreateTaskModal()" class="add-task">
               Add Task
             </ion-button>
           </ion-col>

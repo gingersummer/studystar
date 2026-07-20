@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
+import { TaskComponent } from '../components/task/task.component';
+import { TaskmodalComponent } from '../components/taskmodal/taskmodal.component';
+import { AgendaService } from '../services/agenda-service/agenda-service';
 
 @Component({
   selector: 'app-agenda',
@@ -10,7 +13,16 @@ import { MenuController } from '@ionic/angular';
 })
 export class AgendaPage implements OnInit {
 
-  constructor(private router: Router, private menuCtrl: MenuController) { }
+  tasksArray: string[] = []
+
+  constructor(
+    private router: Router,
+    private menuCtrl: MenuController,
+    private modalController: ModalController,
+    private agendaService: AgendaService,
+  ) {
+    this.tasksArray = this.agendaService.tasksArray
+  }
 
   openMenu() {
     this.menuCtrl.open('agenda')
@@ -42,6 +54,13 @@ export class AgendaPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  async presentCreateTaskModal() {
+    let modal = await this.modalController.create({
+      component: TaskmodalComponent
+    })
+    await modal.present()
   }
 
 }
