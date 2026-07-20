@@ -127,4 +127,4 @@ export class FlashcardsPage implements OnInit {
 
   
 
-}
+}}
