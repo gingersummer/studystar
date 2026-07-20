@@ -47,8 +47,9 @@ export class AgendaPage implements OnInit {
     this.router.navigate(['/agenda'])
     this.menuCtrl.close('agenda')
   }
-  redirectToLogin() {
-    this.router.navigate(['/home'])
+
+  redirectToDashboard() {
+    this.router.navigate(['/dashboard'])
     this.menuCtrl.close('agenda')
   }
 
