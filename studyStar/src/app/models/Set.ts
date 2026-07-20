@@ -6,12 +6,14 @@ export class Set {
     progress: boolean
     icon: string
     setOfCards: FlashCard[]
+    category: string
     //constructor
-    constructor(nameIn: string, progressIn: boolean, iconIn: string, setOfCardsIn: FlashCard[]) {
+    constructor(nameIn: string, progressIn: boolean, iconIn: string, setOfCardsIn: FlashCard[], categoryIn: string) {
         this.name = nameIn,
         this.progress = progressIn,
         this.icon = iconIn
         this.setOfCards = setOfCardsIn
+        this.category = categoryIn
     }
 
 } 

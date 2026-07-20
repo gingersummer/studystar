@@ -1,43 +1,28 @@
 <mbsc-eventcalendar
   class="mds-tasks-calendar"
-  [options]="calendarOptions"
+  [options]="extendedCalendarOptions"
+  [groupBy]="myGroupBy"
   [data]="myEvents"
   [resources]="myResources"
-  [eventContentTemplate]="eventTemp"
-  [resourceTemplate]="resourceTemp"
 >
-  <!-- (onEventClick)="handleEventClick($event)" -->
-  <ng-template #eventTemp let-event>
-<div>
-    {{event.title}}
-  </div>
-    <!-- <div class="mds-tasks-event-title">
-      {{event.original.title}}
+  <ng-template #scheduleEvent let-event>
+    <div class="mds-tasks-event-title" style="font-weight: bold; margin-bottom: 4px;">
+      {{ event.title }}
     </div>
-
-    <div class="mds-tasks-event-subtitle">
-      Task list
+    
+    <div *ngIf="event.original?.extendedProps?.tasks" class="mds-tasks-list" style="margin-bottom: 6px;">
+      <div *ngFor="let task of event.original.extendedProps.tasks" class="mds-tasks-item">
+        <label style="font-size: 0.85em; display: block; color: #555;">• {{ task }}</label>
+      </div>
     </div>
-
-    <div class="mds-tasks-event-list">
-
-      <div 
-      *ngFor="let task of event.original.tasks"
-      class="mds-tasks-event-list-item">
-      {{task}}
-    </div>
-
-      <div 
-      class="mds-tasks-event-list-item mds-tasks-event-add" 
-      (click)="addTask(event)">
-      + Add task
-    </div>
-    </div> -->
-  </ng-template>
-  <ng-template #resourceTemp let-resource>
-    <div class="mds-tasks-resource-name">
-      {{resource.name}}
-    </div>
-    <div class="mds-tasks-resource-description">{{resource.description}}</div>
+    
+    <button 
+      ion-button 
+      size="small" 
+      (click)="addTask(event); $event.stopPropagation();"
+      style="margin-top: 4px;"
+    >
+      Add Task
+    </button>
   </ng-template>
 </mbsc-eventcalendar>
