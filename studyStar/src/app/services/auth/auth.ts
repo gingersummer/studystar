@@ -17,7 +17,11 @@ export class AuthService {
     private auth: Auth,
     private userService: UserService,
   ) {
-    auth.onAuthStateChanged(() => {
+    
+  }
+
+  initializeAuthStateChangedHook() {
+    this.auth.onAuthStateChanged(() => {
       this.userService.reset();
       this.userService.getData(this.getCurrentUserUid());
     })

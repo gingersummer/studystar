@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
-import { CurrentUser } from 'src/app/models/user';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth/auth';
 import { UserService } from 'src/app/services/user/user-service';
 
@@ -40,7 +40,7 @@ export class UsercreationComponent implements OnInit {
   async register() {
     try {
       let result = await this.authService.register(this.regEmailIn, this.regPasswordIn, this.regPasswordConfIn)
-      let userToAdd: CurrentUser = new CurrentUser(this.regUsernameIn, this.regEmailIn, 0, "no sets completed",[], this.authService.getCurrentUserUid())
+      let userToAdd: User = new User(this.regUsernameIn, this.regEmailIn, 0, "no sets completed", [], this.authService.getCurrentUserUid())
       this.userService.saveUser(userToAdd)
 
 

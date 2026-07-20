@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { Firebaseservice } from 'src/app/services/firebase/firebaseservice';
-import { CurrentUser} from 'src/app/models/user';
+import { User} from 'src/app/models/user';
 import { AuthService } from '../auth/auth';
 import { getAuth } from '@angular/fire/auth';
 
@@ -10,8 +10,8 @@ import { getAuth } from '@angular/fire/auth';
 })
 export class UserService {
 
-  private _users: BehaviorSubject<CurrentUser[]> = new BehaviorSubject([] as
-    CurrentUser[])
+  private _users: BehaviorSubject<User[]> = new BehaviorSubject([] as
+    User[])
   private firebaseSubscription?: Subscription
   constructor(
     private firebaseService: Firebaseservice,
@@ -20,12 +20,13 @@ export class UserService {
   }
 
   getData(uid: string) {
+    console.log('calling get data')
     try {
       this.firebaseSubscription = this.firebaseService.readCollectionByUid("users", uid).subscribe(
         (res: any[]) => {
           //map JSON from firebase to User
           let users = res.map((user: any) => new
-            CurrentUser(user.username, user.email, user.setsCompleted, user.lastSet, user.allSets, user.uid,
+            User(user.username, user.email, user.setsCompleted, user.lastSet, user.allSets, user.uid,
               user.picture, user.id))
           //update BehaviorSubject to have newest Firebase values
           this._users.next(users)
@@ -35,18 +36,18 @@ export class UserService {
       console.log(err)
     }
   }
-  get users(): Observable<CurrentUser[]> {
+  get users(): Observable<User[]> {
     //turn behaviorSubject into observale we can subscribe to
     return this._users.asObservable()
   }
-  async saveUser(user: CurrentUser) {
+  async saveUser(user: User) {
 
     await this.firebaseService.createDoc(user, `users`)
   }
-  async updateUser(user: CurrentUser) {
+  async updateUser(user: User) {
     await this.firebaseService.updateDoc(user, `users/${user.id}`)
   }
-  async deleteUser(user: CurrentUser) {
+  async deleteUser(user: User) {
     await this.firebaseService.deleteDoc(`users/${user.id}`)
   }
 

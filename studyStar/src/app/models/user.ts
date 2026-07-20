@@ -1,6 +1,6 @@
 import { Set } from "./Set"
 
-export class CurrentUser {
+export class User {
     // class variables
     id?: string
     picture?: string

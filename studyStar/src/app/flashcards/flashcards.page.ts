@@ -4,10 +4,10 @@ import { MenuController } from '@ionic/angular';
 import { Set } from '../models/Set';
 import { FlashCard } from '../models/flashcard';
 import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
-import { User } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
 import { UserService } from '../services/user/user-service';
-import { CurrentUser } from '../models/user';
+import { User } from '../models/user';
+import { AuthService } from '../services/auth/auth';
 
 
 @Component({
@@ -23,10 +23,17 @@ export class FlashcardsPage implements OnInit {
   newSetName: string = ''
   arrayOfSets: Set[] = []
 
-  currentUser?: CurrentUser
+  currentUser?: User
 
   userSubscription?: Subscription;
 
+  constructor(
+    private router: Router, 
+    private menuCtrl: MenuController, 
+    private flashCardService: Flashcardsets, 
+    private userService: UserService,
+  ) {
+  }
 
   constructor(private router: Router, private menuCtrl: MenuController, private flashCardService: Flashcardsets, private userService: UserService) { }
 
@@ -38,13 +45,22 @@ export class FlashcardsPage implements OnInit {
     this.arrayOfSets.splice(0, this.arrayOfSets.length)
   }
 
+  ngOnInit() {
+    
+  }
+
   ionViewDidEnter() {
-    this.userSubscription = this.userService.users.subscribe((data: CurrentUser[]) => {
-      if (data.length > 1) {
-        throw Error("Multiple user profiles found!")
-      }
-      this.currentUser = data[0]
+    this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+ 
+      this.currentUser = data[1]
+      console.log('data', data)
     })
+  }
+
+  ionViewWillLeave() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe()
+    }
     console.log( this.currentUser!.allSets.length - 1)
     for (let i = 0; i < this.currentUser!.allSets.length - 1; i++) {
       this.arrayOfSets.push(this.currentUser!.allSets[i])
@@ -89,8 +105,14 @@ export class FlashcardsPage implements OnInit {
   }
   createNewSet() {
     let newSet: Set = new Set(this.newSetName, false, '', [new FlashCard("Card 1", "Enter a Definition")], '')
-    this.currentUser?.allSets.push(newSet)
     this.arrayOfSets.push(newSet)
+
+
+   
+      this.currentUser!.allSets.push(newSet)
+      this.userService.updateUser(this.currentUser!)
+   
+
     this.flashCardService.selectSet(this.arrayOfSets[this.arrayOfSets.length - 1])
     this.addingSet = false
 
@@ -99,10 +121,6 @@ export class FlashcardsPage implements OnInit {
     console.log('waht the sigma')
     this.newSetName = ''
 
-  }
-
-
-  ngOnInit() {
   }
 
 }
