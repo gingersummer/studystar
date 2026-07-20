@@ -77,6 +77,11 @@ export class FlashcardsPage implements OnInit {
   createNewBlankCard(){
 
   }
+  redirectToDashboard() {
+    this.router.navigate(['/dashboard'])
+    this.menuCtrl.close('flashcards')
+  }
+
 
   ngOnInit() {
   }
