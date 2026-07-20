@@ -56,34 +56,8 @@
                 To-Do
               </ion-header>
               <ion-list>
-
-                <!-- display todo -->
-                @for(item of taskList; track $index; let idx = $index){
-                <ion-item>
-                  <ion-button (click)="checkOffTask(idx)"> Complete </ion-button>
-                  {{idx + 1}}. {{item.taskToDo}}
-                </ion-item>
-                }
-
-                <ion-button (click)="makeNewTask()"> Add New Task </ion-button>
-             
-
-              </ion-list>
-     
-        
-                
-            </ion-card>
-            <ion-card class="to-do-card">
-              <ion-header class="ion-padding">
-                Completed
-              </ion-header>
-              <ion-list>
-                <!-- display completed -->
-                @for(item of completedTasks; track $index; let idx = $index){
-                <ion-item>
-                  {{idx + 1}}. {{item.taskToDo}}
-                </ion-item>
-
+                @for(task of tasksArray; track $index) {
+                  <app-task [taskToDisplay]="task"></app-task>
                 }
               </ion-list>
 
@@ -112,7 +86,7 @@
             </ion-button>
           </ion-col>
           <ion-col>
-            <ion-button class="add-task">
+            <ion-button (click)="presentCreateTaskModal()" class="add-task">
               Add Task
             </ion-button>
           </ion-col>

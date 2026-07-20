@@ -35,7 +35,6 @@ export class FlashcardsPage implements OnInit {
   ) {
   }
 
-  constructor(private router: Router, private menuCtrl: MenuController, private flashCardService: Flashcardsets, private userService: UserService) { }
 
 
   ngOnDestroy() {
@@ -120,12 +119,13 @@ export class FlashcardsPage implements OnInit {
     this.menuCtrl.close('collection')
     console.log('waht the sigma')
     this.newSetName = ''
+  }
   redirectToDashboard() {
     this.router.navigate(['/dashboard'])
     this.menuCtrl.close('flashcards')
   }
 
 
-  }
+  
 
 }
