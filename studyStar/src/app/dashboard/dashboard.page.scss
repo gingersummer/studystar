@@ -242,9 +242,24 @@ $stars-large:  generate-stars(100);
   font-weight: 600;
   color: #003d6b;
   height: 15%;
+  align-items: center;
 }
 
 .dashboard-first-cards{
-  height: 200%;
+  height: 90%;
   width: 100%;
+}
+
+.image-in-cards{
+  object-fit: scale-down;
+  position: relative;
+  float: left;
+  height: 10%;
+  width: 10%;
+  position: relative;
+}
+
+.big-dashboard-numbers{
+  font-size: 32px;
+  padding: 8px;
 }
