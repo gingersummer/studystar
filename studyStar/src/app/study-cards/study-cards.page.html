@@ -18,18 +18,24 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="first-div">
+  <div class="first-div"></div>
+      <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
 
+      </app-confidence>
+      <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
 
-    <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
+      </app-flashcard>
+  <ion-button class="prev-button-style" (click)="previousCard()">
+    Previous Card
+  </ion-button>
 
-    </app-flashcard>
-    <!-- <app-confidence [flashcardIn]="cardToDisplay"> -->
+  <ion-button class="next-button-style" (click)="nextCard()">
+    Next Card
+  </ion-button>
 
-    <!-- </app-confidence> -->
-    <ion-button class="prev-button-style" (click)="previousCard()">
-      Previous Card
-    </ion-button>
+  <p class="progress-p-style">
+    {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
+  </p>
 
     <ion-button class="next-button-style" (click)="nextCard()">
       Next Card
