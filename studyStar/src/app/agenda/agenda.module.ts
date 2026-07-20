@@ -8,6 +8,8 @@ import { AgendaPageRoutingModule } from './agenda-routing.module';
 import { CalendarComponent } from '../components/calendar/calendar.component';
 import { AgendaPage } from './agenda.page';
 import { MbscModule } from '@mobiscroll/angular';
+import { TaskmodalComponent } from '../components/taskmodal/taskmodal.component';
+import { TaskComponent } from '../components/task/task.component';
 
 @NgModule({
   imports: [
@@ -17,6 +19,6 @@ import { MbscModule } from '@mobiscroll/angular';
     AgendaPageRoutingModule,
     MbscModule
   ],
-  declarations: [AgendaPage, CalendarComponent]
+  declarations: [AgendaPage, CalendarComponent, TaskmodalComponent, TaskComponent]
 })
 export class AgendaPageModule {}
