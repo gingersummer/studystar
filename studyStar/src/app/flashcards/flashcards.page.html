@@ -16,21 +16,25 @@
       <!-- This is the menu content. -->
       <ion-list [inset]="true">
         <ion-item [button]="true" (click)="redirectToProfile()">
-          <ion-icon color="danger" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-icon color="7e4ca2" slot="start" name="star" size="large"></ion-icon>
           <ion-label>Profile</ion-label>
         </ion-item>
         <ion-item [button]="true" (click)="redirectToFlashcards()">
-          <ion-icon color="tertiary" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-icon color="7e4ca2" slot="start" name="copy" size="large"></ion-icon>
           <ion-label>Flashcards</ion-label>
         </ion-item>
         <ion-item [button]="true" (click)="redirectToAgenda()">
-          <ion-icon color="success" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-icon color="7e4ca2" slot="start" name="today" size="large"></ion-icon>
           <ion-label>Agenda</ion-label>
         </ion-item>
         <ion-item [button]="true" (click)="redirectToHome()">
-          <ion-icon color="success" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-icon color="7e4ca2" slot="start" name="list-circle" size="large"></ion-icon>
           <ion-label>Home</ion-label>
         </ion-item>
+        <ion-item [button]="true" (click)="redirectToLogin()">
+        <ion-icon color="#8238b7" slot="start" name="person" size="large"></ion-icon>
+        <ion-label>Login</ion-label>
+      </ion-item>
       </ion-list>
     </ion-content>
   </ion-menu>
@@ -40,7 +44,7 @@
         <ion-grid>
           <ion-row>
             <ion-title>
-              StudyStars
+              StudyStar
             </ion-title>
             <ion-searchbar class=searchBar search-icon="star" placeholder="Search">
             </ion-searchbar>
@@ -54,11 +58,21 @@
   </div>
 
   <div class="smallcard">
-    <ion-button (click)="addNewSet()"> Add Set </ion-button>
+    <ion-button (click)="addNewSet()"> + Add New Study Set </ion-button>
 
-    @for(item of arrayOfSets; track $index) {
-    <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item)"></app-flashcardcollection>
-    }
+
+    <ion-grid>
+      <ion-row>
+        @for(item of arrayOfSets; track $index) {
+        <ion-col>
+          <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item)">
+
+          </app-flashcardcollection>
+        </ion-col>
+        }
+      </ion-row>
+    </ion-grid>
+
   </div>
 
 

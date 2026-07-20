@@ -35,6 +35,10 @@ export class AgendaPage implements OnInit {
     this.router.navigate(['/agenda'])
     this.menuCtrl.close('agenda')
   }
+redirectToLogin() {
+    this.router.navigate(['/home'])
+    this.menuCtrl.close('agenda')
+  }
 
   ngOnInit() {
   }

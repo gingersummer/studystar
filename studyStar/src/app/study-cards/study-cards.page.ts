@@ -13,10 +13,10 @@ import { Set } from '../models/Set';
 })
 export class StudyCardsPage implements OnInit {
 
-  flashcardSet: Set = new Set('', false, '', [])
-
+  flashcardSet: Set = new Set('', false, '', [], '')
   indexOfCards: number = 0
   cardToDisplay: FlashCard = this.flashcardSet.setOfCards[0]
+  progressPercent: number = 0;
 
   constructor(private setService: Flashcardsets, private router: Router, private menuCtrl: MenuController) { }
 
@@ -33,7 +33,7 @@ export class StudyCardsPage implements OnInit {
   
     redirectToProfile() {
       this.router.navigate(['/profile'])
-      this.menuCtrl.close('colletion')
+      this.menuCtrl.close('collection')
     }
   
     redirectToFlashcards() {
@@ -51,14 +51,19 @@ export class StudyCardsPage implements OnInit {
       this.indexOfCards--
       this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
     }
+    this.updateProgress()
 
   }
   nextCard() {
     if(this.indexOfCards < this.flashcardSet.setOfCards.length -1){
     this.indexOfCards++
     }
-
+    this.updateProgress()
     this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
+  }
+
+  updateProgress(){
+    this.progressPercent = Math.round(((this.indexOfCards + 1)/(this.flashcardSet.setOfCards.length))*100);
   }
 
 }

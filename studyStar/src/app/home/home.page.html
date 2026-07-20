@@ -1,131 +1,121 @@
-<ion-content>
-  <!-- End Side Menu -->
-  <ion-menu side="end" menuId="home" contentId="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <ion-list [inset]="true">
-        <ion-item [button]="true" (click)="redirectToProfile()">
-          <ion-icon class="sidebar-icon" color="7e4ca2" slot="start" name="star" size="large"></ion-icon>
-          <ion-label>Profile</ion-label>
-        </ion-item>
-        <ion-item [button]="true" (click)="redirectToFlashcards()">
-          <ion-icon color="t#8238b7" slot="start" name="copy" size="large"></ion-icon>
-          <ion-label>Flashcards</ion-label>
-        </ion-item>
-        <ion-item [button]="true" (click)="redirectToAgenda()">
-          <ion-icon color="#8238b7" slot="start" name="today" size="large"></ion-icon>
-          <ion-label>Agenda</ion-label>
-        </ion-item>
-        <ion-item [button]="true" (click)="redirectToLogin()">
-        <ion-icon color="#8238b7" slot="start" name="person" size="large"></ion-icon>
-        <ion-label>Login</ion-label>
-      </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-
-  <!-- Main Screen View Container -->
-  <div class="ion-page" id="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-grid>
-          <ion-row>
-            <ion-title style="font-size: 30px;" class="title-icon">StudyStar</ion-title>
-            <ion-searchbar class="searchBar" search-icon="star" placeholder="Search"></ion-searchbar>
-          </ion-row>
-        </ion-grid>
-        <ion-buttons slot="end">
-          <ion-menu-button (click)="openMenu()"></ion-menu-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-
-    <!-- Main Content Grid Dashboard Elements -->
-    <div class="profile-page-items ion-padding dashboard-background">
-      
-      <!-- Date Banner Header -->
-      <div class="dashboard-header">
-        <p class="date-subtitle" style="text-align: center;">Today's Date</p>
-        <h1 class="date-title" style="text-align: center;">{{ today | date:'MMMM d, y' }}</h1>
+<div class="ion-page" id="main-content">
+  <ion-header class="header">
+    <ion-toolbar class="nav-toolbar">
+      <div slot="start" class="brand-container">
+        <ion-icon name="star" class="logo-icon"></ion-icon>
+        <span class="brand-title">
+          StudyStar
+        </span>
       </div>
 
-      <!-- Symmetrical Responsive Row Grid split layout -->
+      <div class="center-nav">
+        <button class="nav-btn active">
+          Home
+        </button>
+        <button class="nav-btn" (click)="redirectToFlashcards()">
+          Flashcards
+        </button>
+        <button class="nav-btn" (click)="redirectToAgenda()">
+          Agenda
+        </button>
+      </div>
+
+      <ion-buttons slot="end" class="right-actions">
+        <ion-button fill="solid" class="profile-btn" (click)="redirectToProfile()">
+          Profile
+        </ion-button>
+      </ion-buttons>
+
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="homepage-content">
+
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+
+    <div class="profile-page-items ion-padding">
+      <div class="dashboard-header">
+        <p class="date-subtitle" style="text-align: center;">
+          Today's Date
+        </p>
+        <h1 class="date-title" style="text-align: center;">
+          {{ today | date:'MMMM d, y' }}
+        </h1>
+      </div>
+
       <ion-grid class="ion-no-padding">
         <ion-row>
-          
-          <!-- Left Column: Study Suggestions Card Container -->
           <ion-col size="12" size-md="6">
             <ion-card class="dashboard-card">
               <ion-card-header>
-                <ion-card-title class="suggestions-title">Study Suggestions</ion-card-title>
+                <ion-card-title class="suggestions-title">
+                  Study Suggestions
+                </ion-card-title>
               </ion-card-header>
               <ion-card-content>
                 <ion-list lines="none" class="dashboard-list">
+                  @for(set of arrayOfSets; track $index) {
                   <ion-item class="suggestion-item">
                     <ion-icon name="checkmark" slot="start" color="dark-purple"></ion-icon>
                     <ion-label>
-                      <h3>"Flashcard Set"</h3>
-                      <p>Geography</p>
+                      <ion-item [button]="true" (click)="redirectToStudyCards(set)">
+                        {{set.name}}
+                      </ion-item>
+                      <h3>
+                        {{set.category}}
+                      </h3>
                     </ion-label>
-                    <ion-badge slot="end" color="#8238b7">20 mins</ion-badge>
+                    <ion-badge slot="end" color="#8238b7">
+                      20 mins
+                    </ion-badge>
                   </ion-item>
-                  <ion-item class="suggestion-item">
-                    <ion-icon name="checkmark" slot="start" color="#8940b3"></ion-icon>
-                    <ion-label>
-                      <h3>"Flashcard Set"</h3>
-                      <p>History</p>
-                    </ion-label>
-                    <ion-badge slot="end" color="#8238b7">15 mins</ion-badge>
-                  </ion-item>
-                  <ion-item class="suggestion-item">
-                    <ion-icon name="checkmark" slot="start" color="#8238b7"></ion-icon>
-                    <ion-label>
-                      <h3>"Flashcard Set"</h3>
-                      <p>Science</p>
-                    </ion-label>
-                    <ion-badge slot="end" color="#8238b7">10 mins</ion-badge>
-                  </ion-item>
+                  }
                 </ion-list>
               </ion-card-content>
             </ion-card>
           </ion-col>
 
-          <!-- Right Column: Today's Tasks Card Container -->
           <ion-col size="12" size-md="6">
             <ion-card class="dashboard-card">
               <ion-card-header>
-                <ion-card-title class="tasks-header">Today's Tasks</ion-card-title>
+                <ion-card-title class="tasks-header">
+                  Today's Tasks
+                </ion-card-title>
               </ion-card-header>
               <ion-card-content>
                 <ion-list lines="inset" class="dashboard-list">
                   <ion-item>
                     <ion-checkbox slot="start" class="custom-task-checkbox"></ion-checkbox>
-                    <ion-label>Task 1</ion-label>
+                    <ion-label>
+                      Task 1
+                    </ion-label>
                   </ion-item>
                   <ion-item>
                     <ion-checkbox slot="start" class="custom-task-checkbox"></ion-checkbox>
-                    <ion-label>Task 1</ion-label>
+                    <ion-label>
+                      Task 1
+                    </ion-label>
                   </ion-item>
                   <ion-item>
                     <ion-checkbox slot="start" class="custom-task-checkbox"></ion-checkbox>
-                    <ion-label>Task 1</ion-label>
+                    <ion-label>
+                      Task 1
+                    </ion-label>
                   </ion-item>
                   <ion-item>
                     <ion-checkbox slot="start" class="custom-task-checkbox"></ion-checkbox>
-                    <ion-label>Task 1</ion-label>
+                    <ion-label>
+                      Task 1
+                    </ion-label>
                   </ion-item>
                 </ion-list>
               </ion-card-content>
             </ion-card>
           </ion-col>
-
         </ion-row>
       </ion-grid>
-
     </div>
-  </div>
-</ion-content>
+  </ion-content>
+</div>

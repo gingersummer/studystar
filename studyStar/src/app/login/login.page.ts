@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
+import { UsercreationComponent } from '../components/usercreation/usercreation.component';
+import { AuthService } from '../services/auth/auth';
+import { UserService } from '../services/user/user-service';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +13,22 @@ import { MenuController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private router: Router, private menuCtrl: MenuController) { }
+  emailIn: string = '';
+  passwordIn: string = '';
+
+  constructor(
+    private router: Router,
+    private menuCtrl: MenuController,
+    private modalController: ModalController,
+    private authService: AuthService,
+    private userService: UserService,
+  ) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    this.clearFields()
   }
 
   openMenu() {
@@ -20,8 +36,31 @@ export class LoginPage implements OnInit {
   }
 
   redirectToHome() {
-    this.router.navigate(['/profile'])
+    this.router.navigate(['/home'])
     this.menuCtrl.close('login')
+  }
+
+  async login() {
+    let result = await this.authService.login(this.emailIn, this.passwordIn)
+
+    if (result != null) {
+      this.redirectToHome()
+    } else {
+      window.alert('Incorrect Login'),
+      this.clearFields()
+    }
+  }
+
+  async presentCreateModal() {
+    let modal = await this.modalController.create({
+      component: UsercreationComponent
+    })
+    await modal.present()
+  }
+
+  clearFields() {
+    this.emailIn = '',
+    this.passwordIn = ''
   }
 
 }

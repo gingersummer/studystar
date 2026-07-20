@@ -3,10 +3,10 @@
 
 :root {
 	--ion-background-color: #ebf7ff;
-	--ion-background-color-rgb: 245,251,255;
+	--ion-background-color-rgb: 245, 251, 255;
 
 	--ion-text-color: #003d6b;
-	--ion-text-color-rgb: 0,61,107;
+	--ion-text-color-rgb: 0, 61, 107;
 
 	--ion-text-color-step-50: #0c4772;
 	--ion-text-color-step-100: #19507a;
@@ -47,10 +47,10 @@
 	--ion-background-color-step-850: #255a81;
 	--ion-background-color-step-900: #18507a;
 	--ion-background-color-step-950: #0c4772;
---ion-color-dark-purple: #8238b7;
-    $secondary-colors: (
-  "accent": #e0b5ff,
-  "highlight": #8238b7,
-  "muted": #8ecae6
-);
+	--ion-color-dark-purple: #8238b7;
+	$secondary-colors: (
+		"accent": #e0b5ff,
+		"highlight": #8238b7,
+		"muted": #8ecae6
+	);
 }
