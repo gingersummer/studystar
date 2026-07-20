@@ -165,7 +165,7 @@ ion-toolbar.nav-toolbar {
   }
 
   &.active {
-    
+    background: #a855f7;
   }
 }
 
@@ -174,7 +174,9 @@ ion-toolbar.nav-toolbar {
   align-items: center;
   gap: 16px;
 
-  .profile-btn {}
+  .profile-btn {
+   
+  }
 }
 
 // SCSS Star Generator Function

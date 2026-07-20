@@ -38,6 +38,12 @@
     <p class="progress-p-style">
       Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
     </p>
+    @if (cardToDisplay.frontSide == false){
 
+    <app-confidence [flashcardIn]="cardToDisplay"></app-confidence>}
+
+    @else{
+
+    }
   </div>
 </ion-content>

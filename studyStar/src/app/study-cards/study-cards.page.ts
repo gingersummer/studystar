@@ -4,6 +4,7 @@ import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Set } from '../models/Set';
+import { ConfidenceComponent } from '../confidence/confidence.component';
 
 @Component({
   selector: 'app-study-cards',
@@ -17,7 +18,6 @@ export class StudyCardsPage implements OnInit {
   indexOfCards: number = 0
   cardToDisplay: FlashCard = this.flashcardSet.setOfCards[0]
   progressPercent: number = 0;
-
   constructor(private setService: Flashcardsets, private router: Router, private menuCtrl: MenuController) { }
 
   ngOnInit() {
