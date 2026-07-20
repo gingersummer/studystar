@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Set } from '../models/Set';
 import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
-import { FlashcardsPage } from '../flashcards/flashcards.page';
 
 @Component({
   selector: 'app-home',
@@ -42,6 +41,12 @@ export class HomePage{
 
   redirectToLogin() {
     this.router.navigate(['/home'])
+    this.menuCtrl.close('home')
+
+  }
+
+  redirectToDashboard() {
+    this.router.navigate(['/dashboard'])
     this.menuCtrl.close('home')
 
   }
