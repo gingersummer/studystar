@@ -1,6 +1,8 @@
 @if(addingSet){
 <ion-grid>
   <ion-row>
+<ion-grid>
+  <ion-row>
     <ion-input placeholder="Enter Name" label="Name Of Set" [(ngModel)]="newSetName"></ion-input>
   </ion-row>
   <ion-row>
@@ -34,6 +36,9 @@
           </button>
           <button class="nav-btn" (click)="redirectToAgenda()">
             Agenda
+          </button>
+          <button class="nav-btn" (click)="redirectToDashboard()">
+            Dashboard
           </button>
           <button class="nav-btn" (click)="redirectToDashboard()">
             Dashboard
