@@ -2,9 +2,14 @@
     text-align: center;
 }
 
+.confidence-actual{
+    position: relative;
+    left: 24%;
+}
+
 .first-div{
     width: 100%;
-    height: 5%;
+    height: 4%;
 }
 
 .prev-button-style{
@@ -21,7 +26,7 @@
 
 .progress-p-style{
     position: relative;
-    left: 38.5%;
+    left: 41%;
 }
 
 .set-name-card-style{
@@ -40,4 +45,14 @@
 
 .progress-column{
     text-align: end;
+}
+
+.col-one{
+    position: relative;
+    width: fit-content;
+}
+
+.col-two{
+    position: relative;
+    width: fit-content;
 }
