@@ -52,6 +52,10 @@ export class ProfilePage implements OnInit {
     this.menuCtrl.close('profile')
   }
 
+  redirectToDashboard() {
+    this.router.navigate(['/dashboard'])
+  }
+
   redirectToProfile() {
     this.router.navigate(['/profile'])
     this.menuCtrl.close('profile')

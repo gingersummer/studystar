@@ -18,6 +18,9 @@
         <button class="nav-btn active" (click)="redirectToAgenda()">
           Agenda
         </button>
+        <button class="nav-btn" (click)="redirectToDashboard()">
+          Dashboard
+        </button>
       </div>
 
       <ion-buttons slot="end" class="right-actions">
@@ -33,7 +36,7 @@
       <ion-grid>
         <ion-row>
           <ion-col><app-calendar></app-calendar></ion-col>
-          <ion-col></ion-col>
+          
           <ion-col>
             <ion-card class="to-do-card">
               <ion-header class="ion-padding">

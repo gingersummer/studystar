@@ -26,8 +26,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   myView: MbscEventcalendarView = {
     scheduler: {
       type: 'day',
-      startTime: '06:00',
-      endTime: '13:00',
+      startTime: '08:00',
+      endTime: '14:00',
       allDay: false,
     }
   };
