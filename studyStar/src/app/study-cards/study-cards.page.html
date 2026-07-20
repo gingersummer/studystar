@@ -37,4 +37,19 @@
     {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
   </p>
 
+    <ion-button class="next-button-style" (click)="nextCard()">
+      Next Card
+    </ion-button>
+
+    <p class="progress-p-style">
+      Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
+    </p>
+    @if (cardToDisplay.frontSide == false){
+
+    <app-confidence [flashcardIn]="cardToDisplay"></app-confidence>}
+
+    @else{
+
+    }
+  </div>
 </ion-content>

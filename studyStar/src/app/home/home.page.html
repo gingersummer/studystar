@@ -61,7 +61,7 @@
                 <ion-list lines="none" class="dashboard-list">
                   @for(set of arrayOfSets; track $index) {
                   <ion-item class="suggestion-item">
-                    <ion-icon name="checkmark" slot="start" color="dark-purple"></ion-icon>
+                    <ion-checkbox slot="start" class="custom-task-checkbox"></ion-checkbox>
                     <ion-label>
                       <ion-item [button]="true" (click)="redirectToStudyCards(set)">
                         {{set.name}}
