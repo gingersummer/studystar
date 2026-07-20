@@ -124,6 +124,11 @@ export class FlashcardsPage implements OnInit {
   //   this.menuCtrl.close('flashcards') 
   // }
 
+  redirectToDashboard() {
+    this.router.navigate(['/dashboard'])
+    this.menuCtrl.close('flashcards')
+  }
+
 
   
 
