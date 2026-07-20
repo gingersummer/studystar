@@ -60,6 +60,7 @@ export class StudyCardsPage implements OnInit {
     }
     this.updateProgress()
     this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
+    
   }
 
   updateProgress(){
