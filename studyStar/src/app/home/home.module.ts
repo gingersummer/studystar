@@ -7,14 +7,13 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { MbscModule } from '@mobiscroll/angular';
 
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    MbscModule
+    MbscModule,
   ],
   declarations: [HomePage] 
 })

@@ -11,7 +11,7 @@ import { FlashcardsPage } from '../flashcards/flashcards.page';
   styleUrls: ['home.page.scss'],
   standalone: false,
 })
-export class HomePage {
+export class HomePage{
   today = new Date();
   set: Set = new Set('', false, '', [], '');
   arrayOfSets: Set[] = []

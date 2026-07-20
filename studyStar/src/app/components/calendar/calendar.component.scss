@@ -1,73 +1,65 @@
-.mds-tasks-resource-name {
-  padding: 15px 0 8px 0;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 24px;
-}
+:host ::ng-deep {
+  // Let the browser window handle page vertical scrolling naturally
+  .mds-tasks-calendar {
+    height: auto !important;
+    overflow: visible !important;
+  }
 
-.mds-tasks-resource-description {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 16px;
-}
+  .mbsc-schedule-grid-wrapper {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
 
-.mds-tasks-event-title {
-  padding: 16px 8px 0 8px;
-  white-space: normal;
-  word-break: normal;
-  line-height: 24px;
-  font-size: 16px;
-  font-weight: 700;
-}
+  // Set the 4-hour viewport target row sizes
+  .mbsc-schedule-time-row {
+    height: 125px !important; 
+  }
 
-.mds-tasks-event-subtitle {
-  font-weight: 600;
-  font-size: 14px;
-  padding: 8px 8px 0 8px;
-}
-
-.mds-tasks-event-list {
-  margin: 8px;
-    border-radius: 6px;
-    background: rgba(255,255,255,.35);
-
-    flex: 1;
+  .custom-card-container {
+    padding: 6px;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
 
-    overflow: hidden;
-}
-
-.mds-tasks-event-list-item {
-  padding: 8px;
-  white-space: normal;
-  font-size: 12px;
-  line-height: 16px;
-  color: #000;
-  border-bottom: 1px solid #00000033;
-  font-weight: 400;
-}
-
-.mds-tasks-event-add {
-    margin-top: auto;
+  .mds-tasks-event-title {
+    font-size: 13px;
     font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .mds-tasks-event-subtitle {
+    font-weight: 600;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  .mds-tasks-event-list {
+    margin-top: 4px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mds-tasks-event-list-item {
+    padding: 5px 6px;
+    font-size: 11px;
+    color: #222;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .mds-tasks-event-add {
+    font-weight: bold;
     cursor: pointer;
     border-bottom: none;
-}
-
-.mds-tasks-event-add:hover {
-  color: #0000ee;
-  text-decoration: underline;
-}
-
-.mds-tasks-calendar .mbsc-timeline-row {
-  min-height: 260px;
-  height: auto;
-}
-
-.mds-tasks-calendar .mbsc-schedule-event-inner {
-   display: block !important;
-  height: auto !important;
-  min-height: 100% !important;
-  overflow: visible !important;
+    color: #512da8;
+    background: rgba(81, 45, 168, 0.05);
+    text-align: center;
+  }
 }
