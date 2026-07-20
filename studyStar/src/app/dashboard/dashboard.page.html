@@ -1,0 +1,80 @@
+<div class="ion-page" id="main-content">
+  <ion-header class="header">
+    <ion-toolbar class="nav-toolbar">
+      <div slot="start" class="brand-container">
+        <ion-icon name="star" class="logo-icon"></ion-icon>
+        <span class="brand-title">
+          StudyStar
+        </span>
+      </div>
+
+      <div class="center-nav">
+        <button class="nav-btn active" (click)="redirectToHome()">
+          Home
+        </button>
+        <button class="nav-btn" (click)="redirectToFlashcards()">
+          Flashcards
+        </button>
+        <button class="nav-btn" (click)="redirectToAgenda()">
+          Agenda
+        </button>
+        <button class="nav-btn active">
+          Dashboard
+        </button>
+      </div>
+
+      <ion-buttons slot="end" class="right-actions">
+        <ion-button fill="solid" class="profile-btn" (click)="redirectToProfile()">
+          Profile
+        </ion-button>
+      </ion-buttons>
+
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="homepage-content">
+
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+
+    <div class="profile-page-items ion-padding">
+      <div class="dashboard-header">
+        <h1 class="date-title" style="text-align: left;">
+          Dashboard
+        </h1>
+        <p class="date-subtitle" style="text-align: left;">
+          Welcome back. Let's check out some of your stats from the week!
+        </p>
+      </div>
+    </div>
+
+    <div class="dashboard-first-card-row">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card class="dashboard-first-cards">
+              Day Streak
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card class="dashboard-first-cards">
+              Cards Today
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card class="dashboard-first-cards">
+              Study Time
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card class="dashboard-first-cards">
+              Tasks Completed
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+  </ion-content>
+</div>
