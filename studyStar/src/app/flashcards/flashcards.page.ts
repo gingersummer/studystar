@@ -119,11 +119,10 @@ export class FlashcardsPage implements OnInit {
     this.menuCtrl.close('collection')
     console.log('waht the sigma')
     this.newSetName = ''
-  }
-  redirectToDashboard() {
-    this.router.navigate(['/dashboard'])
-    this.menuCtrl.close('flashcards')
-  }
+  // redirectToDashboard() {
+  //   this.router.navigate(['/dashboard'])
+  //   this.menuCtrl.close('flashcards') 
+  // }
 
 
   

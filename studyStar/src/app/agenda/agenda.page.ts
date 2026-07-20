@@ -8,7 +8,11 @@ import { MenuController, ModalController } from '@ionic/angular';
 import { TaskComponent } from '../components/task/task.component';
 import { TaskmodalComponent } from '../components/taskmodal/taskmodal.component';
 import { AgendaService } from '../services/agenda-service/agenda-service';
+<<<<<<< HEAD
 >>>>>>> b7bc046 (added custom task functionality to agena page)
+=======
+import { Task } from '../models/task';
+>>>>>>> 0e1f133 (got stuff working with develop)
 
 @Component({
   selector: 'app-agenda',
@@ -27,6 +31,7 @@ export class AgendaPage implements OnInit {
   dayCreator: number = 0
   yearCreator: number = 0
   priorityCreator: number = 0
+  modalController!: ModalController
 
   constructor(private router: Router, private menuCtrl: MenuController) { }
 =======

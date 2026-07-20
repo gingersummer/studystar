@@ -56,8 +56,8 @@
                 To-Do
               </ion-header>
               <ion-list>
-                @for(task of tasksArray; track $index) {
-                  <app-task [taskToDisplay]="task"></app-task>
+                @for(task of taskList; track $index) {
+                  <app-task [taskToDisplay]="task.taskToDo" ></app-task>
                 }
               </ion-list>
 
