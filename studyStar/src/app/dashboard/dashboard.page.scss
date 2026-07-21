@@ -106,7 +106,7 @@ ion-content.homepage-content {
 
 
 ion-toolbar.nav-toolbar {
-  --background: linear-gradient(90deg, rgb(225, 199, 275) 0%, rgba(225, 199, 275, 1.0) 100%) !important;
+--background: radial-gradient(circle at top, #141033 0%, #08061a 100%) !important;
   --color: #003d6b;
   --padding-start: 24px;
   --padding-end: 24px;
@@ -134,7 +134,7 @@ ion-toolbar.nav-toolbar {
     font-size: 22px;
     font-weight: 700;
     letter-spacing: -0.5px;
-    color: #003d6b; 
+    color:#c3d3df; 
   }
 }
 
@@ -152,7 +152,7 @@ ion-toolbar.nav-toolbar {
 .nav-btn {
   background: transparent;
   border: none;
-  color: #475569;
+  color: #e4e8ed;
   font-size: 15px;
   font-weight: 600;
   padding: 10px 20px;
@@ -165,7 +165,7 @@ ion-toolbar.nav-toolbar {
   }
 
   &.active {
-    
+    background: #a855f7;
   }
 }
 
@@ -174,7 +174,11 @@ ion-toolbar.nav-toolbar {
   align-items: center;
   gap: 16px;
 
-  .profile-btn {}
+  .profile-btn {
+     --background: #a855f7;
+   height:2em;
+   width:8em;
+  }
 }
 
 // SCSS Star Generator Function

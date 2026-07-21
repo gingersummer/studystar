@@ -33,10 +33,6 @@ export class AgendaPage implements OnInit {
     this.menuCtrl.close('agenda')
   }
 
-   redirectToDashboard() {
-    this.router.navigate(['/dashboard'])
-  }
-
   redirectToProfile() {
     this.router.navigate(['/profile'])
     this.menuCtrl.close('agenda')

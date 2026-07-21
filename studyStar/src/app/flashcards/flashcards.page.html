@@ -1,8 +1,6 @@
 @if(addingSet){
 <ion-grid>
   <ion-row>
-<ion-grid>
-  <ion-row>
     <ion-input placeholder="Enter Name" label="Name Of Set" [(ngModel)]="newSetName"></ion-input>
   </ion-row>
   <ion-row>
@@ -40,25 +38,24 @@
           <button class="nav-btn" (click)="redirectToDashboard()">
             Dashboard
           </button>
-          <button class="nav-btn" (click)="redirectToDashboard()">
-            Dashboard
-          </button>
+          
         </div>
 
         <ion-buttons slot="end" class="right-actions">
-          <ion-button fill="solid" class="profile-btn" (click)="redirectToProfile()">
+          <ion-button shape="round" fill="solid" class="profile-btn" (click)="redirectToProfile()">
             Profile
           </ion-button>
         </ion-buttons>
         <!-- <ion-searchbar class=searchBar search-icon="star" placeholder="Search"></ion-searchbar> -->
-        <ion-buttons slot="end">
-          <ion-menu-button (click)="openMenu()"></ion-menu-button>
-        </ion-buttons>
+       
       </ion-toolbar>
     </ion-header>
   </div>
 
   <div class="smallcard">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
     <ion-button (click)="addNewSet()"> + Add New Study Set </ion-button>
 
 
