@@ -35,6 +35,7 @@ export class FlashcardsPage implements OnInit {
     private menuCtrl: MenuController,
     private flashCardService: Flashcardsets,
     private userService: UserService,
+    private authService: AuthService
   ) { }
 
 
@@ -51,14 +52,20 @@ export class FlashcardsPage implements OnInit {
 
   ionViewDidEnter() {
 
-    this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+  this.hopeTSWorks()
+
+
+  }
+
+  async hopeTSWorks(){
+  this.userSubscription = this.userService.users.subscribe((data: User[]) => {
 
       this.currentUser = data[data.length - 1]
       console.log('data', data)
     })
     if (this.currentUser) {
       if (this.currentUser.allSets == undefined) {
-        this.currentUser.allSets = []
+this.currentUser.allSets = []
       }
       for (let i = 0; i < this.currentUser.allSets.length; i++) {
         console.log(this.currentUser.allSets[i])
@@ -68,7 +75,6 @@ export class FlashcardsPage implements OnInit {
     else {
       throw Error("what is going on gang")
     }
-
 
   }
 
@@ -108,8 +114,8 @@ export class FlashcardsPage implements OnInit {
     this.menuCtrl.close('collection')
   }
 
-  redirectToStudyCards(setIn: Set) {
-    this.flashCardService.selectSet(setIn)
+  redirectToStudyCards(setIn: Set, indexIn: number) {
+    this.flashCardService.selectSet(setIn, indexIn)
     this.router.navigate(['/study-cards'])
     this.menuCtrl.close('collection')
   }
@@ -127,7 +133,7 @@ export class FlashcardsPage implements OnInit {
     this.arrayOfSets.push(newSet)
     this.currentUser!.allSets.push(newSet)
     this.userService.updateUser(this.currentUser!)
-    this.flashCardService.selectSet(this.arrayOfSets[this.arrayOfSets.length - 1])
+    this.flashCardService.selectSet(this.arrayOfSets[this.arrayOfSets.length - 1], this.arrayOfSets.length-1)
     this.addingSet = false
     this.router.navigate(['/study-cards'])
     this.menuCtrl.close('collection')
