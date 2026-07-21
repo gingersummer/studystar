@@ -1,65 +1,226 @@
-:host ::ng-deep {
-  // Let the browser window handle page vertical scrolling naturally
-  .mds-tasks-calendar {
-    height: auto !important;
-    overflow: visible !important;
-  }
+// Theme Colors
+$dark-bg: #ffffff;
+$grid-border: rgba(255, 255, 255, 0.903);
+$text-muted: #6b7280;
 
-  .mbsc-schedule-grid-wrapper {
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch;
-  }
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  background-color: $dark-bg;
+  color: #ffffff;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: monospace, sans-serif;
 
-  // Set the 4-hour viewport target row sizes
-  .mbsc-schedule-time-row {
-    height: 125px !important; 
-  }
-
-  .custom-card-container {
-    padding: 6px;
-    height: 100%;
+ .calendar-header {
     display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
+    border-bottom: 1px solid $grid-border;
+    background-color: $dark-bg;
+
+    .corner-cell {
+      min-width: 80px;
+      max-width: 80px;
+      border-right: 1px solid $grid-border;
+    }
+
+    .class-header-cell {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      border-right: 1px solid $grid-border;
+
+      .class-title { font-weight: bold; }
+      .class-subtitle { color: #6b7280; font-size: 0.85rem; }
+    }
+ }
+
+
+.calendar-body {
+    height: 400px;
     overflow-y: auto;
-  }
-
-  .mds-tasks-event-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.2;
-  }
-
-  .mds-tasks-event-subtitle {
-    font-weight: 600;
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.9);
-    margin-top: 4px;
-    text-transform: uppercase;
-  }
-
-  .mds-tasks-event-list {
-    margin-top: 4px;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.9);
     display: flex;
     flex-direction: column;
+
+    .time-row {
+      display: flex;
+      height: 100px;
+      min-height: 100px;
+      border-bottom: 1px solid $grid-border;
+
+      .time-cell {
+        min-width: 80px;
+        max-width: 80px;
+        padding: 8px;
+        font-size: 0.85rem;
+        color: #6b7280;
+        border-right: 1px solid $grid-border;
+        display: flex;
+        justify-content: center;
+      }
+
+      .grid-cell {
+        flex: 1;
+        border-right: 1px solid $grid-border;
+        position: relative;
+        user-select: none;
+      }
+    }
+  }
+}
+
+.task-card {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  z-index: 5;
+  border-radius: 8px;
+  padding: 8px;
+  color: #1e293b;
+  font-family: system-ui, sans-serif;
+  box-sizing: border-box;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
   }
 
-  .mds-tasks-event-list-item {
-    padding: 5px 6px;
-    font-size: 11px;
-    color: #222;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    
+    .drag-handle {
+      opacity: 0.5;
+    }
+    .card-title {
+      font-weight: 700;
+    }
   }
 
-  .mds-tasks-event-add {
-    font-weight: bold;
+  .task-list-label {
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+  }
+
+  .task-items {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 8px 0;
+
+    .task-item {
+      background-color: rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      padding: 6px 8px;
+      font-size: 0.8rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+      &:first-child {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+      &:last-child {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+    }
+  }
+
+  .add-task-btn {
+    background: transparent;
+    border: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #0f172a;
     cursor: pointer;
-    border-bottom: none;
-    color: #512da8;
-    background: rgba(81, 45, 168, 0.05);
-    text-align: center;
+    padding: 2px 0;
+  }
+
+  &.blue {
+    background-color: #bae6fd;
+    .task-list-label { color: #0369a1; }
+  }
+
+  &.green {
+    background-color: #bbf7d0;
+    .task-list-label { color: #15803d; }
+  }
+
+  &.amber {
+    background-color: #fef08a;
+    .task-list-label { color: #a16207; }
+  }
+
+  &.rose {
+    background-color: #fecdd3;
+    .task-list-label { color: #be123c; }
+  }
+}
+.task-card {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  z-index: 5;
+  border-radius: 8px;
+  padding: 8px;
+  color: #1e293b;
+  font-family: system-ui, sans-serif;
+  box-sizing: border-box;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    
+    .drag-handle {
+      opacity: 0.5;
+    }
+    .card-title {
+      font-weight: 700;
+    }
+  }
+
+  .resize-handle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    cursor: ns-resize;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2) 4px,
+      transparent 4px,
+      transparent 8px
+    );
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &.blue { background-color: #bae6fd; }
+  &.green { background-color: #bbf7d0; }
+  &.amber { background-color: #fef08a; }
+  &.rose { background-color: #fecdd3; }
+}
+
+.grid-cell {
+  transition: background-color 0.2s ease;
+
+
+  &.drag-over {
+    background-color: rgba(255, 255, 255, 0.05);
   }
 }
