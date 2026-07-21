@@ -1,18 +1,16 @@
 @if(addingSet){
-  <ion-grid>
-    <ion-row>
-      <ion-input placeholder="Enter Name" label="Name Of Set" [(ngModel)]="newSetName"></ion-input>
-    </ion-row>
-    <ion-row>
-      <app-newcard>
-
-      </app-newcard>
-    </ion-row>
-    <ion-button>Create Blank Flashcard</ion-button>
-    <ion-button>Submit Flashcard</ion-button>
-    <ion-button (click)="createNewSet()"> Create Set </ion-button>
-  </ion-grid>
-  }
+<ion-grid>
+  <ion-row>
+    <ion-input placeholder="Enter Name" label="Name Of Set" [(ngModel)]="newSetName"></ion-input>
+  </ion-row>
+  <ion-row>
+    <app-newcard></app-newcard>
+  </ion-row>
+  <ion-button (click)="createNewBlankCard()">Create Blank Flashcard</ion-button>
+  <ion-button>Submit Flashcard</ion-button>
+  <ion-button (click)="createNewSet()"> Create Set </ion-button>
+</ion-grid>
+}
 
   @else{
   <ion-content>
@@ -41,21 +39,38 @@
             </button>
           </div>
 
-          <ion-buttons slot="end" class="right-actions">
-            <ion-button fill="solid" class="profile-btn" (click)="redirectToProfile()">
-              Profile
-            </ion-button>
-          </ion-buttons>
-          <!-- <ion-searchbar class=searchBar search-icon="star" placeholder="Search"></ion-searchbar> -->
-          <ion-buttons slot="end">
-            <ion-menu-button (click)="openMenu()"></ion-menu-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-    </div>
+        <div class="center-nav">
+          <button class="nav-btn" (click)="redirectToHome()">
+            Home
+          </button>
+          <button class="nav-btn active" (click)="redirectToFlashcards()">
+            Flashcards
+          </button>
+          <button class="nav-btn" (click)="redirectToAgenda()">
+            Agenda
+          </button>
+          <button class="nav-btn" >
+            Dashboard
+          </button>
+          
+        </div>
 
-<div class="smallcard">
-  <ion-button (click)="addNewSet()"> + Add New Study Set </ion-button>
+        <ion-buttons slot="end" class="right-actions">
+          <ion-button shape="round" fill="solid" class="profile-btn" (click)="redirectToProfile()">
+            Profile
+          </ion-button>
+        </ion-buttons>
+        <!-- <ion-searchbar class=searchBar search-icon="star" placeholder="Search"></ion-searchbar> -->
+       
+      </ion-toolbar>
+    </ion-header>
+  </div>
+
+  <div class="smallcard">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+    <ion-button (click)="addNewSet()"> + Add New Study Set </ion-button>
 
 
   <ion-grid>

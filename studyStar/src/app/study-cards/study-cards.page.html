@@ -19,12 +19,12 @@
 
 <ion-content [fullscreen]="true">
   <div class="first-div"></div>
-      <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
+  <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
 
-      </app-confidence>
-      <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
+  </app-confidence>
+  <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
 
-      </app-flashcard>
+  </app-flashcard>
   <ion-button class="prev-button-style" (click)="previousCard()">
     Previous Card
   </ion-button>
@@ -34,8 +34,13 @@
   </ion-button>
 
   <p class="progress-p-style">
-    {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
+    Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
   </p>
+  @if (cardToDisplay.frontSide == false){
 
-    
+  <app-confidence [flashcardIn]="cardToDisplay"></app-confidence>}
+
+  @else{
+
+  }
 </ion-content>
