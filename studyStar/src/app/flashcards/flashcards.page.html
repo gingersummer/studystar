@@ -12,18 +12,32 @@
 </ion-grid>
 }
 
-@else{
+  @else{
+  <ion-content>
+    <div class="ion-page" id="main-content">
+      <ion-header class="header">
+        <ion-toolbar class="nav-toolbar">
+          <div slot="start" class="brand-container">
+            <ion-icon name="star" class="logo-icon"></ion-icon>
+            <span class="brand-title">
+              StudyStar
+            </span>
+          </div>
 
-<ion-content>
-  <div class="ion-page" id="main-content">
-    <ion-header class="header">
-      <ion-toolbar class="nav-toolbar">
-        <div slot="start" class="brand-container">
-          <ion-icon name="star" class="logo-icon"></ion-icon>
-          <span class="brand-title">
-            StudyStar
-          </span>
-        </div>
+          <div class="center-nav">
+            <button class="nav-btn" (click)="redirectToHome()">
+              Home
+            </button>
+            <button class="nav-btn active" (click)="redirectToFlashcards()">
+              Flashcards
+            </button>
+            <button class="nav-btn" (click)="redirectToAgenda()">
+              Agenda
+            </button>
+            <button class="nav-btn" (click)="redirectToDashboard()">
+              Dashboard
+            </button>
+          </div>
 
         <div class="center-nav">
           <button class="nav-btn" (click)="redirectToHome()">
@@ -59,19 +73,19 @@
     <ion-button (click)="addNewSet()"> + Add New Study Set </ion-button>
 
 
-    <ion-grid>
-      <ion-row>
-        @for(item of arrayOfSets; track $index) {
-        <ion-col>
-          <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item)">
+  <ion-grid>
+    <ion-row>
+      @for(item of arrayOfSets; track $index) {
+      <ion-col>
+        <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item)">
 
-          </app-flashcardcollection>
-        </ion-col>
-        }
-      </ion-row>
-    </ion-grid>
+        </app-flashcardcollection>
+      </ion-col>
+      }
+    </ion-row>
+  </ion-grid>
 
-  </div>
+</div>
 
 
 </ion-content>
