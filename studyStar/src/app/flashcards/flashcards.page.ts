@@ -22,6 +22,9 @@ export class FlashcardsPage implements OnInit {
   addingSet: boolean = false
   newSetName: string = ''
   arrayOfSets: Set[] = []
+  termCreator: string = ''
+  definitionCreator: string = ''
+  tempCardArray: FlashCard[] = []
 
   currentUser?: User
 
@@ -120,22 +123,17 @@ export class FlashcardsPage implements OnInit {
     this.addingSet = true
   }
   createNewSet() {
-    let newSet: Set = new Set(this.newSetName, false, '', [new FlashCard("Card 1", "Enter a Definition")], '')
+    let newSet: Set = new Set(this.newSetName, false, '', this.tempCardArray, '')
     this.arrayOfSets.push(newSet)
-
-
-
     this.currentUser!.allSets.push(newSet)
     this.userService.updateUser(this.currentUser!)
-
-
     this.flashCardService.selectSet(this.arrayOfSets[this.arrayOfSets.length - 1])
     this.addingSet = false
-
     this.router.navigate(['/study-cards'])
     this.menuCtrl.close('collection')
     console.log('waht the sigma')
     this.newSetName = ''
+    this.tempCardArray = []
   }
   // redirectToDashboard() {
   //   this.router.navigate(['/dashboard'])
@@ -143,7 +141,24 @@ export class FlashcardsPage implements OnInit {
   // }
 
   createNewBlankCard() {
-
+  }
+  submitCard(){
+    if(this.currentUser)
+    {
+      this.tempCardArray.push(new FlashCard(this.termCreator, this.definitionCreator))
+    }
+    this.clearInfo()
+  }
+  clearInfo(){
+    this.termCreator = ''
+    this.definitionCreator = ''
+  }
+  exitCreator()
+  {
+    this.clearInfo()
+    this.newSetName = ''
+    this.tempCardArray = []
+    this.addingSet = false
   }
 
 }
