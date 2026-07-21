@@ -98,3 +98,35 @@ ion-header ion-toolbar {
 .streak-icon{
   font-size: 60px;
 }
+/* 1. Lift the header, add margins, and make it float */
+ion-header.floating-header {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  width: calc(100% - 32px); /* Creates equal 16px spacing on both sides */
+  z-index: 999;
+  background: transparent !important;
+}
+
+/* Kill Ionic's default bottom border/shadow line */
+ion-header.floating-header::after {
+  display: none !important;
+  background-image: none !important;
+}
+
+/* 2. Shape the inner toolbar into the rounded pill */
+ion-header.floating-header ion-toolbar {
+  --background: rgba(255, 255, 255, 0.95); /* Bright background with slight transparency */
+  --border-style: none;
+  
+  border-radius: 50px; 
+  border: 2px solid #000000;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Soft shadow to make it "float" visually */
+  
+  /* CRITICAL: Forces Ionic's inner shadow DOM elements to obey the 50px border-radius */
+  overflow: hidden; 
+  
+  /* Adds a little breathing room inside the pill for your searchbar and icons */
+  padding-inline: 12px; 
+}

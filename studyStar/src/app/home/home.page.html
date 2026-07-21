@@ -1,11 +1,10 @@
 <ion-content>
   <!-- End Side Menu -->
   <ion-menu side="end" menuId="home" contentId="main-content">
-    <ion-header>
+    <ion-header  class="floating-header"></ion-header>
       <ion-toolbar>
         <ion-title>Menu</ion-title>
       </ion-toolbar>
-    </ion-header>
     <ion-content class="ion-padding">
       <ion-list [inset]="true">
         <ion-item [button]="true" (click)="redirectToProfile()">
@@ -29,10 +28,10 @@
   </ion-menu>
 
   <!-- Main Screen View Container -->
-  <ion-content class="homepage-content">
+  <ion-content class="homepage-content" [fullscreen]="true" class="homepage-content">
 </ion-content>
   <div class="ion-page" id="main-content">
-    <ion-header class="header">
+    <ion-header class="floating-header" class="ion-no-border">
       <ion-toolbar>
         <ion-grid>
           <ion-row>
