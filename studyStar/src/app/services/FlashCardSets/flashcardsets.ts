@@ -13,9 +13,11 @@ export class Flashcardsets {
   ]
 
   selectedSet: Set = new Set("", false, "", [], "")
+  indexOfSet: number = 0
 
-  selectSet(setIn: Set) {
+  selectSet(setIn: Set, indexIn: number) {
     this.selectedSet = setIn
+    this.indexOfSet = indexIn
   }
 
 }

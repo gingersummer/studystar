@@ -1,3 +1,5 @@
+@if(!editingSet){
+
 <ion-header>
   <ion-grid>
     <ion-row>
@@ -32,6 +34,7 @@
   <ion-button class="next-button-style" (click)="nextCard()">
     Next Card
   </ion-button>
+  <ion-button (click)="startEditSet()"> Edit Set </ion-button>
 
   <p class="progress-p-style">
     Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
@@ -44,3 +47,39 @@
 
   }
 </ion-content>
+}
+@else{
+
+@for(item of flashcardSet.setOfCards; track $index; let idx = $index){
+<p> {{idx}}. {{item.term}}</p>
+}
+
+@if(addingCard)
+{
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card class="userFlashcards">
+        <h1>
+          Front Side
+        </h1>
+        <ion-input placeholder="Enter Term" label="Term" [(ngModel)]="termCreator"></ion-input>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card class="userFlashcards">
+        <h1>
+          Back Side
+        </h1>
+        <ion-input placeholder="Enter Definition" label="Term" [(ngModel)]="definitionCreator"></ion-input>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-button (click)="addNewCard()">Submit Flashcard</ion-button>
+  <ion-button> Back</ion-button>
+</ion-grid>
+}
+
+<ion-button (click)="startAddCard()"> Add Card </ion-button>
+<ion-button (click)="doneEditing()"> Done </ion-button>
+}

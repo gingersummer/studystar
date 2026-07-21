@@ -49,8 +49,8 @@ export class DashboardPage implements OnInit {
 
   }
 
-  redirectToStudyCards(setToOpen: Set) {
-    this.flashCardService.selectSet(setToOpen)
+  redirectToStudyCards(setToOpen: Set, setIndex: number) {
+    this.flashCardService.selectSet(setToOpen, setIndex)
     this.router.navigate(['/study-cards'])
   }
 }
