@@ -28,12 +28,11 @@ export class FlashcardsPage implements OnInit {
   userSubscription?: Subscription;
 
   constructor(
-    private router: Router, 
-    private menuCtrl: MenuController, 
-    private flashCardService: Flashcardsets, 
+    private router: Router,
+    private menuCtrl: MenuController,
+    private flashCardService: Flashcardsets,
     private userService: UserService,
-  ) {
-  }
+  ) { }
 
 
 
@@ -41,29 +40,42 @@ export class FlashcardsPage implements OnInit {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe()
     }
-    this.arrayOfSets.splice(0, this.arrayOfSets.length)
   }
 
   ngOnInit() {
-    
+
   }
 
   ionViewDidEnter() {
+
     this.userSubscription = this.userService.users.subscribe((data: User[]) => {
- 
-      this.currentUser = data[1]
+
+      this.currentUser = data[data.length - 1]
       console.log('data', data)
     })
+    if (this.currentUser) {
+      if (this.currentUser.allSets == undefined) {
+        this.currentUser.allSets = []
+      }
+      for (let i = 0; i < this.currentUser.allSets.length; i++) {
+        console.log(this.currentUser.allSets[i])
+        this.arrayOfSets.push(this.currentUser.allSets[i])
+      }
+    }
+    else {
+      throw Error("what is going on gang")
+    }
+
+
   }
 
   ionViewWillLeave() {
+    this.arrayOfSets.splice(0, this.arrayOfSets.length)
+
     if (this.userSubscription) {
       this.userSubscription.unsubscribe()
     }
-    console.log( this.currentUser!.allSets.length - 1)
-    for (let i = 0; i < this.currentUser!.allSets.length - 1; i++) {
-      this.arrayOfSets.push(this.currentUser!.allSets[i])
-    }
+
   }
   openMenu() {
     this.menuCtrl.open('collection')
@@ -112,10 +124,10 @@ export class FlashcardsPage implements OnInit {
     this.arrayOfSets.push(newSet)
 
 
-   
-      this.currentUser!.allSets.push(newSet)
-      this.userService.updateUser(this.currentUser!)
-   
+
+    this.currentUser!.allSets.push(newSet)
+    this.userService.updateUser(this.currentUser!)
+
 
     this.flashCardService.selectSet(this.arrayOfSets[this.arrayOfSets.length - 1])
     this.addingSet = false
@@ -130,9 +142,8 @@ export class FlashcardsPage implements OnInit {
   //   this.menuCtrl.close('flashcards') 
   // }
 
-  createNewBlankCard(){
+  createNewBlankCard() {
 
   }
-
 
 }
