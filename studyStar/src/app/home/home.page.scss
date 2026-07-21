@@ -194,7 +194,8 @@ ion-toolbar.nav-toolbar {
 
 .flashcardCard{
   border: none;
-  background:#5d2b90;
+--background: linear-gradient(90deg, rgba(90, 3, 102, 0.5) 0%, rgba(104, 3, 141, 0.5) 56%, rgba(112, 16, 144, 0.5) 100%);
+
   font-size: 20px;
   font-weight: 600;
   color: rgb(49, 22, 77);
