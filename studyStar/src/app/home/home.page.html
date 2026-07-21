@@ -40,50 +40,81 @@
 
     <div class="profile-page-items ion-padding">
       <div class="dashboard-header">
-        <!-- <p class="date-subtitle" style="text-align: center;">
-          Today's Date
-        </p>
-        <h1 class="date-title" style="text-align: center;">
-          {{ today | date:'MMMM d, y' }}
-        </h1> -->
-        <h1 class="studySmart">
-          Study Smarter
-        </h1>
-        
         <h1 class="studyStar">
           StudyStar
         </h1>
-       <ion-grid>
+        <p class="missionStatement">
+          Welcome back Username!
+        </p>
 
-        
+        <ion-grid>
+
           <ion-row>
-            <ion-col size="1.5"></ion-col>
-<ion-col>
-          <p class="missionStatement">
-            StudyStar combines science-backed study techniques with flashcards into one platform built for students who take learning seriously.
-          </p>
-          </ion-col>
-          <ion-col size="1.5"></ion-col>
-        </ion-row>
-          <ion-row>
-            <ion-col></ion-col>
-          <ion-col>
-      
-        <button class="startNow" (click)="redirectToFlashcards()">
-          
-          Start Studying Free 
-          <!-- <ion-icon name="arrow-forward-outline" class="arrow"></ion-icon> -->
-          
-        </button>
-        
-        </ion-col>
-     <ion-col>
-       <button class="startNow" (click)="redirectToDashboard()">
-        Dashboard
-       </button>
-      </ion-col>
-      <ion-col></ion-col>
-        </ion-row>
+
+            <ion-col>
+              <button class="flashcardCard" (click)="redirectToFlashcards()">
+                <h1 class="card-title" style="text-align: center;">
+                  Continue Studying
+                </h1>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                <ion-card class="currentSetCard">
+                  <img [src]="arrayOfSets[0].icon">
+                </ion-card>
+                </ion-col>
+                </ion-row>
+                </ion-grid>
+                
+                <h1>
+                  {{arrayOfSets[0].name}}
+                </h1>
+              
+              </button>
+            </ion-col>
+
+            <ion-col>
+              <button class="flashcardCard" (click)="redirectToDashboard()">
+                
+                    <h1 class="card-title" style="text-align: center;">
+                      Check Out Your Stats!
+                    </h1>
+                     <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <ion-icon name="flame-outline" color="danger" class="flame"></ion-icon>
+                    </ion-col>
+                  </ion-row>
+                     </ion-grid>
+                      <h1 class=date-title>
+                        7 Day Streak!
+                      </h1>
+              </button>
+            </ion-col>
+            <ion-col>
+              <ion-card class="flashcardCard">
+                <h1 class="card-title" style="text-align: center;">
+                  Today's Tasks
+                </h1>
+                <p class="date-subtitle" style="text-align: center;">
+                  {{ today | date:'MMMM d, y' }}
+                </p>
+                 @for(set of arrayOfSets; track $index) {
+                  <ion-item class="suggestion-item">
+                    <ion-icon name="checkmark" slot="start" color="dark-purple"></ion-icon>
+                    <ion-label>
+                      <ion-item [button]="true" (click)="redirectToStudyCards(set)">{{set.name}}</ion-item>
+                      <h3>{{set.category}}</h3>
+                    </ion-label>
+                    <ion-badge slot="end" color="#8238b7">20 mins</ion-badge>
+                  </ion-item>
+                }
+              </ion-card>
+
+            </ion-col>
+
+          </ion-row>
+
         </ion-grid>
       </div>
-</div>
+    </div>
