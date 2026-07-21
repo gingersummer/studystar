@@ -129,10 +129,9 @@ export class FlashcardsPage implements OnInit {
   //   this.menuCtrl.close('flashcards') 
   // }
 
- createNewBlankCard(){}
+  createNewBlankCard(){
 
-  
   }
 
 
-
+}
