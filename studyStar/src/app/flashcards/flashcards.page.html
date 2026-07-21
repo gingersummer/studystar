@@ -4,11 +4,31 @@
     <ion-input placeholder="Enter Name" label="Name Of Set" [(ngModel)]="newSetName"></ion-input>
   </ion-row>
   <ion-row>
-    <app-newcard></app-newcard>
+    
+ 
+  <ion-row>
+    <ion-col>
+      <ion-card class="userFlashcards">
+        <h1>
+          Front Side
+        </h1>
+        <ion-input placeholder="Enter Term" label="Term" [(ngModel)]="termCreator" ></ion-input>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card class="userFlashcards">
+        <h1>
+          Back Side
+        </h1>
+        <ion-input placeholder="Enter Definition" label="Term" [(ngModel)]="definitionCreator"></ion-input>
+      </ion-card>
+    </ion-col>
   </ion-row>
-  <ion-button (click)="createNewBlankCard()">Create Blank Flashcard</ion-button>
-  <ion-button>Submit Flashcard</ion-button>
+  </ion-row>
+  <ion-button (click)="createNewBlankCard()">New Flashcard</ion-button>
+  <ion-button (click)="submitCard()">Submit Flashcard</ion-button>
   <ion-button (click)="createNewSet()"> Create Set </ion-button>
+  <ion-button (click)="exitCreator()"> Back</ion-button>
 </ion-grid>
 }
 
