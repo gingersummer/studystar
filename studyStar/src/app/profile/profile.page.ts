@@ -36,10 +36,10 @@ export class ProfilePage implements OnInit {
 
   ionViewDidEnter() {
     this.userSubscription = this.userService.users.subscribe((data: User[]) => {
-      if (data.length > 1) {
-        throw Error("Multiple user profiles found!")
-      }
-      this.currentUser = data[0]
+      // if (data.length > 1) {
+      //   throw Error("Multiple user profiles found!")
+      // }
+      this.currentUser = data[1]
     })
   }
 
