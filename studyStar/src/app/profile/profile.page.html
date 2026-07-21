@@ -18,6 +18,9 @@
         <button class="nav-btn active" (click)="redirectToAgenda()">
           Agenda
         </button>
+        <button class="nav-btn" (click)="redirectToDashboard()">
+          Dashboard
+        </button>
       </div>
 
       <ion-buttons slot="end" class="right-actions">
@@ -30,6 +33,10 @@
   </ion-header>
 
     <div class="profile-page-items">
+
+      <ion-button>
+        Edit Profile
+      </ion-button>
     
       <ion-avatar class="profile-picture">
         <img src="https://cdn.pfps.gg/pfps/8250-default-18.png"/>
@@ -50,6 +57,11 @@
           Sets Completed: {{currentUser.setsCompleted}}
         </h1>
       </ion-card>
+      }
+      @else{
+        <ion-button>
+          Create A New Account Or Login To An Existing One
+        </ion-button>
       }
     </div>
  

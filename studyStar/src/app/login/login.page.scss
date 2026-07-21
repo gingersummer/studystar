@@ -18,7 +18,7 @@
     font-size: 22px;
     font-weight: 700;
     letter-spacing: -0.5px;
-    color: #003d6b; 
+    color: #9ebdd5; 
   }
 }
 
@@ -91,6 +91,17 @@
     padding: 8px;
     border-radius: 12px;
   }
+
+  ion-toolbar.nav-toolbar {
+  --background: radial-gradient(circle at top, #141033 0%, #08061a 100%) !important;
+  --padding-start: 24px;
+  --padding-end: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  height: 70px;
+}
 
 .login-actions {
   display: flex;
