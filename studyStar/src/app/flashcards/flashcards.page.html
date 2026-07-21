@@ -95,9 +95,9 @@
 
   <ion-grid>
     <ion-row>
-      @for(item of arrayOfSets; track $index) {
+      @for(item of arrayOfSets; track $index; let idx = $index) {
       <ion-col>
-        <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item)">
+        <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item, idx)">
 
         </app-flashcardcollection>
       </ion-col>

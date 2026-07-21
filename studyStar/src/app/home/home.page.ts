@@ -52,8 +52,8 @@ export class HomePage{
 
   }
 
-  redirectToStudyCards(setToOpen: Set) {
-    this.flashCardService.selectSet(setToOpen)
+  redirectToStudyCards(setToOpen: Set, indexIn: number) {
+    this.flashCardService.selectSet(setToOpen, indexIn)
     this.router.navigate(['/study-cards'])
   }
 }
