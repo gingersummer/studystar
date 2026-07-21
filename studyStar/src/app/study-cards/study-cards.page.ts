@@ -5,6 +5,11 @@ import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Set } from '../models/Set';
 import { ConfidenceComponent } from '../confidence/confidence.component';
+import { User } from '../models/user';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../services/auth/auth';
+import { UserService } from '../services/user/user-service';
+
 
 @Component({
   selector: 'app-study-cards',
@@ -22,12 +27,32 @@ export class StudyCardsPage implements OnInit {
   addingCard: boolean = false
   termCreator: string = ''
   definitionCreator: string = ''
-  constructor(private setService: Flashcardsets, private router: Router, private menuCtrl: MenuController) { }
+  currentUser?: User
+  userSubscription?: Subscription;
+
+  constructor(private setService: Flashcardsets, private router: Router, private menuCtrl: MenuController, private userService: UserService,
+    private authService: AuthService) { }
+
+  ionViewDidEnter() {
+    this.hopeTSWorks()
+  }
+  ionViewWillLeave(){
+       if (this.userSubscription) {
+      this.userSubscription.unsubscribe()
+    }
+  }
 
   ngOnInit() {
     this.flashcardSet = this.setService.selectedSet
     this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
 
+  }
+  async hopeTSWorks() {
+    this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+
+      this.currentUser = data[data.length - 1]
+      console.log('data', data)
+    })
   }
 
   redirectToHome() {
@@ -78,16 +103,24 @@ export class StudyCardsPage implements OnInit {
     this.addingCard = true
   }
 
-  addNewCard(){
+  addNewCard() {
     this.flashcardSet.setOfCards.push(new FlashCard(this.termCreator, this.definitionCreator))
     this.termCreator = ''
     this.definitionCreator = ''
     this.addingCard = false
+    this.currentUser!.allSets[this.setService.indexOfSet] = this.flashcardSet
+    this.userService.updateUser(this.currentUser!)
+
   }
 
-  doneEditing()
-  {
+  doneEditing() {
     this.editingSet = false
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe()
+    }
   }
 
 }
