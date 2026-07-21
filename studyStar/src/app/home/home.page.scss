@@ -74,7 +74,7 @@
 }
 
 .date-title {
-  font-size: 42px;
+  font-size: 35px;
   font-weight: 800;
   letter-spacing: -1px;
   color: #ffffff; 
@@ -181,7 +181,7 @@ ion-toolbar.nav-toolbar {
 }
 
 .studyStar{
-  background: linear-gradient(45deg, #a0b0fc, #764ba2);
+  background:#764ba2;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -191,29 +191,19 @@ ion-toolbar.nav-toolbar {
     text-align: center;
 }
 
-.studySmart{
- background: linear-gradient(45deg, #ffffff, #ba91e3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-size: 100px;
-    font-weight: 800;
-    font-family: Arial, sans-serif;
-    text-align: center;
-}
 
-.startNow{
+.flashcardCard{
   border: none;
-  background: linear-gradient(45deg, #c684ea, #5d2b90);
-  font-size: 30px;
+  background:#5d2b90;
+  font-size: 20px;
   font-weight: 600;
   color: rgb(49, 22, 77);
   padding: 10px 20px;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  height:4em;
-  width: 15em;
+  height:17em;
+  width: 22em;
  
   &:hover {
     color: #dbcde1;
@@ -226,9 +216,26 @@ ion-toolbar.nav-toolbar {
   }
 }
 
+.flame {
+  height: 6em;
+  width: 6em;
+}
+
 .arrow{
   color:white;
 }
+
+.currentSetCard{
+  height:8em;
+  width:25em;
+}
+
+.card-title{
+ font-size: 37px;
+    font-weight: 700;
+    color: white;
+}
+
 .missionStatement{
   color: rgb(194, 142, 215);
   text-align: center;
