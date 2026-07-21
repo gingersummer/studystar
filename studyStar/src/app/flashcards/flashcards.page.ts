@@ -47,16 +47,26 @@ export class FlashcardsPage implements OnInit {
   }
 
   ionViewDidEnter() {
+
     this.userSubscription = this.userService.users.subscribe((data: User[]) => {
 
-      this.currentUser = data[1]
+      this.currentUser = data[data.length - 1]
       console.log('data', data)
     })
-
-    for (let i = 0; i < this.currentUser!.allSets.length - 1; i++) {
-      console.log(this.currentUser!.allSets[i])
-      this.arrayOfSets.push(this.currentUser!.allSets[i])
+    if (this.currentUser) {
+      if (this.currentUser.allSets == undefined) {
+        this.currentUser.allSets = []
+      }
+      for (let i = 0; i < this.currentUser.allSets.length; i++) {
+        console.log(this.currentUser.allSets[i])
+        this.arrayOfSets.push(this.currentUser.allSets[i])
+      }
     }
+    else {
+      throw Error("what is going on gang")
+    }
+
+
   }
 
   ionViewWillLeave() {
@@ -126,13 +136,13 @@ export class FlashcardsPage implements OnInit {
     this.menuCtrl.close('collection')
     console.log('waht the sigma')
     this.newSetName = ''
-    }
+  }
   // redirectToDashboard() {
-    //   this.router.navigate(['/dashboard'])
-    //   this.menuCtrl.close('flashcards') 
-    // }
+  //   this.router.navigate(['/dashboard'])
+  //   this.menuCtrl.close('flashcards') 
+  // }
 
-  createNewBlankCard(){
+  createNewBlankCard() {
 
   }
 

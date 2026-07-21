@@ -39,7 +39,7 @@ export class ProfilePage implements OnInit {
       // if (data.length > 1) {
       //   throw Error("Multiple user profiles found!")
       // }
-      this.currentUser = data[1]
+      this.currentUser = data[data.length-1]
     })
   }
 
