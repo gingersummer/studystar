@@ -69,7 +69,7 @@
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #c084fc; 
+  color: #c084fc;
   margin-bottom: 8px;
 }
 
@@ -77,7 +77,7 @@
   font-size: 42px;
   font-weight: 800;
   letter-spacing: -1px;
-  color: #ffffff; 
+  color: #ffffff;
   margin-top: 0;
 }
 
@@ -184,17 +184,21 @@ ion-toolbar.nav-toolbar {
 // SCSS Star Generator Function
 @function generate-stars($n) {
   $value: '#{math.random(2000)}px #{math.random(2000)}px #FFF';
+
   @for $i from 2 through $n {
     $value: '#{$value} , #{math.random(2000)}px #{math.random(2000)}px #FFF';
   }
+
   @return string.unquote($value);
 }
 
-$stars-small:  generate-stars(500);
+$stars-small: generate-stars(500);
 $stars-medium: generate-stars(200);
-$stars-large:  generate-stars(100);
+$stars-large: generate-stars(100);
 
-#stars, #stars2, #stars3 {
+#stars,
+#stars2,
+#stars3 {
   position: absolute;
   top: 0;
   left: 0;
@@ -224,23 +228,50 @@ $stars-large:  generate-stars(100);
 }
 
 @keyframes twinkleSlow {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes twinkleMedium {
-  0%, 100% { opacity: 0.8; }
-  40% { opacity: 0.2; }
-  80% { opacity: 0.9; }
+
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+
+  40% {
+    opacity: 0.2;
+  }
+
+  80% {
+    opacity: 0.9;
+  }
 }
 
 @keyframes twinkleFast {
-  0%, 100% { opacity: 1; }
-  30% { opacity: 0.4; }
-  70% { opacity: 0.1; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0.4;
+  }
+
+  70% {
+    opacity: 0.1;
+  }
 }
 
-.dashboard-first-card-row{
+.dashboard-first-card-row {
   padding: 1em;
   font-size: 1.5rem;
   font-weight: 600;
@@ -249,21 +280,37 @@ $stars-large:  generate-stars(100);
   align-items: center;
 }
 
-.dashboard-first-cards{
+.dashboard-first-cards {
   height: 90%;
   width: 100%;
 }
 
-.image-in-cards{
+.image-in-cards {
   object-fit: scale-down;
   position: relative;
   float: left;
-  height: 10%;
-  width: 10%;
+  height: 15%;
+  width: 15%;
   position: relative;
 }
 
-.big-dashboard-numbers{
+.big-dashboard-numbers {
   font-size: 32px;
   padding: 8px;
+}
+
+.dashboard-second-card-row {
+  padding: 1em;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #003d6b;
+  height: 15%;
+  align-items: center;
+  position: absolute;
+  bottom: 30%;
+}
+
+.dashboard-second-weekly-card {
+  height: 90%;
+  width: 370%;
 }

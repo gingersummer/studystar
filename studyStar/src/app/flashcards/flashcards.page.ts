@@ -79,10 +79,6 @@ export class FlashcardsPage implements OnInit {
     this.menuCtrl.close('collection')
   }
 
-   redirectToDashboard() {
-    this.router.navigate(['/dashboard'])
-  }
-
   redirectToFlashcards() {
     this.router.navigate(['/flashcards'])
     this.menuCtrl.close('collection')
@@ -101,6 +97,11 @@ export class FlashcardsPage implements OnInit {
     this.flashCardService.selectSet(setIn)
     this.router.navigate(['/study-cards'])
     this.menuCtrl.close('collection')
+  }
+
+  redirectToDashboard() {
+    this.router.navigate(['/dashboard'])
+    this.menuCtrl.close('flashcards')
   }
 
   addNewSet() {
