@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { Firebaseservice } from 'src/app/services/firebase/firebaseservice';
-import { User } from 'src/app/models/user';
+import { User} from 'src/app/models/user';
 import { AuthService } from '../auth/auth';
 import { getAuth } from '@angular/fire/auth';
 
@@ -20,12 +20,13 @@ export class UserService {
   }
 
   getData(uid: string) {
+    console.log('calling get data')
     try {
       this.firebaseSubscription = this.firebaseService.readCollectionByUid("users", uid).subscribe(
         (res: any[]) => {
           //map JSON from firebase to User
           let users = res.map((user: any) => new
-            User(user.username, user.email, user.setsCompleted, user.lastSet, user.uid,
+            User(user.username, user.email, user.setsCompleted, user.lastSet, user.allSets, user.uid,
               user.picture, user.id))
           //update BehaviorSubject to have newest Firebase values
           this._users.next(users)

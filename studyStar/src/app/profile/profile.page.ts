@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { User } from '../models/user';
 import { UserService } from '../services/user/user-service';
 import { AuthService } from '../services/auth/auth';
 import { Firebaseservice } from '../services/firebase/firebaseservice';
 import { Subscription } from 'rxjs';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-profile',

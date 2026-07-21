@@ -33,32 +33,43 @@
   </ion-header>
 
     <div class="profile-page-items">
+               <ion-card>
+         @if(isMakingTask){
+                <ion-input label="Enter Task" [(ngModel)]="toDoCreator">  </ion-input>
+                <ion-input label="Enter Month" [(ngModel)]="monthCreator"> </ion-input>
+                <ion-input label="Enter Day" [(ngModel)]="dayCreator"> </ion-input>
+                <ion-input label="Enter Year" [(ngModel)]="yearCreator"> </ion-input>
+                <ion-input label="Enter Priority" [(ngModel)]="priorityCreator"> </ion-input>
+                <ion-button (click)="createTask()"> Submit </ion-button>
+         }
+
+
+              </ion-card>
       <ion-grid>
         <ion-row>
           <ion-col><app-calendar></app-calendar></ion-col>
           <ion-col></ion-col>
           <ion-col>
+
             <ion-card class="to-do-card">
               <ion-header class="ion-padding">
                 To-Do
               </ion-header>
               <ion-list>
-                @for(task of tasksArray; track $index) {
-                  <app-task [taskToDisplay]="task"></app-task>
+                @for(task of taskList; track $index) {
+                  <app-task [taskToDisplay]="task.taskToDo" ></app-task>
                 }
               </ion-list>
+
             </ion-card>
+
+
             <ion-card class="upcoming-card">
               <ion-header class="ion-padding">
                 Upcoming
               </ion-header>
               <ion-list>
-                <ion-item>
-                  <ion-label>Event 1</ion-label>
-                </ion-item>
-                <ion-item>
-                  <ion-label>Event 2</ion-label>
-                </ion-item>
+                <!-- upcoming events here -->
               </ion-list>
             </ion-card>
           </ion-col>
@@ -75,7 +86,7 @@
             </ion-button>
           </ion-col>
           <ion-col>
-            <ion-button (click)="presentCreateTaskModal()" class="add-task">
+            <ion-button  class="add-task">
               Add Task
             </ion-button>
           </ion-col>
