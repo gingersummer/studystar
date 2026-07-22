@@ -1,3 +1,5 @@
+@if(!editingSet){
+
 <ion-header>
   <ion-grid>
     <ion-row>
@@ -19,12 +21,12 @@
 
 <ion-content [fullscreen]="true">
   <div class="first-div"></div>
-      <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
+  <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
 
-      </app-confidence>
-      <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
+  </app-confidence>
+  <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
 
-      </app-flashcard>
+  </app-flashcard>
   <ion-button class="prev-button-style" (click)="previousCard()">
     Previous Card
   </ion-button>
@@ -32,23 +34,52 @@
   <ion-button class="next-button-style" (click)="nextCard()">
     Next Card
   </ion-button>
+  <ion-button (click)="startEditSet()"> Edit Set </ion-button>
 
   <p class="progress-p-style">
-    {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
+    Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
   </p>
+  @if (cardToDisplay.frontSide == false){
 
-    <ion-button class="next-button-style" (click)="nextCard()">
-      Next Card
-    </ion-button>
+  <app-confidence [flashcardIn]="cardToDisplay"></app-confidence>}
 
-    <p class="progress-p-style">
-      Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
-    </p>
-    @if (cardToDisplay.frontSide == false){
+  @else{
 
-    <app-confidence [flashcardIn]="cardToDisplay"></app-confidence>}
-
-    @else{
-
-    }
+  }
 </ion-content>
+}
+@else{
+
+@for(item of flashcardSet.setOfCards; track $index; let idx = $index){
+<p> {{idx}}. {{item.term}}</p>
+}
+
+@if(addingCard)
+{
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card class="userFlashcards">
+        <h1>
+          Front Side
+        </h1>
+        <ion-input placeholder="Enter Term" label="Term" [(ngModel)]="termCreator"></ion-input>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card class="userFlashcards">
+        <h1>
+          Back Side
+        </h1>
+        <ion-input placeholder="Enter Definition" label="Term" [(ngModel)]="definitionCreator"></ion-input>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-button (click)="addNewCard()">Submit Flashcard</ion-button>
+  <ion-button> Back</ion-button>
+</ion-grid>
+}
+
+<ion-button (click)="startAddCard()"> Add Card </ion-button>
+<ion-button (click)="doneEditing()"> Done </ion-button>
+}
