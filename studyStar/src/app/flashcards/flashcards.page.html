@@ -4,28 +4,60 @@
     <ion-input placeholder="Enter Name" label="Name Of Set" [(ngModel)]="newSetName"></ion-input>
   </ion-row>
   <ion-row>
-    @for(item of arrayOfCards; track $index) {
-      <app-newcard [cardToDisplay]="item"></app-newcard>
-    }
+    
+ 
+  <ion-row>
+    <ion-col>
+      <ion-card class="userFlashcards">
+        <h1>
+          Front Side
+        </h1>
+        <ion-input placeholder="Enter Term" label="Term" [(ngModel)]="termCreator" ></ion-input>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card class="userFlashcards">
+        <h1>
+          Back Side
+        </h1>
+        <ion-input placeholder="Enter Definition" label="Term" [(ngModel)]="definitionCreator"></ion-input>
+      </ion-card>
+    </ion-col>
   </ion-row>
-  <ion-button>Create Blank Flashcard</ion-button>
-  <ion-button>Submit Flashcard</ion-button>
+  </ion-row>
+  <ion-button (click)="createNewBlankCard()">New Flashcard</ion-button>
+  <ion-button (click)="submitCard()">Submit Flashcard</ion-button>
   <ion-button (click)="createNewSet()"> Create Set </ion-button>
+  <ion-button (click)="exitCreator()"> Back</ion-button>
 </ion-grid>
 }
 
-@else{
+  @else{
+  <ion-content>
+    <div class="ion-page" id="main-content">
+      <ion-header class="header">
+        <ion-toolbar class="nav-toolbar">
+          <div slot="start" class="brand-container">
+            <ion-icon name="star" class="logo-icon"></ion-icon>
+            <span class="brand-title">
+              StudyStar
+            </span>
+          </div>
 
-<ion-content>
-  <div class="ion-page" id="main-content">
-    <ion-header class="header">
-      <ion-toolbar class="nav-toolbar">
-        <div slot="start" class="brand-container">
-          <ion-icon name="star" class="logo-icon"></ion-icon>
-          <span class="brand-title">
-            StudyStar
-          </span>
-        </div>
+          <div class="center-nav">
+            <button class="nav-btn" (click)="redirectToHome()">
+              Home
+            </button>
+            <button class="nav-btn active" (click)="redirectToFlashcards()">
+              Flashcards
+            </button>
+            <button class="nav-btn" (click)="redirectToAgenda()">
+              Agenda
+            </button>
+            <button class="nav-btn" (click)="redirectToDashboard()">
+              Dashboard
+            </button>
+          </div>
 
         <div class="center-nav">
           <button class="nav-btn" (click)="redirectToHome()">
@@ -37,41 +69,43 @@
           <button class="nav-btn" (click)="redirectToAgenda()">
             Agenda
           </button>
-          <button class="nav-btn" (click)="redirectToDashboard()">
+          <button class="nav-btn" >
             Dashboard
           </button>
+          
         </div>
 
         <ion-buttons slot="end" class="right-actions">
-          <ion-button fill="solid" class="profile-btn" (click)="redirectToProfile()">
+          <ion-button shape="round" fill="solid" class="profile-btn" (click)="redirectToProfile()">
             Profile
           </ion-button>
         </ion-buttons>
         <!-- <ion-searchbar class=searchBar search-icon="star" placeholder="Search"></ion-searchbar> -->
-        <ion-buttons slot="end">
-          <ion-menu-button (click)="openMenu()"></ion-menu-button>
-        </ion-buttons>
+       
       </ion-toolbar>
     </ion-header>
   </div>
 
   <div class="smallcard">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
     <ion-button (click)="addNewSet()"> + Add New Study Set </ion-button>
 
 
-    <ion-grid>
-      <ion-row>
-        @for(item of arrayOfSets; track $index) {
-        <ion-col>
-          <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item)">
+  <ion-grid>
+    <ion-row>
+      @for(item of arrayOfSets; track $index; let idx = $index) {
+      <ion-col>
+        <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item, idx)">
 
-          </app-flashcardcollection>
-        </ion-col>
-        }
-      </ion-row>
-    </ion-grid>
+        </app-flashcardcollection>
+      </ion-col>
+      }
+    </ion-row>
+  </ion-grid>
 
-  </div>
+</div>
 
 
 </ion-content>

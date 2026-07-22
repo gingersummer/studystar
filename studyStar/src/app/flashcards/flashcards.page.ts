@@ -4,6 +4,11 @@ import { MenuController } from '@ionic/angular';
 import { Set } from '../models/Set';
 import { FlashCard } from '../models/flashcard';
 import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
+import { Subscription } from 'rxjs';
+import { UserService } from '../services/user/user-service';
+import { User } from '../models/user';
+import { AuthService } from '../services/auth/auth';
+
 
 @Component({
   selector: 'app-flashcards',
@@ -17,11 +22,70 @@ export class FlashcardsPage implements OnInit {
   addingSet: boolean = false
   newSetName: string = ''
   arrayOfSets: Set[] = []
+  termCreator: string = ''
+  definitionCreator: string = ''
+  tempCardArray: FlashCard[] = []
 
-  constructor(private router: Router, private menuCtrl: MenuController, private flashCardService: Flashcardsets) {
-    this.arrayOfSets=this.flashCardService.arrayOfSets
-   }
+  currentUser?: User
 
+  userSubscription?: Subscription;
+
+  constructor(
+    private router: Router,
+    private menuCtrl: MenuController,
+    private flashCardService: Flashcardsets,
+    private userService: UserService,
+    private authService: AuthService
+  ) { }
+
+
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe()
+    }
+  }
+
+  ngOnInit() {
+
+  }
+
+  ionViewDidEnter() {
+
+  this.hopeTSWorks()
+
+
+  }
+
+  async hopeTSWorks(){
+  this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+
+      this.currentUser = data[data.length - 1]
+      console.log('data', data)
+    })
+    if (this.currentUser) {
+      if (this.currentUser.allSets == undefined) {
+this.currentUser.allSets = []
+      }
+      for (let i = 0; i < this.currentUser.allSets.length; i++) {
+        console.log(this.currentUser.allSets[i])
+        this.arrayOfSets.push(this.currentUser.allSets[i])
+      }
+    }
+    else {
+      throw Error("what is going on gang")
+    }
+
+  }
+
+  ionViewWillLeave() {
+    this.arrayOfSets.splice(0, this.arrayOfSets.length)
+
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe()
+    }
+
+  }
   openMenu() {
     this.menuCtrl.open('collection')
   }
@@ -50,36 +114,56 @@ export class FlashcardsPage implements OnInit {
     this.menuCtrl.close('collection')
   }
 
-  redirectToStudyCards(setIn: Set) {
-    this.flashCardService.selectSet(setIn)
+  redirectToStudyCards(setIn: Set, indexIn: number) {
+    this.flashCardService.selectSet(setIn, indexIn)
     this.router.navigate(['/study-cards'])
     this.menuCtrl.close('collection')
-  }
-
-  addNewSet() {
-    this.addingSet = true
-  }
-  createNewSet() {
-    this.arrayOfSets.push(new Set(this.newSetName, false, '', [new FlashCard("Card 1", "Enter a Definition")], ''))
-    this.flashCardService.selectSet(this.arrayOfSets[this.arrayOfSets.length - 1])
-    this.addingSet = false
-
-    this.router.navigate(['/study-cards'])
-    this.menuCtrl.close('collection')
-    console.log('waht the sigma')
-    this.newSetName = ''
   }
 
   redirectToDashboard() {
     this.router.navigate(['/dashboard'])
     this.menuCtrl.close('flashcards')
   }
-
-  createBlankFlashcard() {
-    this.arrayOfCards
+  addNewSet() {
+    this.addingSet = true
   }
+  createNewSet() {
+    let newSet: Set = new Set(this.newSetName, false, '', this.tempCardArray, '')
+    this.arrayOfSets.push(newSet)
+    this.currentUser!.allSets.push(newSet)
+    this.userService.updateUser(this.currentUser!)
+    this.flashCardService.selectSet(this.arrayOfSets[this.arrayOfSets.length - 1], this.arrayOfSets.length-1)
+    this.addingSet = false
+    this.router.navigate(['/study-cards'])
+    this.menuCtrl.close('collection')
+    console.log('waht the sigma')
+    this.newSetName = ''
+    this.tempCardArray = []
+  }
+  // redirectToDashboard() {
+  //   this.router.navigate(['/dashboard'])
+  //   this.menuCtrl.close('flashcards') 
+  // }
 
-  ngOnInit() {
+  createNewBlankCard() {
+  }
+  submitCard(){
+    if(this.currentUser)
+    {
+      this.tempCardArray.push(new FlashCard(this.termCreator, this.definitionCreator))
+    }
+    this.clearInfo()
+  }
+  clearInfo(){
+    this.termCreator = ''
+    this.definitionCreator = ''
+  }
+  exitCreator()
+  {
+    this.clearInfo()
+    this.newSetName = ''
+    this.tempCardArray = []
+    this.addingSet = false
   }
 
 }

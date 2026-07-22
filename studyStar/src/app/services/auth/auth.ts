@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   User,
+  
 } from '@angular/fire/auth';
 import { UserService } from '../user/user-service';
 
@@ -17,7 +18,11 @@ export class AuthService {
     private auth: Auth,
     private userService: UserService,
   ) {
-    auth.onAuthStateChanged(() => {
+    
+  }
+
+  initializeAuthStateChangedHook() {
+    this.auth.onAuthStateChanged(() => {
       this.userService.reset();
       this.userService.getData(this.getCurrentUserUid());
     })
@@ -54,6 +59,8 @@ export class AuthService {
       return this.auth.currentUser.uid
     }
     throw new Error('no user logged in')
+
+    
   }
 
 

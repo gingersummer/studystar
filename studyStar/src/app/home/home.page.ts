@@ -14,6 +14,7 @@ export class HomePage{
   today = new Date();
   set: Set = new Set('', false, '', [], '');
   arrayOfSets: Set[] = []
+  streak: number = 0;
 
   constructor(private router: Router, private menuCtrl: MenuController, private flashCardService: Flashcardsets) {
     this.arrayOfSets=this.flashCardService.arrayOfSets
@@ -51,8 +52,8 @@ export class HomePage{
 
   }
 
-  redirectToStudyCards(setToOpen: Set) {
-    this.flashCardService.selectSet(setToOpen)
+  redirectToStudyCards(setToOpen: Set, indexIn: number) {
+    this.flashCardService.selectSet(setToOpen, indexIn)
     this.router.navigate(['/study-cards'])
   }
 }
