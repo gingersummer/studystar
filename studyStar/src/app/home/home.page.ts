@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Set } from '../models/Set';
 import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
+import { UserService } from '../services/user/user-service';
+import { AuthService } from '../services/auth/auth';
+import { Alert } from '../services/alert';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +18,8 @@ export class HomePage{
   set: Set = new Set('', false, '', [], '');
   arrayOfSets: Set[] = []
 
-  constructor(private router: Router, private menuCtrl: MenuController, private flashCardService: Flashcardsets) {
+  constructor(private router: Router, private menuCtrl: MenuController, private flashCardService: Flashcardsets, private userService: UserService,
+    private authService: AuthService, private alert: Alert) {
     this.arrayOfSets=this.flashCardService.arrayOfSets
    }
 
@@ -55,4 +59,10 @@ export class HomePage{
     this.flashCardService.selectSet(setToOpen, indexIn)
     this.router.navigate(['/study-cards'])
   }
+
+   async signOut() {
+
+    await this.alert.createAlert("If I were you I'd keep studying ;)", "Did you even try?")
+  }
+
 }
