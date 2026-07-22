@@ -36,20 +36,23 @@ export class StudyCardsPage implements OnInit {
   ionViewDidEnter() {
     this.hopeTSWorks()
   }
-  ionViewWillLeave(){
-       if (this.userSubscription) {
+  ionViewWillLeave() {
+
+    if (this.userSubscription) {
+      this.userService.updateUser(this.currentUser!)
       this.userSubscription.unsubscribe()
     }
   }
 
-  ngOnInit() {
+  ngOnInit() {    
+    this.hopeTSWorks()
     this.flashcardSet = this.setService.selectedSet
     this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
 
   }
+  
   async hopeTSWorks() {
     this.userSubscription = this.userService.users.subscribe((data: User[]) => {
-
       this.currentUser = data[data.length - 1]
       console.log('data', data)
     })
@@ -119,6 +122,7 @@ export class StudyCardsPage implements OnInit {
 
   ngOnDestroy() {
     if (this.userSubscription) {
+      this.userService.updateUser(this.currentUser!)
       this.userSubscription.unsubscribe()
     }
   }

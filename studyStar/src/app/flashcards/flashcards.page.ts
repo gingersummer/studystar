@@ -59,9 +59,13 @@ export class FlashcardsPage implements OnInit {
 
   async hopeTSWorks(){
   this.userSubscription = this.userService.users.subscribe((data: User[]) => {
-
-      this.currentUser = data[data.length - 1]
+    if(data.length > 0)
+    {
+ this.currentUser = data[data.length - 1]
       console.log('data', data)
+    }
+
+     
     })
     if (this.currentUser) {
       if (this.currentUser.allSets == undefined) {
