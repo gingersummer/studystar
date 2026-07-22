@@ -29,6 +29,7 @@
         "@capacitor/status-bar": "8.0.2",
         "@daypilot/daypilot-lite-angular": "^5.9.0",
         "@ionic/angular": "^8.0.0",
+        "@ionic/storage-angular": "^4.0.0",
         "@mobiscroll/angular": "npm:@mobiscroll/angular-trial@^6.1.2",
         "chart.js": "^4.5.1",
         "ionicons": "^7.0.0",

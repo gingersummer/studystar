@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Set } from '../models/Set';
 import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
+import { StreakService } from '../services/streak/streak-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,11 +16,25 @@ export class DashboardPage implements OnInit {
   today = new Date();
   set: Set = new Set('', false, '', [], '');
   arrayOfSets: Set[] = []
+   streakCount: number = 1;
 
-  constructor(private router: Router, private menuCtrl: MenuController, private flashCardService: Flashcardsets) {
+  constructor(
+    private router: Router, 
+    private menuCtrl: MenuController, 
+    private flashCardService: Flashcardsets, 
+    private streakService: StreakService
+  ) {
     this.arrayOfSets=this.flashCardService.arrayOfSets
    }
-  ngOnInit(): void {
+
+  async ngOnInit() {
+    // Update streak when page loads
+    this.streakCount = await this.streakService.updateStreak();
+  }
+
+  async onAction() {
+    // Call when user completes the daily action
+    this.streakCount = await this.streakService.updateStreak();
   }
 
   openMenu() {
