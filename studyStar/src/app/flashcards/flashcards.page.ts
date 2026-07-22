@@ -13,7 +13,7 @@ import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
 })
 export class FlashcardsPage implements OnInit {
 
-
+  arrayOfCards: FlashCard[] = []
   addingSet: boolean = false
   newSetName: string = ''
   arrayOfSets: Set[] = []
@@ -75,6 +75,9 @@ export class FlashcardsPage implements OnInit {
     this.menuCtrl.close('flashcards')
   }
 
+  createBlankFlashcard() {
+    this.arrayOfCards
+  }
 
   ngOnInit() {
   }

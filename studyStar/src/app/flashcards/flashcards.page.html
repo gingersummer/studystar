@@ -4,9 +4,9 @@
     <ion-input placeholder="Enter Name" label="Name Of Set" [(ngModel)]="newSetName"></ion-input>
   </ion-row>
   <ion-row>
-    <app-newcard>
-
-    </app-newcard>
+    @for(item of arrayOfCards; track $index) {
+      <app-newcard [cardToDisplay]="item"></app-newcard>
+    }
   </ion-row>
   <ion-button>Create Blank Flashcard</ion-button>
   <ion-button>Submit Flashcard</ion-button>
