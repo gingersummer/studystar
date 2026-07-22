@@ -24,17 +24,12 @@ export class BarChartComponent implements OnInit {
     this.chart = new Chart("MyChart", {
       type: 'bar',
       data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         datasets: [
           {
-            label: "Sales",
-            data: [120, 150, 180, 200, 170],
-            backgroundColor: 'blue'
-          },
-          {
-            label: "Profit",
-            data: [80, 100, 140, 160, 130],
-            backgroundColor: 'green'
+            label: "Minutes Per Day",
+            data: [10, 35, 21, 80, 50, 5, 30],
+            backgroundColor: 'purple'
           }
         ]
       },
