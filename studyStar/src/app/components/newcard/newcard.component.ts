@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FlashCard } from '../../models/flashcard';
 
 @Component({
   selector: 'app-newcard',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class NewcardComponent  implements OnInit {
+
+  @Input({required: true}) cardToDisplay!: FlashCard
 
   constructor() { }
 
