@@ -3,10 +3,14 @@
   <ion-row>
     <ion-input placeholder="Enter Name" label="Name Of Set" [(ngModel)]="newSetName"></ion-input>
   </ion-row>
-  <ion-row>
+</ion-grid>
+  <ion-button (click)="exitCreator()"> Back </ion-button>
+  <ion-button (click)="createNewSet()"> Create </ion-button>
+
+  <!-- <ion-row> -->
     
  
-  <ion-row>
+  <!-- <ion-row>
     <ion-col>
       <ion-card class="userFlashcards">
         <h1>
@@ -27,9 +31,8 @@
   </ion-row>
   <ion-button (click)="createNewBlankCard()">New Flashcard</ion-button>
   <ion-button (click)="submitCard()">Submit Flashcard</ion-button>
-  <ion-button (click)="createNewSet()"> Create Set </ion-button>
-  <ion-button (click)="exitCreator()"> Back </ion-button>
-</ion-grid>
+</ion-grid> -->
+
 }
 
   @else{
