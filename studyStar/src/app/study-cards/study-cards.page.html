@@ -50,10 +50,41 @@
 }
 @else{
 
-@for(item of flashcardSet.setOfCards; track $index; let idx = $index){
-<p> {{idx}}. {{item.term}}</p>
-}
 
+<ion-grid>
+  <ion-col>
+    @for(item of flashcardSet.setOfCards; track $index; let idx = $index){
+    <ion-row>
+      <ion-button (click)="startEditCard(item, idx)"> {{idx}}. {{item.term}} </ion-button>
+    </ion-row>
+    }
+  </ion-col>
+</ion-grid>
+
+@if(editingCard)
+{
+  <ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card class="userFlashcards">
+        <h1>
+          Front Side
+        </h1>
+        <ion-input placeholder="Enter Term" label="Term" [(ngModel)]="termCreator"></ion-input>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card class="userFlashcards">
+        <h1>
+          Back Side
+        </h1>
+        <ion-input placeholder="Enter Definition" label="Term" [(ngModel)]="definitionCreator"></ion-input>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-button (click)="endCardEdit()">Done Editing</ion-button>
+</ion-grid>
+}
 @if(addingCard)
 {
 <ion-grid>
