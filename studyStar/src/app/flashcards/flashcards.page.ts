@@ -41,6 +41,8 @@ export class FlashcardsPage implements OnInit {
 
 
   ngOnDestroy() {
+    this.arrayOfSets = []
+
     if (this.userSubscription) {
       this.userSubscription.unsubscribe()
     }
@@ -52,34 +54,40 @@ export class FlashcardsPage implements OnInit {
 
   ionViewDidEnter() {
 
-  this.hopeTSWorks()
+    this.hopeTSWorks()
 
 
   }
 
-  async hopeTSWorks(){
-  this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+  async hopeTSWorks() {
+    this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+      if (data.length > 0) {
+        this.currentUser = data[data.length - 1]
+        console.log('data', data)
+        if (this.currentUser) {
+          if (this.currentUser.allSets == undefined) {
+            this.currentUser.allSets = []
+          }
+          this.arrayOfSets = []
 
-      this.currentUser = data[data.length - 1]
-      console.log('data', data)
+          for (let i = 0; i < this.currentUser.allSets.length; i++) {
+            console.log(this.currentUser.allSets[i])
+            this.arrayOfSets.push(this.currentUser.allSets[i])
+          }
+        }
+        else {
+          throw Error("what is going on gang")
+        }
+      }
+
+
     })
-    if (this.currentUser) {
-      if (this.currentUser.allSets == undefined) {
-this.currentUser.allSets = []
-      }
-      for (let i = 0; i < this.currentUser.allSets.length; i++) {
-        console.log(this.currentUser.allSets[i])
-        this.arrayOfSets.push(this.currentUser.allSets[i])
-      }
-    }
-    else {
-      throw Error("what is going on gang")
-    }
+
 
   }
 
   ionViewWillLeave() {
-    this.arrayOfSets.splice(0, this.arrayOfSets.length)
+    this.arrayOfSets = []
 
     if (this.userSubscription) {
       this.userSubscription.unsubscribe()
@@ -132,7 +140,7 @@ this.currentUser.allSets = []
     this.arrayOfSets.push(newSet)
     this.currentUser!.allSets.push(newSet)
     this.userService.updateUser(this.currentUser!)
-    this.flashCardService.selectSet(this.arrayOfSets[this.arrayOfSets.length - 1], this.arrayOfSets.length-1)
+    this.flashCardService.selectSet(this.arrayOfSets[this.arrayOfSets.length - 1], this.arrayOfSets.length - 1)
     this.addingSet = false
     this.router.navigate(['/study-cards'])
     this.menuCtrl.close('collection')
@@ -147,19 +155,17 @@ this.currentUser.allSets = []
 
   createNewBlankCard() {
   }
-  submitCard(){
-    if(this.currentUser)
-    {
+  submitCard() {
+    if (this.currentUser) {
       this.tempCardArray.push(new FlashCard(this.termCreator, this.definitionCreator))
     }
     this.clearInfo()
   }
-  clearInfo(){
+  clearInfo() {
     this.termCreator = ''
     this.definitionCreator = ''
   }
-  exitCreator()
-  {
+  exitCreator() {
     this.clearInfo()
     this.newSetName = ''
     this.tempCardArray = []
