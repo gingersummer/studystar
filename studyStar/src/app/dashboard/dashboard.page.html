@@ -1,0 +1,132 @@
+<div class="ion-page" id="main-content">
+  <ion-header class="header">
+    <ion-toolbar class="nav-toolbar">
+      <div slot="start" class="brand-container">
+        <ion-icon name="star" class="logo-icon"></ion-icon>
+        <span class="brand-title">
+          StudyStar
+        </span>
+      </div>
+
+      <div class="center-nav">
+        <button class="nav-btn" (click)="redirectToHome()">
+          Home
+        </button>
+        <button class="nav-btn" (click)="redirectToFlashcards()">
+          Flashcards
+        </button>
+        <button class="nav-btn" (click)="redirectToAgenda()">
+          Agenda
+        </button>
+        <button class="nav-btn active">
+          Dashboard
+        </button>
+      </div>
+
+      <ion-buttons slot="end" class="right-actions">
+        <ion-button fill="solid" class="profile-btn" (click)="redirectToProfile()">
+          Profile
+        </ion-button>
+      </ion-buttons>
+
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="homepage-content">
+
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+
+    <div class="profile-page-items ion-padding">
+      <div class="dashboard-header">
+        <h1 class="date-title" style="text-align: left;">
+          Dashboard
+        </h1>
+        <p class="date-subtitle" style="text-align: left;">
+          Welcome back. Let's check out some of your stats!
+        </p>
+      </div>
+    </div>
+
+    <div class="dashboard-first-card-row">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card class="dashboard-first-cards">
+              <ion-grid class="ion-padding">
+                <ion-col>
+                  <ion-row>
+                    <img class="image-in-cards"
+                      src="https://th.bing.com/th/id/OIP.FDC8c-Ijs8i96Iw0QaYEGAHaHZ?w=221&h=220&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3">
+                  </ion-row>
+                  <ion-row class="big-dashboard-numbers">
+                    <strong>7</strong>
+                  </ion-row>
+                  <ion-row>
+                    Day Streak
+                  </ion-row>
+                </ion-col>
+              </ion-grid>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card class="dashboard-first-cards">
+              <ion-grid class="ion-padding">
+                <ion-col>
+                  <ion-row>
+                    <img class="image-in-cards"
+                      src="https://th.bing.com/th/id/OIP.HdnE_b7rUMeFd5BzsFg2SgHaFF?w=286&h=196&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3">
+                  </ion-row>
+                  <ion-row class="big-dashboard-numbers">
+                    <strong>64</strong>
+                  </ion-row>
+                  <ion-row>
+                    Cards Today
+                  </ion-row>
+                </ion-col>
+              </ion-grid>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card class="dashboard-first-cards">
+              <ion-grid class="ion-padding">
+                <ion-col>
+                  <ion-row>
+                    <img class="image-in-cards"
+                      src="https://th.bing.com/th/id/OIP.h80THN-6E0wW_GVO84QhFQHaHa?w=188&h=188&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3">
+                  </ion-row>
+                  <ion-row class="big-dashboard-numbers">
+                    <strong>2.34</strong>
+                  </ion-row>
+                  <ion-row>
+                    Study Hours This Week
+                  </ion-row>
+                </ion-col>
+              </ion-grid>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card class="dashboard-first-cards">
+              <ion-grid class="ion-padding">
+                <ion-col>
+                  <ion-row>
+                    <img class="image-in-cards"
+                      src="https://th.bing.com/th/id/OIP.q3ZLUDQh3vIEpKgooJfKOwHaHa?w=195&h=195&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3">
+                  </ion-row>
+                  <ion-row class="big-dashboard-numbers">
+                    <strong>3</strong>
+                  </ion-row>
+                  <ion-row>
+                    Sets Mastered (Lifetime)
+                  </ion-row>
+                </ion-col>
+              </ion-grid>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+  </ion-content>
+</div>

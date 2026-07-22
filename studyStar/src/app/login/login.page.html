@@ -1,15 +1,43 @@
-<ion-header class="login-header-style">
-  <ion-toolbar>
-    <ion-title>Study Star</ion-title>
+<ion-header class="header">
+  <ion-toolbar class="nav-toolbar">
+    <div slot="start" class="brand-container">
+      <ion-icon name="star" class="logo-icon"></ion-icon>
+      <span class="brand-title">StudyStar</span>
+    </div>
   </ion-toolbar>
 </ion-header>
-<ion-card class="login-card">
-  <ion-button class="login-button" size="small" fill="clear" (click)="login()">LOGIN</ion-button>
-  <ion-button class="login-button" size="small" fill="clear" (click)="presentCreateModal()">Register New User</ion-button>
-  <ion-header>
-    Login
-  </ion-header>
-  <ion-input type="email" label="Email: " placeholder="" [(ngModel)]="emailIn"></ion-input>
-  <ion-input type="password" label="Password: " placeholder="" [(ngModel)]="passwordIn"></ion-input>
-</ion-card>
-<div class="div-one"></div>
+
+<ion-content class="homepage-content">
+  <div id="stars"></div>
+  <div id="stars2"></div>
+  <div id="stars3"></div>
+
+  <div class="login-container">
+    <ion-card class="dashboard-card login-card">
+      <div class="login-card-header">
+        <h2>Welcome Back</h2>
+        <p>Log in to continue your streak</p>
+      </div>
+
+      <ion-list lines="none" class="login-form">
+        <ion-item class="login-item">
+          <ion-input type="email" label="Email" labelPlacement="stacked" placeholder="Enter your email" [(ngModel)]="emailIn"></ion-input>
+        </ion-item>
+        
+        <ion-item class="login-item">
+          <ion-input type="password" label="Password" labelPlacement="stacked" placeholder="Enter your password" [(ngModel)]="passwordIn"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <div class="login-actions">
+        <ion-button fill="solid" class="cta-btn main-login-btn" (click)="login()">
+          Log In
+        </ion-button>
+        
+        <button class="register-link-btn" (click)="presentCreateModal()">
+          New to StudyStar? Create an account
+        </button>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>
