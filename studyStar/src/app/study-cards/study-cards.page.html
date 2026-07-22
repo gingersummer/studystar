@@ -21,9 +21,13 @@
 
 <ion-content [fullscreen]="true">
   <div class="first-div"></div>
+  <!-- hides confidence if on front sdie of card -->
+  @if(!cardToDisplay.frontSide){
   <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
 
   </app-confidence>
+  }
+
   <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
 
   </app-flashcard>
@@ -39,31 +43,17 @@
   <p class="progress-p-style">
     Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
   </p>
-  @if (cardToDisplay.frontSide == false){
-
-  <app-confidence [flashcardIn]="cardToDisplay"></app-confidence>}
-
-  @else{
-
-  }
+ 
 </ion-content>
 }
 @else{
 
 
-<ion-grid>
-  <ion-col>
-    @for(item of flashcardSet.setOfCards; track $index; let idx = $index){
-    <ion-row>
-      <ion-button (click)="startEditCard(item, idx)"> {{idx}}. {{item.term}} </ion-button>
-    </ion-row>
-    }
-  </ion-col>
-</ion-grid>
+
 
 @if(editingCard)
 {
-  <ion-grid>
+<ion-grid>
   <ion-row>
     <ion-col>
       <ion-card class="userFlashcards">
@@ -85,7 +75,8 @@
   <ion-button (click)="endCardEdit()">Done Editing</ion-button>
 </ion-grid>
 }
-@if(addingCard)
+
+@else if(addingCard)
 {
 <ion-grid>
   <ion-row>
@@ -107,10 +98,23 @@
     </ion-col>
   </ion-row>
   <ion-button (click)="addNewCard()">Submit Flashcard</ion-button>
-  <ion-button> Back</ion-button>
+  <ion-button (click)="clearAddingNewCard()"> Back</ion-button>
 </ion-grid>
 }
-
+@else{
+<ion-grid>
+  <ion-col>
+    @for(item of flashcardSet.setOfCards; track $index; let idx = $index){
+    <ion-row>
+      <ion-button (click)="startEditCard(item, idx)"> {{idx}}. {{item.term}} </ion-button>
+    </ion-row>
+    }
+  </ion-col>
+</ion-grid>
 <ion-button (click)="startAddCard()"> Add Card </ion-button>
-<ion-button (click)="doneEditing()"> Done </ion-button>
+<ion-button (click)="doneEditing()"> Save </ion-button>
+
+}
+
+
 }

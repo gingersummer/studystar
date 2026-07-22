@@ -52,7 +52,7 @@ export class StudyCardsPage implements OnInit {
 
     // if (navigationEntries.length > 0 && navigationEntries[0].type === 'reload') {
     //   // Redirect to the designated page if a reload is detected
-    //     this.redirectToFlashcards()
+    //     this.redirectToHome()
     // }
 
     this.hopeTSWorks()
@@ -124,9 +124,7 @@ export class StudyCardsPage implements OnInit {
 
   addNewCard() {
     this.flashcardSet.setOfCards.push(new FlashCard(this.termCreator, this.definitionCreator))
-    this.termCreator = ''
-    this.definitionCreator = ''
-    this.addingCard = false
+    this.clearAddingNewCard()
     this.currentUser!.allSets[this.setService.indexOfSet] = this.flashcardSet
     this.userService.updateUser(this.currentUser!)
 
@@ -156,7 +154,14 @@ export class StudyCardsPage implements OnInit {
     this.flashcardSet.setOfCards[this.indexOfEditedCard].term = this.termCreator
     this.currentUser!.allSets[this.setService.indexOfSet] = this.flashcardSet
     this.userService.updateUser(this.currentUser!)
+    this.termCreator = ''
+    this.definitionCreator = ''
 
   }
 
+  clearAddingNewCard(){
+      this.termCreator = ''
+    this.definitionCreator = ''
+    this.addingCard = false
+  }
 }

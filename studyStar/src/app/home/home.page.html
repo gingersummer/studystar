@@ -63,7 +63,7 @@
                 <ion-grid>
                   <ion-row>
                     <ion-col>
-                      <ion-card class="currentSetCard">
+                      <ion-card class="currentSetCard" align="center">
                         <img [src]="arrayOfSets[0].icon">
                       </ion-card>
                     </ion-col>
@@ -74,11 +74,11 @@
                   {{arrayOfSets[0].name}}
                 </h1>
 
-              </ion-card>
+              </button>
             </ion-col>
 
             <ion-col>
-              <ion-card class="flashcardCard" (click)="redirectToDashboard()">
+              <button class="flashcardCard" (click)="redirectToDashboard()">
 
                 <h1 class="card-title" style="text-align: center;">
                   Check Out Your Stats!
@@ -93,7 +93,7 @@
                 <h1 class=date-title>
                   7 Day Streak!
                 </h1>
-              </ion-card>
+              </button>
             </ion-col>
             <ion-col>
               <ion-card class="flashcardCard">
@@ -103,11 +103,11 @@
                 <p class="date-subtitle" style="text-align: center;">
                   {{ today | date:'MMMM d, y' }}
                 </p>
-                @for(set of arrayOfSets; track $index) {
+                @for(set of arrayOfSets; track $index; let idx = $index) {
                 <ion-item class="suggestion-item">
                   <ion-icon name="checkmark" slot="start" color="dark-purple"></ion-icon>
                   <ion-label>
-                    <ion-item [button]="true" (click)="redirectToStudyCards(set, $index)">{{set.name}}</ion-item>
+                    <ion-item [button]="true" (click)="redirectToStudyCards(set,idx)">{{set.name}}</ion-item>
                     <h3>{{set.category}}</h3>
                   </ion-label>
                   <ion-badge slot="end" color="#8238b7">20 mins</ion-badge>
