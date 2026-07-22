@@ -29,7 +29,7 @@ export class BarChartComponent implements OnInit {
           {
             label: "Minutes Per Day",
             data: [10, 35, 21, 80, 50, 5, 30],
-            backgroundColor: 'purple'
+            backgroundColor: 'blue'
           }
         ]
       },
