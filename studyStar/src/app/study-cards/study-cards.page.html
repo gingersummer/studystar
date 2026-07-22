@@ -21,9 +21,13 @@
 
 <ion-content [fullscreen]="true">
   <div class="first-div"></div>
+  <!-- hides confidence if on front sdie of card -->
+  @if(!cardToDisplay.frontSide){
   <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
 
   </app-confidence>
+  }
+
   <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
 
   </app-flashcard>
@@ -39,22 +43,40 @@
   <p class="progress-p-style">
     Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
   </p>
-  @if (cardToDisplay.frontSide == false){
-
-  <app-confidence [flashcardIn]="cardToDisplay"></app-confidence>}
-
-  @else{
-
-  }
+ 
 </ion-content>
 }
 @else{
 
-@for(item of flashcardSet.setOfCards; track $index; let idx = $index){
-<p> {{idx}}. {{item.term}}</p>
+
+
+
+@if(editingCard)
+{
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card class="userFlashcards">
+        <h1>
+          Front Side
+        </h1>
+        <ion-input placeholder="Enter Term" label="Term" [(ngModel)]="termCreator"></ion-input>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card class="userFlashcards">
+        <h1>
+          Back Side
+        </h1>
+        <ion-input placeholder="Enter Definition" label="Term" [(ngModel)]="definitionCreator"></ion-input>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-button (click)="endCardEdit()">Done Editing</ion-button>
+</ion-grid>
 }
 
-@if(addingCard)
+@else if(addingCard)
 {
 <ion-grid>
   <ion-row>
@@ -76,10 +98,23 @@
     </ion-col>
   </ion-row>
   <ion-button (click)="addNewCard()">Submit Flashcard</ion-button>
-  <ion-button> Back</ion-button>
+  <ion-button (click)="clearAddingNewCard()"> Back</ion-button>
 </ion-grid>
 }
-
+@else{
+<ion-grid>
+  <ion-col>
+    @for(item of flashcardSet.setOfCards; track $index; let idx = $index){
+    <ion-row>
+      <ion-button (click)="startEditCard(item, idx)"> {{idx}}. {{item.term}} </ion-button>
+    </ion-row>
+    }
+  </ion-col>
+</ion-grid>
 <ion-button (click)="startAddCard()"> Add Card </ion-button>
-<ion-button (click)="doneEditing()"> Done </ion-button>
+<ion-button (click)="doneEditing()"> Save </ion-button>
+
+}
+
+
 }
