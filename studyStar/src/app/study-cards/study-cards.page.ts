@@ -21,14 +21,17 @@ export class StudyCardsPage implements OnInit {
 
   flashcardSet: Set = new Set('', false, '', [], '')
   indexOfCards: number = 0
+  indexOfEditedCard: number = 0
   cardToDisplay: FlashCard = this.flashcardSet.setOfCards[0]
   progressPercent: number = 0;
   editingSet: boolean = false
   addingCard: boolean = false
+  editingCard: boolean = false
   termCreator: string = ''
   definitionCreator: string = ''
   currentUser?: User
   userSubscription?: Subscription;
+  cardToEdit: FlashCard = this.flashcardSet.setOfCards[0]
 
   constructor(private setService: Flashcardsets, private router: Router, private menuCtrl: MenuController, private userService: UserService,
     private authService: AuthService) { }
@@ -44,13 +47,21 @@ export class StudyCardsPage implements OnInit {
     }
   }
 
-  ngOnInit() {    
+  ngOnInit() {
+    //  const navigationEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
+
+    // if (navigationEntries.length > 0 && navigationEntries[0].type === 'reload') {
+    //   // Redirect to the designated page if a reload is detected
+    //     this.redirectToFlashcards()
+    // }
+
     this.hopeTSWorks()
     this.flashcardSet = this.setService.selectedSet
     this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
+    this.cardToDisplay.frontSide = true
 
   }
-  
+
   async hopeTSWorks() {
     this.userSubscription = this.userService.users.subscribe((data: User[]) => {
       this.currentUser = data[data.length - 1]
@@ -82,6 +93,8 @@ export class StudyCardsPage implements OnInit {
     if (this.indexOfCards > 0) {
       this.indexOfCards--
       this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
+      this.cardToDisplay.frontSide = true
+
     }
     this.updateProgress()
 
@@ -91,7 +104,9 @@ export class StudyCardsPage implements OnInit {
       this.indexOfCards++
     }
     this.updateProgress()
+
     this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
+    this.cardToDisplay.frontSide = true
 
   }
 
@@ -105,6 +120,7 @@ export class StudyCardsPage implements OnInit {
   startAddCard() {
     this.addingCard = true
   }
+
 
   addNewCard() {
     this.flashcardSet.setOfCards.push(new FlashCard(this.termCreator, this.definitionCreator))
@@ -125,6 +141,22 @@ export class StudyCardsPage implements OnInit {
       this.userService.updateUser(this.currentUser!)
       this.userSubscription.unsubscribe()
     }
+  }
+  startEditCard(cardIn: FlashCard, indexIn: number) {
+    this.indexOfEditedCard = indexIn
+    this.cardToEdit = cardIn
+    this.editingCard = true
+    this.termCreator = this.cardToEdit.term
+    this.definitionCreator = this.cardToEdit.definition
+  }
+
+  endCardEdit() {
+    this.editingCard = false
+    this.flashcardSet.setOfCards[this.indexOfEditedCard].definition = this.definitionCreator
+    this.flashcardSet.setOfCards[this.indexOfEditedCard].term = this.termCreator
+    this.currentUser!.allSets[this.setService.indexOfSet] = this.flashcardSet
+    this.userService.updateUser(this.currentUser!)
+
   }
 
 }
