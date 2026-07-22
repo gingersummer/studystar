@@ -298,8 +298,6 @@ $stars-large:  generate-stars(100);
   0%, 100% { opacity: 1; }
   30% { opacity: 0.4; }
   70% { opacity: 0.1; }
-<<<<<<< HEAD
-=======
 }
 
 @keyframes glow-box-animation {
@@ -309,5 +307,4 @@ $stars-large:  generate-stars(100);
   to {
     box-shadow: 0 0 7px #4508a7, 0 0 15px #4508a7;
   }
->>>>>>> 3ca60d5e66ffb255a4993da79951e235b088e582
 }
