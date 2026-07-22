@@ -24,7 +24,7 @@ export class FlashcardsPage implements OnInit {
   arrayOfSets: Set[] = []
   termCreator: string = ''
   definitionCreator: string = ''
-  tempCardArray: FlashCard[] = []
+  tempCardArray: FlashCard[] = [new FlashCard("Blank", "Blank")]
 
   currentUser?: User
 
