@@ -24,10 +24,14 @@
       </div>
 
       <ion-buttons slot="end" class="right-actions">
-        <ion-button shape="round" fill="solid" class="profile-btn" (click)="redirectToProfile()">
-          Profile
+        <ion-button shape="round" class="profile-btn" (click)="signOut()">
+          Log Out
         </ion-button>
+        <ion-avatar class="profile-picture">
+          <img src="https://cdn.pfps.gg/pfps/8250-default-18.png" />
+        </ion-avatar>
       </ion-buttons>
+
 
     </ion-toolbar>
   </ion-header>
@@ -52,44 +56,44 @@
           <ion-row>
 
             <ion-col>
-              <button class="flashcardCard" (click)="redirectToFlashcards()">
+              <ion-card class="flashcardCard" (click)="redirectToFlashcards()">
                 <h1 class="card-title" style="text-align: center;">
                   Continue Studying
                 </h1>
                 <ion-grid>
                   <ion-row>
                     <ion-col>
-                <ion-card class="currentSetCard">
-                  <img [src]="arrayOfSets[0].icon">
-                </ion-card>
-                </ion-col>
-                </ion-row>
+                      <ion-card class="currentSetCard">
+                        <img [src]="arrayOfSets[0].icon">
+                      </ion-card>
+                    </ion-col>
+                  </ion-row>
                 </ion-grid>
-                
+
                 <h1>
                   {{arrayOfSets[0].name}}
                 </h1>
-              
-              </button>
+
+              </ion-card>
             </ion-col>
 
             <ion-col>
-              <button class="flashcardCard" (click)="redirectToDashboard()">
-                
-                    <h1 class="card-title" style="text-align: center;">
-                      Check Out Your Stats!
-                    </h1>
-                     <ion-grid>
+              <ion-card class="flashcardCard" (click)="redirectToDashboard()">
+
+                <h1 class="card-title" style="text-align: center;">
+                  Check Out Your Stats!
+                </h1>
+                <ion-grid>
                   <ion-row>
                     <ion-col>
                       <ion-icon name="flame-outline" color="danger" class="flame"></ion-icon>
                     </ion-col>
                   </ion-row>
-                     </ion-grid>
-                      <h1 class=date-title>
-                        7 Day Streak!
-                      </h1>
-              </button>
+                </ion-grid>
+                <h1 class=date-title>
+                  7 Day Streak!
+                </h1>
+              </ion-card>
             </ion-col>
             <ion-col>
               <ion-card class="flashcardCard">
@@ -99,15 +103,15 @@
                 <p class="date-subtitle" style="text-align: center;">
                   {{ today | date:'MMMM d, y' }}
                 </p>
-                 @for(set of arrayOfSets; track $index; let idx = $index) {
-                  <ion-item class="suggestion-item">
-                    <ion-icon name="checkmark" slot="start" color="dark-purple"></ion-icon>
-                    <ion-label>
-                      <ion-item [button]="true" (click)="redirectToStudyCards(set,idx)">{{set.name}}</ion-item>
-                      <h3>{{set.category}}</h3>
-                    </ion-label>
-                    <ion-badge slot="end" color="#8238b7">20 mins</ion-badge>
-                  </ion-item>
+                @for(set of arrayOfSets; track $index) {
+                <ion-item class="suggestion-item">
+                  <ion-icon name="checkmark" slot="start" color="dark-purple"></ion-icon>
+                  <ion-label>
+                    <ion-item [button]="true" (click)="redirectToStudyCards(set, $index)">{{set.name}}</ion-item>
+                    <h3>{{set.category}}</h3>
+                  </ion-label>
+                  <ion-badge slot="end" color="#8238b7">20 mins</ion-badge>
+                </ion-item>
                 }
               </ion-card>
 
