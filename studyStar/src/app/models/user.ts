@@ -1,4 +1,5 @@
 import { Set } from "./Set"
+import { Task } from "./task"
 
 export class User {
     // class variables
@@ -10,9 +11,10 @@ export class User {
     setsCompleted: number
     lastSet: string
     allSets: Set[]
+    allTasks: Task[]
 
 
-    constructor(usernameIn: string, emailIn: string, setsCompletedIn: number, lastSetIn: string, allSetsIn: Set[], uidIn?: string, pictureIn?: string, idIn?: string, ) {
+    constructor(usernameIn: string, emailIn: string, setsCompletedIn: number, lastSetIn: string, allSetsIn: Set[], allTasksIn: Task[], uidIn?: string, pictureIn?: string, idIn?: string, ) {
         this.username = usernameIn,
         this.email = emailIn,
         this.uid = uidIn,
@@ -21,5 +23,6 @@ export class User {
         this.picture = pictureIn,
         this.id = idIn
         this.allSets = allSetsIn
+        this.allTasks = allTasksIn
     }
 }

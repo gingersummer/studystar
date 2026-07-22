@@ -7,6 +7,9 @@ import { TaskmodalComponent } from '../components/taskmodal/taskmodal.component'
 import { AgendaService } from '../services/agenda-service/agenda-service';
 
 import { Task } from '../models/task';
+import { UserService } from '../services/user/user-service';
+import { User } from '../models/user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-agenda',
@@ -25,11 +28,18 @@ export class AgendaPage implements OnInit {
   yearCreator: number = 0
   priorityCreator: number = 0
 
+  currentUser?: User
+
+  userSubscription?: Subscription;
+
   constructor(
-    private router: Router, 
+    private router: Router,
     private menuCtrl: MenuController,
-    private modalController: ModalController,
-  ) { }
+    private agendaService: AgendaService,
+    private userService: UserService,
+  ) {
+    this.taskList = this.agendaService.tasksArray
+  }
 
   openMenu() {
     this.menuCtrl.open('agenda')
@@ -66,6 +76,18 @@ export class AgendaPage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewDidEnter() {
+    this.storeTasks()
+  }
+
+  ionViewWillLeave() {
+    this.taskList = []
+
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe()
+    }
+
+  }
   checkOffTask(idx: number) {
     this.taskList[idx].isCompleted = true
     let tempTask = this.taskList[idx]
@@ -77,16 +99,14 @@ export class AgendaPage implements OnInit {
     this.isMakingTask = true
   }
 
-  createTask()
-  {
+  createTask() {
     let newTask: Task = new Task(this.toDoCreator, this.monthCreator, this.dayCreator, this.yearCreator, this.priorityCreator)
     this.resetTasks()
     this.taskList.push(newTask)
     this.isMakingTask = false
   }
 
-  resetTasks()
-  {
+  resetTasks() {
     this.toDoCreator = ''
     this.monthCreator = 0
     this.dayCreator = 0
@@ -96,10 +116,28 @@ export class AgendaPage implements OnInit {
   }
 
   async presentCreateTaskModal() {
-    let modal = await this.modalController.create({
-      component: TaskmodalComponent
+    await this.agendaService.openCreateTaskModal()
+  }
+
+  async storeTasks() {
+    this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+
+      this.currentUser = data[data.length - 1]
+      console.log('data', data)
     })
-    await modal.present()
+    if (this.currentUser) {
+      if (this.currentUser.allTasks == undefined) {
+        this.currentUser.allTasks = []
+      } 
+      for (let i = 0; i < this.currentUser.allTasks.length; i++) {
+        console.log(this.currentUser.allTasks[i])
+        this.taskList.push(this.currentUser.allTasks[i])
+      }
+    }
+    else {
+      throw Error("what is going on gang")
+    }
+
   }
 
 }

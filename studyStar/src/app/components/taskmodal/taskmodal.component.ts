@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Task } from 'src/app/models/task';
 import { AgendaService } from 'src/app/services/agenda-service/agenda-service';
 
 @Component({
@@ -10,7 +11,11 @@ import { AgendaService } from 'src/app/services/agenda-service/agenda-service';
 })
 export class TaskmodalComponent implements OnInit {
 
-  taskText: string = ""
+  taskName: string = ""
+  taskMonth: number = 0
+  taskDay: number = 0
+  taskYear: number = 0
+  taskPriority: number = 0
 
   constructor(
     private modalController: ModalController,
@@ -19,14 +24,15 @@ export class TaskmodalComponent implements OnInit {
 
   ngOnInit() { }
 
-  dismissModal() {
-    this.modalController.dismiss()
+  dismissModal(task?: Task) {
+    this.modalController.dismiss(task)
   }
 
   addTask() {
     try {
-      this.agendaService.tasksArray.push(this.taskText)
-      this.dismissModal()
+      let taskToAdd: Task = new Task(this.taskName, this.taskMonth, this.taskDay, this.taskYear, this.taskPriority)
+      this.agendaService.tasksArray.push(taskToAdd)
+      this.dismissModal(taskToAdd)
     } catch (err: any) {
       window.alert('Task Addition Failed')
     }
