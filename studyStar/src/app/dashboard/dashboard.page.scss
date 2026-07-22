@@ -27,21 +27,87 @@
 }
 
 .profile-page-items {
-  position: relative;
-  z-index: 2;
   padding: 1em;
   font-size: 1.5rem;
   font-weight: 600;
   color: #003d6b;
 }
 
-ion-content {
+.tasks-card {
+  padding: 1em;
+  width: 40em;
+  height: 23em;
+  margin-top: 0px;
+  color: #003d6b;
+}
+
+.dashboard-card {
+  --background: #ffffff;
+}
+
+.dashboard-card ion-list,
+.dashboard-card .suggestion-list {
+  background: transparent !important;
+  --background: transparent !important;
+}
+
+.dashboard-card ion-item,
+.dashboard-card .suggestion-item {
+  --background: transparent !important;
+  background: transparent !important;
+}
+
+.custom-task-checkbox {
+  --checkbox-background-checked: #b58ad3;
+  --border-color-checked: #7e4ca2;
+  --checkmark-color: #ffffff;
+  --checkbox-background: #ecf7ff;
+}
+
+.date-subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #c084fc;
+  margin-bottom: 8px;
+}
+
+.date-title {
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #ffffff;
+  margin-top: 0;
+}
+
+.suggestions-title {
+  font-size: 26px;
+  text-align: center;
+}
+
+.tasks-header {
+  font-size: 26px;
+  text-align: center;
+}
+
+.sidebar-icon {
+  icon-color: #7e4ca2;
+}
+
+.streak-icon {
+  font-size: 60px;
+}
+
+ion-content.homepage-content {
+  position: relative;
   --background: radial-gradient(circle at top, #141033 0%, #08061a 100%) !important;
 }
 
 
 ion-toolbar.nav-toolbar {
-  --background: radial-gradient(circle at top, #141033 0%, #08061a 100%) !important;
+--background: radial-gradient(circle at top, #141033 0%, #08061a 100%) !important;
+  --color: #003d6b;
   --padding-start: 24px;
   --padding-end: 24px;
   display: flex;
@@ -68,7 +134,7 @@ ion-toolbar.nav-toolbar {
     font-size: 22px;
     font-weight: 700;
     letter-spacing: -0.5px;
-    color: #c3d3df;
+    color:#c3d3df; 
   }
 }
 
@@ -115,52 +181,29 @@ ion-toolbar.nav-toolbar {
   }
 }
 
-.to-do-card {
-    width: 50em;
-    height: 20em;
-    margin-top: 0px;
-}
-
-.upcoming-card {
-    width: 50em;
-    height: 13em;
-    margin-top: 0px;
-}
-
-.add-event {
-height: 5em;
-width: 33em;
-}
-
-.add-deadline {
-height: 5em;
-width: 33em;
-}
-
-.add-task {
-height: 5em;
-width: 33em;
-}
-
+// SCSS Star Generator Function
 @function generate-stars($n) {
   $value: '#{math.random(2000)}px #{math.random(2000)}px #FFF';
+
   @for $i from 2 through $n {
     $value: '#{$value} , #{math.random(2000)}px #{math.random(2000)}px #FFF';
   }
+
   @return string.unquote($value);
 }
 
-$stars-small:  generate-stars(500);
+$stars-small: generate-stars(500);
 $stars-medium: generate-stars(200);
-$stars-large:  generate-stars(100);
+$stars-large: generate-stars(100);
 
-#stars, #stars2, #stars3 {
+#stars,
+#stars2,
+#stars3 {
   position: absolute;
   top: 0;
   left: 0;
   background: transparent;
   pointer-events: none;
-  z-index: 1; /* Sits between ion-content background and your grid content */
 }
 
 #stars {
@@ -182,4 +225,92 @@ $stars-large:  generate-stars(100);
   height: 3px;
   box-shadow: $stars-large;
   animation: twinkleFast 3s infinite ease-in-out;
+}
+
+@keyframes twinkleSlow {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes twinkleMedium {
+
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+
+  40% {
+    opacity: 0.2;
+  }
+
+  80% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes twinkleFast {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0.4;
+  }
+
+  70% {
+    opacity: 0.1;
+  }
+}
+
+.dashboard-first-card-row {
+  padding: 1em;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #003d6b;
+  height: 15%;
+  align-items: center;
+}
+
+.dashboard-first-cards {
+  height: 90%;
+  width: 100%;
+}
+
+.image-in-cards {
+  object-fit: scale-down;
+  position: relative;
+  float: left;
+  height: 15%;
+  width: 15%;
+  position: relative;
+}
+
+.big-dashboard-numbers {
+  font-size: 32px;
+  padding: 8px;
+}
+
+.dashboard-second-card-row {
+  padding: 1em;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #003d6b;
+  height: 15%;
+  align-items: center;
+  position: absolute;
+  bottom: 30%;
+}
+
+.dashboard-second-weekly-card {
+  height: 370%;
+  width: 370%;
 }

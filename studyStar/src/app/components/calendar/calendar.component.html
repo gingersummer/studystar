@@ -1,43 +1,54 @@
-<mbsc-eventcalendar
-  class="mds-tasks-calendar"
-  [options]="calendarOptions"
-  [data]="myEvents"
-  [resources]="myResources"
-  [eventContentTemplate]="eventTemp"
-  [resourceTemplate]="resourceTemp"
->
-  <!-- (onEventClick)="handleEventClick($event)" -->
-  <ng-template #eventTemp let-event>
-<div>
-    {{event.title}}
+<div class="calendar-container" (mouseup)="endCreate()">
+  <div class="calendar-header">
+    <div class="corner-cell"></div>
+    <div class="class-header-cell" *ngFor="let col of classes">
+      <div class="class-title" [style.color]="col.color">{{ col.name }}</div>
+      <div class="class-subtitle">{{ col.subtitle }}</div>
+    </div>
   </div>
-    <!-- <div class="mds-tasks-event-title">
-      {{event.original.title}}
-    </div>
 
-    <div class="mds-tasks-event-subtitle">
-      Task list
-    </div>
-
-    <div class="mds-tasks-event-list">
+  <div class="calendar-body">
+    <div class="time-row" *ngFor="let hour of hours; let hIndex = index">
+      <div class="time-cell">{{ hour }}</div>
 
       <div 
-      *ngFor="let task of event.original.tasks"
-      class="mds-tasks-event-list-item">
-      {{task}}
-    </div>
+        class="grid-cell" 
+        *ngFor="let col of classes"
+        (mousedown)="startCreate(col.name, hIndex, $event)"
+        (mouseenter)="hoverCreate(col.name, hIndex)"
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event, col.name, hIndex)"
+      >
+        <ng-container *ngIf="getEventAtSlot(col.name, hIndex) as evt">
+          <div 
+            class="task-card" 
+            [ngClass]="evt.themeColor"
+            [style.height.px]="evt.durationHours * 100 - 10"
+            draggable="true"
+            (dragstart)="onDragStart($event, evt.id)"
+            (mousedown)="$event.stopPropagation()"
+          >
+            <div class="card-header">
+              <span class="drag-handle">⋮⋮</span>
+              <div class="card-title">{{ evt.title }}</div>
+            </div>
 
-      <div 
-      class="mds-tasks-event-list-item mds-tasks-event-add" 
-      (click)="addTask(event)">
-      + Add task
+            <div class="task-list-label">Task list</div>
+            
+            <ul class="task-items">
+              <li *ngFor="let task of evt.tasks" class="task-item">
+                {{ task.text }}
+              </li>
+            </ul>
+
+            <button class="add-task-btn" (click)="addTask(evt, $event)">
+              + Add task
+            </button>
+
+            <div class="resize-handle" (mousedown)="initResize($event, evt)"></div>
+          </div>
+        </ng-container>
+      </div>
     </div>
-    </div> -->
-  </ng-template>
-  <ng-template #resourceTemp let-resource>
-    <div class="mds-tasks-resource-name">
-      {{resource.name}}
-    </div>
-    <div class="mds-tasks-resource-description">{{resource.description}}</div>
-  </ng-template>
-</mbsc-eventcalendar>
+  </div>
+</div>

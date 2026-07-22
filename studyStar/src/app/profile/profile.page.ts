@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { User } from '../models/user';
 import { UserService } from '../services/user/user-service';
 import { AuthService } from '../services/auth/auth';
 import { Firebaseservice } from '../services/firebase/firebaseservice';
 import { Subscription } from 'rxjs';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-profile',
@@ -36,10 +36,10 @@ export class ProfilePage implements OnInit {
 
   ionViewDidEnter() {
     this.userSubscription = this.userService.users.subscribe((data: User[]) => {
-      if (data.length > 1) {
-        throw Error("Multiple user profiles found!")
-      }
-      this.currentUser = data[0]
+      // if (data.length > 1) {
+      //   throw Error("Multiple user profiles found!")
+      // }
+      this.currentUser = data[data.length-1]
     })
   }
 
@@ -50,6 +50,10 @@ export class ProfilePage implements OnInit {
   redirectToHome() {
     this.router.navigate(['/home'])
     this.menuCtrl.close('profile')
+  }
+
+  redirectToDashboard() {
+    this.router.navigate(['/dashboard'])
   }
 
   redirectToProfile() {
@@ -67,7 +71,7 @@ export class ProfilePage implements OnInit {
     this.menuCtrl.close('profile')
   }
   redirectToLogin() {
-    this.router.navigate(['/home'])
+    this.router.navigate(['/login'])
     this.menuCtrl.close('profile')
   }
   ngOnInit() {

@@ -4,6 +4,12 @@ import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Set } from '../models/Set';
+import { ConfidenceComponent } from '../confidence/confidence.component';
+import { User } from '../models/user';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../services/auth/auth';
+import { UserService } from '../services/user/user-service';
+
 
 @Component({
   selector: 'app-study-cards',
@@ -13,39 +19,61 @@ import { Set } from '../models/Set';
 })
 export class StudyCardsPage implements OnInit {
 
-  flashcardSet: Set = new Set('', false, '', [])
-
+  flashcardSet: Set = new Set('', false, '', [], '')
   indexOfCards: number = 0
   cardToDisplay: FlashCard = this.flashcardSet.setOfCards[0]
   progressPercent: number = 0;
+  editingSet: boolean = false
+  addingCard: boolean = false
+  termCreator: string = ''
+  definitionCreator: string = ''
+  currentUser?: User
+  userSubscription?: Subscription;
 
-  constructor(private setService: Flashcardsets, private router: Router, private menuCtrl: MenuController) { }
+  constructor(private setService: Flashcardsets, private router: Router, private menuCtrl: MenuController, private userService: UserService,
+    private authService: AuthService) { }
+
+  ionViewDidEnter() {
+    this.hopeTSWorks()
+  }
+  ionViewWillLeave(){
+       if (this.userSubscription) {
+      this.userSubscription.unsubscribe()
+    }
+  }
 
   ngOnInit() {
     this.flashcardSet = this.setService.selectedSet
     this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
-    
+
+  }
+  async hopeTSWorks() {
+    this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+
+      this.currentUser = data[data.length - 1]
+      console.log('data', data)
+    })
   }
 
   redirectToHome() {
-      this.router.navigate(['/home'])
-      this.menuCtrl.close('collection')
-    }
-  
-    redirectToProfile() {
-      this.router.navigate(['/profile'])
-      this.menuCtrl.close('collection')
-    }
-  
-    redirectToFlashcards() {
-      this.router.navigate(['/flashcards'])
-      this.menuCtrl.close('collection')
-    }
-  
-    redirectToAgenda() {
-      this.router.navigate(['/agenda'])
-      this.menuCtrl.close('collection')
-    }
+    this.router.navigate(['/home'])
+    this.menuCtrl.close('collection')
+  }
+
+  redirectToProfile() {
+    this.router.navigate(['/profile'])
+    this.menuCtrl.close('collection')
+  }
+
+  redirectToFlashcards() {
+    this.router.navigate(['/flashcards'])
+    this.menuCtrl.close('collection')
+  }
+
+  redirectToAgenda() {
+    this.router.navigate(['/agenda'])
+    this.menuCtrl.close('collection')
+  }
 
   previousCard() {
     if (this.indexOfCards > 0) {
@@ -56,15 +84,43 @@ export class StudyCardsPage implements OnInit {
 
   }
   nextCard() {
-    if(this.indexOfCards < this.flashcardSet.setOfCards.length -1){
-    this.indexOfCards++
+    if (this.indexOfCards < this.flashcardSet.setOfCards.length - 1) {
+      this.indexOfCards++
     }
     this.updateProgress()
     this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
+
   }
 
-  updateProgress(){
-    this.progressPercent = Math.round(((this.indexOfCards + 1)/(this.flashcardSet.setOfCards.length))*100);
+  updateProgress() {
+    this.progressPercent = Math.round(((this.indexOfCards + 1) / (this.flashcardSet.setOfCards.length)) * 100);
+  }
+
+  startEditSet() {
+    this.editingSet = true
+  }
+  startAddCard() {
+    this.addingCard = true
+  }
+
+  addNewCard() {
+    this.flashcardSet.setOfCards.push(new FlashCard(this.termCreator, this.definitionCreator))
+    this.termCreator = ''
+    this.definitionCreator = ''
+    this.addingCard = false
+    this.currentUser!.allSets[this.setService.indexOfSet] = this.flashcardSet
+    this.userService.updateUser(this.currentUser!)
+
+  }
+
+  doneEditing() {
+    this.editingSet = false
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe()
+    }
   }
 
 }

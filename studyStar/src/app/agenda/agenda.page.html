@@ -1,113 +1,83 @@
-<ion-content>
-  <ion-menu side="end" menuId="agenda" contentId="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <!-- This is the menu content. -->
-      <ion-list [inset]="true">
-        <ion-item [button]="true" (click)="redirectToProfile()">
-          <ion-icon color="7e4ca2" slot="start" name="star" size="large"></ion-icon>
-          <ion-label>Profile</ion-label>
-        </ion-item>
-        <ion-item [button]="true" (click)="redirectToFlashcards()">
-          <ion-icon color="7e4ca2" slot="start" name="copy" size="large"></ion-icon>
-          <ion-label>Flashcards</ion-label>
-        </ion-item>
-        <ion-item [button]="true" (click)="redirectToAgenda()">
-          <ion-icon color="7e4ca2" slot="start" name="today" size="large"></ion-icon>
-          <ion-label>Agenda</ion-label>
-        </ion-item>
-        <ion-item [button]="true" (click)="redirectToHome()">
-          <ion-icon color="7e4ca2" slot="start" name="list-circle" size="large"></ion-icon>
-          <ion-label>Home</ion-label>
-        </ion-item>
-        <ion-item [button]="true" (click)="redirectToLogin()">
-          <ion-icon color="#8238b7" slot="start" name="person" size="large"></ion-icon>
-          <ion-label>Login</ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-  <div class="ion-page" id="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-grid>
-          <ion-row>
-            <ion-title>
-              StudyStars
-            </ion-title>
-          </ion-row>
-        </ion-grid>
-        <ion-buttons slot="end">
-          <ion-menu-button (click)="openMenu()"></ion-menu-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+<div class="ion-page" id="main-content">
+  <ion-header class="header">
+    <ion-toolbar class="nav-toolbar">
+      <div slot="start" class="brand-container">
+        <ion-icon name="star" class="logo-icon"></ion-icon>
+        <span class="brand-title"> StudyStar </span>
+      </div>
+
+      <div class="center-nav">
+        <button class="nav-btn" (click)="redirectToHome()">Home</button>
+        <button class="nav-btn" (click)="redirectToFlashcards()">Flashcards</button>
+        <button class="nav-btn active" (click)="redirectToAgenda()">Agenda</button>
+        <button class="nav-btn" (click)="redirectToDashboard()">Dashboard</button>
+      </div>
+
+      <ion-buttons slot="end" class="right-actions">
+        <ion-button shape="round" fill="solid" class="profile-btn" (click)="redirectToProfile()">
+          Profile
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
 
     <div class="profile-page-items">
+               <ion-card>
+         @if(isMakingTask){
+                <ion-input label="Enter Task" [(ngModel)]="toDoCreator">  </ion-input>
+                <ion-input label="Enter Month" [(ngModel)]="monthCreator"> </ion-input>
+                <ion-input label="Enter Day" [(ngModel)]="dayCreator"> </ion-input>
+                <ion-input label="Enter Year" [(ngModel)]="yearCreator"> </ion-input>
+                <ion-input label="Enter Priority" [(ngModel)]="priorityCreator"> </ion-input>
+                <ion-button (click)="createTask()"> Submit </ion-button>
+         }
+
+
+              </ion-card>
       <ion-grid>
         <ion-row>
-          <ion-title>
-            StudyStar
-          </ion-title>
           <ion-col><app-calendar></app-calendar></ion-col>
-          <ion-col></ion-col>
+
           <ion-col>
+
             <ion-card class="to-do-card">
-              <ion-header class="ion-padding">
-                To-Do
-              </ion-header>
+              <ion-header class="ion-padding"> To-Do </ion-header>
               <ion-list>
-                <ion-item>
-                  <ion-label>Task 1</ion-label>
-                </ion-item>
-                <ion-item>
-                  <ion-label>Task 2</ion-label>
-                </ion-item>
-                <ion-item>
-                  <ion-label>Task 3</ion-label>
-                </ion-item>
-                <ion-item>
-                  <ion-label>Task 4</ion-label>
-                </ion-item>
+                @for(task of taskList; track $index) {
+                  <app-task [taskToDisplay]="task.taskToDo" ></app-task>
+                }
               </ion-list>
+
             </ion-card>
+
+
             <ion-card class="upcoming-card">
-              <ion-header class="ion-padding">
-                Upcoming
-              </ion-header>
+              <ion-header class="ion-padding"> Upcoming </ion-header>
               <ion-list>
-                <ion-item>
-                  <ion-label>Event 1</ion-label>
-                </ion-item>
-                <ion-item>
-                  <ion-label>Event 2</ion-label>
-                </ion-item>
+                <!-- upcoming events here -->
               </ion-list>
             </ion-card>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-button class="add-event">
-              Add Event
-            </ion-button>
+            <ion-button class="add-event"> Add Event </ion-button>
           </ion-col>
           <ion-col>
-            <ion-button class="add-deadline">
-              Add Deadline
-            </ion-button>
+            <ion-button class="add-deadline"> Add Deadline </ion-button>
           </ion-col>
           <ion-col>
-            <ion-button class="add-task">
+            <ion-button  class="add-task">
               Add Task
             </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
     </div>
-  </div>
-</ion-content>
+  </ion-content>
+</div>
