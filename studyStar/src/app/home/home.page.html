@@ -99,7 +99,7 @@
                 <p class="date-subtitle" style="text-align: center;">
                   {{ today | date:'MMMM d, y' }}
                 </p>
-                 @for(set of arrayOfSets; track $index) {
+                 @for(set of arrayOfSets; track $index; let idx = $index) {
                   <ion-item class="suggestion-item">
                     <ion-icon name="checkmark" slot="start" color="dark-purple"></ion-icon>
                     <ion-label>
