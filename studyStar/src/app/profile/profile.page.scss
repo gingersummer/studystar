@@ -172,6 +172,11 @@ ion-toolbar.nav-toolbar {
   }
 }
 
+.profile-card {
+height: auto;
+width: auto;
+border-radius: 50px;
+}
 .center-nav {
   position: absolute;
   left: 50%;
@@ -208,8 +213,18 @@ ion-toolbar.nav-toolbar {
   align-items: center;
   gap: 16px;
 
-  .signOut-btn {}
+  .signOut-btn {
+    --background: #a855f7;
+   height:2em;
+   width:8em;
+  }
 }
+
+ .edit-profile-btn {
+    --background: #a855f7;
+   height:2em;
+   width:12em;
+  }
 
 @function generate-stars($n) {
   $value: '#{math.random(2000)}px #{math.random(2000)}px #FFF';
