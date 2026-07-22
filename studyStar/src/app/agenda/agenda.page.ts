@@ -24,9 +24,12 @@ export class AgendaPage implements OnInit {
   dayCreator: number = 0
   yearCreator: number = 0
   priorityCreator: number = 0
-  modalController!: ModalController
 
-  constructor(private router: Router, private menuCtrl: MenuController) { }
+  constructor(
+    private router: Router, 
+    private menuCtrl: MenuController,
+    private modalController: ModalController,
+  ) { }
 
   openMenu() {
     this.menuCtrl.open('agenda')
@@ -90,6 +93,13 @@ export class AgendaPage implements OnInit {
     this.yearCreator = 0
     this.priorityCreator = 0
 
+  }
+
+  async presentCreateTaskModal() {
+    let modal = await this.modalController.create({
+      component: TaskmodalComponent
+    })
+    await modal.present()
   }
 
 }
