@@ -18,7 +18,7 @@ import { AuthService } from '../services/auth/auth';
 })
 export class FlashcardsPage implements OnInit {
 
-
+  arrayOfCards: FlashCard[] = []
   addingSet: boolean = false
   newSetName: string = ''
   arrayOfSets: Set[] = []
@@ -128,7 +128,6 @@ this.currentUser.allSets = []
     this.router.navigate(['/dashboard'])
     this.menuCtrl.close('flashcards')
   }
-
   addNewSet() {
     this.addingSet = true
   }
