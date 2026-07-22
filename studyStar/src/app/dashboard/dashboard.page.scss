@@ -312,5 +312,6 @@ $stars-large: generate-stars(100);
 
 .dashboard-second-weekly-card {
   height: 370%;
-  width: 370%;
+  width: 600%;
+  object-fit: fill;
 }

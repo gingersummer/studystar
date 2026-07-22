@@ -103,7 +103,7 @@
                   <ion-item class="suggestion-item">
                     <ion-icon name="checkmark" slot="start" color="dark-purple"></ion-icon>
                     <ion-label>
-                      <ion-item [button]="true" (click)="redirectToStudyCards(set)">{{set.name}}</ion-item>
+                      <ion-item [button]="true" (click)="redirectToStudyCards(set, $index)">{{set.name}}</ion-item>
                       <h3>{{set.category}}</h3>
                     </ion-label>
                     <ion-badge slot="end" color="#8238b7">20 mins</ion-badge>
