@@ -299,19 +299,3 @@ $stars-large: generate-stars(100);
   padding: 8px;
 }
 
-.dashboard-second-card-row {
-  padding: 1em;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #003d6b;
-  height: 15%;
-  align-items: center;
-  position: absolute;
-  bottom: 30%;
-}
-
-.dashboard-second-weekly-card {
-  height: 370%;
-  width: 600%;
-  object-fit: fill;
-}

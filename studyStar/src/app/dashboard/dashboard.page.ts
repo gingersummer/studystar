@@ -20,7 +20,6 @@ export class DashboardPage implements OnInit {
     this.arrayOfSets=this.flashCardService.arrayOfSets
    }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
   openMenu() {
