@@ -5,6 +5,7 @@ import { TaskmodalComponent } from 'src/app/components/taskmodal/taskmodal.compo
 import { Task } from 'src/app/models/task';
 import { User } from 'src/app/models/user';
 import { UserService } from '../user/user-service';
+import { DeadlineCreationComponent } from 'src/app/components/deadline-creation/deadline-creation.component';
 
 @Injectable({
   providedIn: 'root',
@@ -58,6 +59,39 @@ export class AgendaService {
     // update firebase user
     try {
       this.userService.updateUser(this.currentUser)
+    } catch (error: any) {
+      console.error(error.message)
+    }
+  }
+
+  async openCreateDeadlineModal() {
+    console.log("about to make modal... deadlines are the following: " + this.currentUser?.allDeadlines) // fail
+    let modal = await this.modalController.create({
+      component: DeadlineCreationComponent,
+      componentProps: {
+        currentUser: this.currentUser
+      }
+    })
+
+    console.log("Deadline modal about to open... current user's deadlines are " + this.currentUser?.allDeadlines)
+
+    await modal.present()
+
+    console.log("... and opened! current user's deadlines are " + this.currentUser?.allDeadlines)
+  }
+
+  async updateDeadlines(newDeadline: string) {
+    if (!this.currentUser) {
+      throw new Error('No user found!')
+    }
+    // add my new task to my current user object.
+    console.log("Current user: " + this.currentUser.username + ", " + this.currentUser.allDeadlines + ", " + newDeadline)
+    this.currentUser.allDeadlines.push(newDeadline)
+    console.log("ROUND 2: Current user: " + this.currentUser.username + ", " + this.currentUser.allDeadlines + ", " + newDeadline)
+    // update firebase user
+    try {
+      this.userService.updateUser(this.currentUser)
+      console.log("Current user's deadlines: " + this.currentUser.allDeadlines)
     } catch (error: any) {
       console.error(error.message)
     }

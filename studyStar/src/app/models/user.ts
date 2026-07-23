@@ -12,9 +12,10 @@ export class User {
     lastSet: string
     allSets: Set[]
     allTasks: Task[]
+    allDeadlines: string[]
 
 
-    constructor(usernameIn: string, emailIn: string, setsCompletedIn: number, lastSetIn: string, allSetsIn: Set[], allTasksIn: Task[], uidIn?: string, pictureIn?: string, idIn?: string, ) {
+    constructor(usernameIn: string, emailIn: string, setsCompletedIn: number, lastSetIn: string, allSetsIn: Set[], allTasksIn: Task[], allDeadlinesIn: string[], uidIn?: string, pictureIn?: string, idIn?: string, ) {
         this.username = usernameIn,
         this.email = emailIn,
         this.uid = uidIn,
@@ -24,5 +25,6 @@ export class User {
         this.id = idIn
         this.allSets = allSetsIn
         this.allTasks = allTasksIn
+        this.allDeadlines = allDeadlinesIn
     }
 }

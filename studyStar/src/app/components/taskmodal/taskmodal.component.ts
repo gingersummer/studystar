@@ -18,8 +18,6 @@ export class TaskmodalComponent implements OnInit {
   taskYear: number = 0
   taskPriority: number = 0
 
-  @Input({ required: true }) currentUser!: User
-
   constructor(
     private modalController: ModalController,
     private agendaService: AgendaService,

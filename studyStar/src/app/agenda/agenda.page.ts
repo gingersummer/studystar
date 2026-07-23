@@ -20,6 +20,7 @@ import { Subscription } from 'rxjs';
 export class AgendaPage implements OnInit {
 
   taskList: Task[] = [new Task("make bed", 7, 16, 2026, 5), new Task("scroll", 7, 16, 2026, 5)]
+  deadlineList!: string[]
   completedTasks: Task[] = []
   isMakingTask = false
   toDoCreator: string = ''
@@ -78,10 +79,12 @@ export class AgendaPage implements OnInit {
 
   ionViewDidEnter() {
     this.getUserTasks()
+    this.getUserDeadlines()
   }
 
   ionViewWillLeave() {
     this.taskList = []
+    this.deadlineList = []
 
     if (this.userSubscription) {
       this.userSubscription.unsubscribe()
@@ -119,6 +122,11 @@ export class AgendaPage implements OnInit {
     await this.agendaService.openCreateTaskModal()
   }
 
+  async presentCreateDeadlineModal() {
+    console.log("present create deadine modal. Deadlines are " + this.currentUser?.allDeadlines) // success
+    await this.agendaService.openCreateDeadlineModal()
+  }
+
   async getUserTasks() {
     this.userSubscription = this.userService.users.subscribe((data: User[]) => {
 
@@ -134,6 +142,28 @@ export class AgendaPage implements OnInit {
         // }
         console.log('User tasks from Firebase', this.currentUser.allTasks)
         this.taskList = this.currentUser.allTasks
+      }
+      else {
+        // throw Error("what is going on gang")
+      }
+    })
+
+  }
+  async getUserDeadlines() {
+    this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+
+      this.currentUser = data[data.length - 1]
+
+      if (this.currentUser) {
+        if (this.currentUser.allDeadlines == undefined) {
+          this.currentUser.allDeadlines = []
+        }
+        // for (let i = 0; i < this.currentUser.allTasks.length; i++) {
+        //   console.log(this.currentUser.allTasks[i])
+        //   this.taskList.push(this.currentUser.allTasks[i])
+        // }
+        console.log('User deadlines from Firebase', this.currentUser.allDeadlines)
+        this.deadlineList = this.currentUser.allDeadlines
       }
       else {
         // throw Error("what is going on gang")
