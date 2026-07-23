@@ -4,6 +4,7 @@ import { MenuController } from '@ionic/angular';
 import { Set } from '../models/Set';
 import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
 import { StreakService } from '../services/streak/streak-service';
+import { Alert } from '../services/alert';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,8 @@ export class DashboardPage implements OnInit {
     private router: Router, 
     private menuCtrl: MenuController, 
     private flashCardService: Flashcardsets, 
-    private streakService: StreakService
+    private streakService: StreakService,
+    private alert: Alert
   ) {
     this.arrayOfSets=this.flashCardService.arrayOfSets
    }
@@ -67,6 +69,12 @@ export class DashboardPage implements OnInit {
     this.flashCardService.selectSet(setToOpen, setIndex)
     this.router.navigate(['/study-cards'])
   }
+
+  async signOut() {
+
+    await this.alert.createAlert("If I were you I'd keep studying ;)", "Did you even try?")
+  }
+  
 }
 
 

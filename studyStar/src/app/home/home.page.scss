@@ -74,11 +74,12 @@
 }
 
 .date-title {
-  font-size: 35px;
-  font-weight: 800;
+  font-size: 32px;
+  font-weight: 500;
   letter-spacing: -1px;
   color: #ffffff; 
   margin-top: 0;
+  text-align: center;
 }
 
 .suggestions-title {
@@ -180,7 +181,7 @@ ion-toolbar.nav-toolbar {
 }
 
 .studyStar{
-  background:#764ba2;
+   background: linear-gradient(45deg, #bb76eb, #8546c5);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -192,14 +193,17 @@ ion-toolbar.nav-toolbar {
 
 .setName {
   text-align: center;
+  font-size: 35px;
+  font-weight: 200;
+  letter-spacing: -1px;
+  color: #ffffff; 
+  margin-top: 0;
 }
 
 
 .flashcardCard{
   border: none;
-  background:#e9d3ff50;
---background: linear-gradient(90deg, rgba(90, 3, 102, 0.5) 0%, rgba(104, 3, 141, 0.5) 56%, rgba(112, 16, 144, 0.5) 100%);
-
+--background: #9e51e650;
   font-size: 20px;
   font-weight: 600;
   color: rgb(49, 22, 77);
@@ -207,7 +211,7 @@ ion-toolbar.nav-toolbar {
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  height:18em;
+  height:17em;
   width: 22em;
  
   &:hover {
@@ -222,8 +226,8 @@ ion-toolbar.nav-toolbar {
 }
 
 .flame {
-  height: 6em;
-  width: 6em;
+  height: 9em;
+  width: 9em;
 }
 
 .arrow{
@@ -252,6 +256,7 @@ ion-toolbar.nav-toolbar {
  font-size: 37px;
     font-weight: 700;
     color: white;
+    text-align: center;
 }
 
 .missionStatement{
