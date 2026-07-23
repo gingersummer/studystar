@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Task } from 'src/app/models/task';
+import { User } from 'src/app/models/user';
 import { AgendaService } from 'src/app/services/agenda-service/agenda-service';
 
 @Component({
@@ -17,6 +18,8 @@ export class TaskmodalComponent implements OnInit {
   taskYear: number = 0
   taskPriority: number = 0
 
+  @Input({ required: true }) currentUser!: User
+
   constructor(
     private modalController: ModalController,
     private agendaService: AgendaService,
@@ -31,7 +34,7 @@ export class TaskmodalComponent implements OnInit {
   addTask() {
     try {
       let taskToAdd: Task = new Task(this.taskName, this.taskMonth, this.taskDay, this.taskYear, this.taskPriority)
-      this.agendaService.tasksArray.push(taskToAdd)
+      this.agendaService.updateTasks(taskToAdd)
       this.dismissModal(taskToAdd)
     } catch (err: any) {
       window.alert('Task Addition Failed')

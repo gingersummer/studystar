@@ -38,7 +38,7 @@ export class AgendaPage implements OnInit {
     private agendaService: AgendaService,
     private userService: UserService,
   ) {
-    this.taskList = this.agendaService.tasksArray
+
   }
 
   openMenu() {
@@ -77,7 +77,7 @@ export class AgendaPage implements OnInit {
   }
 
   ionViewDidEnter() {
-    this.storeTasks()
+    this.getUserTasks()
   }
 
   ionViewWillLeave() {
@@ -119,24 +119,26 @@ export class AgendaPage implements OnInit {
     await this.agendaService.openCreateTaskModal()
   }
 
-  async storeTasks() {
+  async getUserTasks() {
     this.userSubscription = this.userService.users.subscribe((data: User[]) => {
 
       this.currentUser = data[data.length - 1]
-      console.log('data', data)
-    })
-    if (this.currentUser) {
-      if (this.currentUser.allTasks == undefined) {
-        this.currentUser.allTasks = []
-      } 
-      for (let i = 0; i < this.currentUser.allTasks.length; i++) {
-        console.log(this.currentUser.allTasks[i])
-        this.taskList.push(this.currentUser.allTasks[i])
+
+      if (this.currentUser) {
+        if (this.currentUser.allTasks == undefined) {
+          this.currentUser.allTasks = []
+        }
+        // for (let i = 0; i < this.currentUser.allTasks.length; i++) {
+        //   console.log(this.currentUser.allTasks[i])
+        //   this.taskList.push(this.currentUser.allTasks[i])
+        // }
+        console.log('User tasks from Firebase', this.currentUser.allTasks)
+        this.taskList = this.currentUser.allTasks
       }
-    }
-    else {
-      throw Error("what is going on gang")
-    }
+      else {
+        // throw Error("what is going on gang")
+      }
+    })
 
   }
 
