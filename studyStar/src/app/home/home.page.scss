@@ -190,6 +190,10 @@ ion-toolbar.nav-toolbar {
     text-align: center;
 }
 
+.setName {
+  text-align: center;
+}
+
 
 .flashcardCard{
   border: none;
@@ -203,7 +207,7 @@ ion-toolbar.nav-toolbar {
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  height:17em;
+  height:18em;
   width: 22em;
  
   &:hover {

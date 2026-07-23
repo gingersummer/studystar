@@ -6,6 +6,8 @@ import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
 import { UserService } from '../services/user/user-service';
 import { AuthService } from '../services/auth/auth';
 import { Alert } from '../services/alert';
+import { User } from '../models/user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,11 +19,30 @@ export class HomePage{
   today = new Date();
   set: Set = new Set('', false, '', [], '');
   arrayOfSets: Set[] = []
+  currentUser?: User;
+    userSubscription?: Subscription;
 
   constructor(private router: Router, private menuCtrl: MenuController, private flashCardService: Flashcardsets, private userService: UserService,
     private authService: AuthService, private alert: Alert) {
     this.arrayOfSets=this.flashCardService.arrayOfSets
+this.currentUser=this.userService.currentUser
+ this.userSubscription = userService.userSubscription
    }
+
+    ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe()
+    }
+  }
+
+  ionViewDidEnter() {
+    this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+      // if (data.length > 1) {
+      //   throw Error("Multiple user profiles found!")
+      // }
+      this.currentUser = data[data.length - 1]
+    })
+  }
 
   openMenu() {
     this.menuCtrl.open('home')

@@ -22,15 +22,16 @@
 <ion-content [fullscreen]="true">
   <div class="first-div"></div>
   <!-- hides confidence if on front sdie of card -->
-  @if(!cardToDisplay.frontSide){
-  <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
 
-  </app-confidence>
-  }
 
   <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
 
   </app-flashcard>
+    @if(!cardToDisplay.frontSide){
+  <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
+
+  </app-confidence>
+  }
   <ion-button class="prev-button-style" (click)="previousCard()">
     Previous Card
   </ion-button>

@@ -183,3 +183,34 @@ $stars-large:  generate-stars(100);
   box-shadow: $stars-large;
   animation: twinkleFast 3s infinite ease-in-out;
 }
+
+.nav-btn2 {
+  /* Match the purple fill */
+  --background: #a855f7; /* Use your exact top purple hex code */
+  --background-hover: #a855f7 !important;
+  --background-activated: #a855f7 !important;
+  --background-focused: #a855f7 !important;
+
+  /* Text styling */
+  --color: #ffffff;
+  font-weight: 700;
+
+  /* Corner radius to match the pill style */
+  --border-radius: 16px;
+
+  /* Kill ALL shadows and inner fills */
+  --box-shadow: none !important;
+  box-shadow: none !important;
+
+  /* Sizing - set your desired button dimensions directly here */
+  height: 48px;
+  width: 140px; 
+  margin: 0;
+   &:hover {
+    color: #003d6b;
+  }
+
+  &.active {
+    background: #a855f7;
+  }
+}
