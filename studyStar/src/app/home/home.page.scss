@@ -177,6 +177,7 @@ ion-toolbar.nav-toolbar {
    --background: #a855f7;
    height:2em;
    width:8em;
+   color: White;
   }
 }
 
@@ -336,5 +337,5 @@ $stars-large:  generate-stars(100);
 .card-image {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* 👈 Scales the image down so 100% of it is visible */
+  object-fit: contain; 
 }
