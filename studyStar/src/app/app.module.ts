@@ -14,12 +14,20 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment.prod';
 import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     MbscModule,
-    FormsModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, HttpClientJsonpModule ],
+    FormsModule,
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    IonicStorageModule.forRoot(),
+    AppRoutingModule, 
+    HttpClientModule, 
+    HttpClientJsonpModule, 
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())],
   bootstrap: [AppComponent],
 })
