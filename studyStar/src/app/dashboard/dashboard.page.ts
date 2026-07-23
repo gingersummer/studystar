@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Set } from '../models/Set';
 import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
 import { StreakService } from '../services/streak/streak-service';
 import { Alert } from '../services/alert';
+import { FlashcardcollectionComponent } from '../components/flashcardcollection/flashcardcollection.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +15,8 @@ import { Alert } from '../services/alert';
 })
 export class DashboardPage implements OnInit {
 
+  @Input({required: true}) flashcardToDisplay!: Set
+  
   today = new Date();
   set: Set = new Set('', false, '', [], '');
   arrayOfSets: Set[] = []
