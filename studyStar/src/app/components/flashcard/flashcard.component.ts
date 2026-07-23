@@ -15,7 +15,6 @@ export class FlashcardComponent  implements OnInit {
 
   ngOnInit() {}
 
-
   switchSides(){
     this.flashcardIn.frontSide = !this.flashcardIn.frontSide
   }

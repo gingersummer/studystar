@@ -74,11 +74,12 @@
 }
 
 .date-title {
-  font-size: 35px;
-  font-weight: 800;
+  font-size: 32px;
+  font-weight: 500;
   letter-spacing: -1px;
   color: #ffffff; 
   margin-top: 0;
+  text-align: center;
 }
 
 .suggestions-title {
@@ -176,11 +177,12 @@ ion-toolbar.nav-toolbar {
    --background: #a855f7;
    height:2em;
    width:8em;
+   color: White;
   }
 }
 
 .studyStar{
-  background:#764ba2;
+   background: linear-gradient(45deg, #bb76eb, #8546c5);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -190,12 +192,19 @@ ion-toolbar.nav-toolbar {
     text-align: center;
 }
 
+.setName {
+  text-align: center;
+  font-size: 35px;
+  font-weight: 200;
+  letter-spacing: -1px;
+  color: #ffffff; 
+  margin-top: 0;
+}
+
 
 .flashcardCard{
   border: none;
-  background:#e9d3ff50;
---background: linear-gradient(90deg, rgba(90, 3, 102, 0.5) 0%, rgba(104, 3, 141, 0.5) 56%, rgba(112, 16, 144, 0.5) 100%);
-
+--background: #9e51e650;
   font-size: 20px;
   font-weight: 600;
   color: rgb(49, 22, 77);
@@ -218,8 +227,8 @@ ion-toolbar.nav-toolbar {
 }
 
 .flame {
-  height: 6em;
-  width: 6em;
+  height: 9em;
+  width: 9em;
 }
 
 .arrow{
@@ -248,6 +257,7 @@ ion-toolbar.nav-toolbar {
  font-size: 37px;
     font-weight: 700;
     color: white;
+    text-align: center;
 }
 
 .missionStatement{
@@ -327,5 +337,5 @@ $stars-large:  generate-stars(100);
 .card-image {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* 👈 Scales the image down so 100% of it is visible */
+  object-fit: contain; 
 }

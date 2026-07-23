@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Set } from '../models/Set';
 import { Flashcardsets } from '../services/FlashCardSets/flashcardsets';
 import { StreakService } from '../services/streak/streak-service';
+import { Alert } from '../services/alert';
+import { FlashcardcollectionComponent } from '../components/flashcardcollection/flashcardcollection.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,16 +15,19 @@ import { StreakService } from '../services/streak/streak-service';
 })
 export class DashboardPage implements OnInit {
 
+  @Input({required: true}) flashcardToDisplay!: Set
+  
   today = new Date();
   set: Set = new Set('', false, '', [], '');
   arrayOfSets: Set[] = []
-   streakCount: number = 1;
+  streakCount: number = 1;
 
   constructor(
     private router: Router, 
     private menuCtrl: MenuController, 
     private flashCardService: Flashcardsets, 
-    private streakService: StreakService
+    private streakService: StreakService,
+    private alert: Alert
   ) {
     this.arrayOfSets=this.flashCardService.arrayOfSets
    }
@@ -67,6 +72,12 @@ export class DashboardPage implements OnInit {
     this.flashCardService.selectSet(setToOpen, setIndex)
     this.router.navigate(['/study-cards'])
   }
+
+  async signOut() {
+
+    await this.alert.createAlert("If I were you I'd keep studying ;)", "Did you even try?")
+  }
+  
 }
 
 
