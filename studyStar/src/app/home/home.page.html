@@ -24,14 +24,10 @@
       </div>
 
       <ion-buttons slot="end" class="right-actions">
-        <ion-button shape="round" class="profile-btn" (click)="signOut()">
-          Log Out
+        <ion-button shape="round" fill="solid" class="profile-btn" (click)="redirectToProfile()">
+          Profile
         </ion-button>
-        <ion-avatar class="profile-picture">
-          <img src="https://cdn.pfps.gg/pfps/8250-default-18.png" />
-        </ion-avatar>
       </ion-buttons>
-
 
     </ion-toolbar>
   </ion-header>
@@ -56,7 +52,7 @@
           <ion-row>
 
             <ion-col>
-              <ion-card class="flashcardCard" (click)="redirectToFlashcards()">
+              <button class="flashcardCard" (click)="redirectToFlashcards()">
                 <h1 class="card-title" style="text-align: center;">
                   Continue Studying
                 </h1>
@@ -74,7 +70,7 @@
                   {{arrayOfSets[0].name}}
                 </h1>
 
-              </ion-card>
+              </button>
             </ion-col>
 
             <ion-col>
