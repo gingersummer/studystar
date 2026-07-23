@@ -84,6 +84,7 @@ ion-toolbar.nav-toolbar {
 }
 
 .nav-btn {
+  
   background: transparent;
   border: none;
   color: #e4e8ed;
@@ -112,6 +113,7 @@ ion-toolbar.nav-toolbar {
      --background: #a855f7;
    height:2em;
    width:8em;
+   color: White;
   }
 }
 
@@ -127,19 +129,28 @@ ion-toolbar.nav-toolbar {
     margin-top: 0px;
 }
 
-.add-event {
-height: 5em;
-width: 33em;
-}
-
-.add-deadline {
-height: 5em;
-width: 33em;
-}
-
 .add-task {
-height: 5em;
-width: 33em;
+border: none;
+--background: #a955f79e;
+  font-size: 15px;
+  font-weight: 500;
+  font-family:'Courier New', Courier, monospace;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  height:4em;
+  width: 30em;
+ 
+  &:hover {
+    color:#003d6b;
+    box-shadow: 0 0 5px #1a0451, 0 0 10px #48025f, 0 0 20px #4508a7;
+  animation: glow-box-animation 1s definite;
+  }
+
+  &.active {
+    background: #a855f7;
+  }
 }
 
 @function generate-stars($n) {
@@ -184,33 +195,11 @@ $stars-large:  generate-stars(100);
   animation: twinkleFast 3s infinite ease-in-out;
 }
 
-.nav-btn2 {
-  /* Match the purple fill */
-  --background: #a855f7; /* Use your exact top purple hex code */
-  --background-hover: #a855f7 !important;
-  --background-activated: #a855f7 !important;
-  --background-focused: #a855f7 !important;
-
-  /* Text styling */
-  --color: #ffffff;
-  font-weight: 700;
-
-  /* Corner radius to match the pill style */
-  --border-radius: 16px;
-
-  /* Kill ALL shadows and inner fills */
-  --box-shadow: none !important;
-  box-shadow: none !important;
-
-  /* Sizing - set your desired button dimensions directly here */
-  height: 48px;
-  width: 140px; 
-  margin: 0;
-   &:hover {
-    color: #003d6b;
+@keyframes glow-box-animation {
+  from {
+    box-shadow: 0 0 4px #1a0451, 0 0 6px #48025f;
   }
-
-  &.active {
-    background: #a855f7;
+  to {
+    box-shadow: 0 0 7px #4508a7, 0 0 15px #4508a7;
   }
 }
