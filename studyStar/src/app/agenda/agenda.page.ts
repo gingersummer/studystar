@@ -5,6 +5,7 @@ import { MenuController, ModalController } from '@ionic/angular';
 import { TaskComponent } from '../components/task/task.component';
 import { TaskmodalComponent } from '../components/taskmodal/taskmodal.component';
 import { AgendaService } from '../services/agenda-service/agenda-service';
+import { Alert } from '../services/alert';
 
 import { Task } from '../models/task';
 
@@ -29,6 +30,7 @@ export class AgendaPage implements OnInit {
     private router: Router, 
     private menuCtrl: MenuController,
     private modalController: ModalController,
+    private alert: Alert,
   ) { }
 
   openMenu() {
@@ -100,6 +102,11 @@ export class AgendaPage implements OnInit {
       component: TaskmodalComponent
     })
     await modal.present()
+  }
+
+  async signOut() {
+
+    await this.alert.createAlert("If I were you I'd keep studying ;)", "Did you even try?")
   }
 
 }
