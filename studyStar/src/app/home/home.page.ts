@@ -8,6 +8,7 @@ import { AuthService } from '../services/auth/auth';
 import { Alert } from '../services/alert';
 import { User } from '../models/user';
 import { Subscription } from 'rxjs';
+import { StreakService } from '../services/streak/streak-service';
 
 @Component({
   selector: 'app-home',
@@ -15,21 +16,35 @@ import { Subscription } from 'rxjs';
   styleUrls: ['home.page.scss'],
   standalone: false,
 })
-export class HomePage{
+export class HomePage {
   today = new Date();
   set: Set = new Set('', false, '', [], '');
   arrayOfSets: Set[] = []
   currentUser?: User;
-    userSubscription?: Subscription;
+  userSubscription?: Subscription;
+  streakCount: number = 1;
 
-  constructor(private router: Router, private menuCtrl: MenuController, private flashCardService: Flashcardsets, private userService: UserService,
-    private authService: AuthService, private alert: Alert) {
-    this.arrayOfSets=this.flashCardService.arrayOfSets
-this.currentUser=this.userService.currentUser
- this.userSubscription = userService.userSubscription
-   }
+  constructor(private router: Router,
+    private menuCtrl: MenuController,
+    private flashCardService: Flashcardsets,
+    private userService: UserService,
+    private authService: AuthService,
+    private alert: Alert,
+    private streakService: StreakService) {
+    this.arrayOfSets = this.flashCardService.arrayOfSets
+    this.currentUser = this.userService.currentUser
+    this.userSubscription = userService.userSubscription
+  }
 
-    ngOnDestroy() {
+  async ngOnInit(){
+    this.streakCount = await this.streakService.updateStreak();
+  }
+
+  async onAction() {
+    this.streakCount = await this.streakService.updateStreak();
+  }
+  
+  ngOnDestroy() {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe()
     }
@@ -81,7 +96,7 @@ this.currentUser=this.userService.currentUser
     this.router.navigate(['/study-cards'])
   }
 
-   async signOut() {
+  async signOut() {
 
     await this.alert.createAlert("If I were you I'd keep studying ;)", "Did you even try?")
   }
