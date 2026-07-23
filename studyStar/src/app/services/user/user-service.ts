@@ -10,6 +10,10 @@ import { getAuth } from '@angular/fire/auth';
 })
 export class UserService {
 
+   currentUser?: User
+
+  userSubscription?: Subscription;
+
   private _users: BehaviorSubject<User[]> = new BehaviorSubject([] as
     User[])
   private firebaseSubscription?: Subscription

@@ -22,7 +22,6 @@
           Dashboard
         </button>
       </div>
-
       <ion-buttons slot="end" class="right-actions">
         <ion-button shape="round" class="profile-btn" (click)="signOut()">
           Log Out
@@ -35,7 +34,6 @@
 
     </ion-toolbar>
   </ion-header>
-
   <ion-content class="homepage-content">
 
     <div id="stars"></div>
@@ -47,10 +45,11 @@
         <h1 class="studyStar">
           StudyStar
         </h1>
+        @if(currentUser) {
         <p class="missionStatement">
-          Welcome back Username!
+          Welcome back {{currentUser.username}}!
         </p>
-
+      }
         <ion-grid>
 
           <ion-row>
@@ -66,11 +65,12 @@
                       <ion-card class="currentSetCard" align="center">
                         <img [src]="arrayOfSets[0].icon">
                       </ion-card>
+
                     </ion-col>
                   </ion-row>
                 </ion-grid>
 
-                <h1>
+                <h1 class="setName">
                   {{arrayOfSets[0].name}}
                 </h1>
 
@@ -78,7 +78,7 @@
             </ion-col>
 
             <ion-col>
-              <button class="flashcardCard" (click)="redirectToDashboard()">
+              <ion-card class="flashcardCard" (click)="redirectToDashboard()">
 
                 <h1 class="card-title" style="text-align: center;">
                   Check Out Your Stats!
@@ -93,7 +93,7 @@
                 <h1 class=date-title>
                   7 Day Streak!
                 </h1>
-              </button>
+              </ion-card>
             </ion-col>
             <ion-col>
               <ion-card class="flashcardCard">
@@ -120,5 +120,6 @@
           </ion-row>
 
         </ion-grid>
+
       </div>
     </div>
