@@ -17,7 +17,6 @@ export class HomePage{
   today = new Date();
   set: Set = new Set('', false, '', [], '');
   arrayOfSets: Set[] = []
-  streak: number = 0;
 
   constructor(private router: Router, private menuCtrl: MenuController, private flashCardService: Flashcardsets, private userService: UserService,
     private authService: AuthService, private alert: Alert) {

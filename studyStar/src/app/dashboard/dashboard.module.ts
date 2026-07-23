@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
+import { BarChartComponent } from '../bar-chart/bar-chart.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { DashboardPage } from './dashboard.page';
     IonicModule,
     DashboardPageRoutingModule
   ],
-  declarations: [DashboardPage]
+  declarations: [DashboardPage, BarChartComponent]
 })
 export class DashboardPageModule {}
