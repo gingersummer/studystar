@@ -19,12 +19,16 @@ export class ProfilePage implements OnInit {
 
   userSubscription?: Subscription;
 
+
   constructor(
+
     private router: Router,
     private menuCtrl: MenuController,
     private userService: UserService,
     private authService: AuthService,
   ) {
+    this.currentUser = userService.currentUser
+    this.userSubscription = userService.userSubscription
 
   }
 
@@ -39,7 +43,7 @@ export class ProfilePage implements OnInit {
       // if (data.length > 1) {
       //   throw Error("Multiple user profiles found!")
       // }
-      this.currentUser = data[data.length-1]
+      this.currentUser = data[data.length - 1]
     })
   }
 
