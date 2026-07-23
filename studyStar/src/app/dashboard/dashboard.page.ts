@@ -17,7 +17,7 @@ export class DashboardPage implements OnInit {
   today = new Date();
   set: Set = new Set('', false, '', [], '');
   arrayOfSets: Set[] = []
-   streakCount: number = 1;
+  streakCount: number = 1;
 
   constructor(
     private router: Router, 
