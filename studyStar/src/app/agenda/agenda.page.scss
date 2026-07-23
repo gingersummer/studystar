@@ -203,14 +203,15 @@ $stars-large:  generate-stars(100);
   box-shadow: none !important;
 
   /* Sizing - set your desired button dimensions directly here */
-  height: 48px;
-  width: 140px; 
+  height: 56px;
+  width: 200px; 
   margin: 0;
+  justify-content: space-evenly;
    &:hover {
     color: #003d6b;
   }
 
   &.active {
-    background: #a855f7;
+    background: rgb(168, 85, 247);
   }
 }
