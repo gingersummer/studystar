@@ -56,6 +56,6 @@ export class Firebaseservice {
     let collectionRef: CollectionReference = collection(this.firestore,
       collectionName)
     let q: Query = query(collectionRef, where('uid', '==', uid))
-    return collectionData(q, {idField: "id"}) as Observable<T[]>
+    return collectionData(q, {idField: 'id'}) as Observable<T[]>
   }
 }
