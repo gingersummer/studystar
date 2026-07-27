@@ -1,0 +1,46 @@
+
+<div class="ion-page" id="main-content">
+  <ion-header class="header">
+    <ion-toolbar class="nav-toolbar">
+      <div slot="start" class="brand-container">
+        <ion-icon name="star" class="logo-icon"></ion-icon>
+        <span class="brand-title">
+          StudyStar
+        </span>
+      </div>
+
+      <div class="center-nav">
+        <button class="nav-btn active">
+          Home
+        </button>
+        <button class="nav-btn" (click)="redirectToFlashcards()">
+          Flashcards
+        </button>
+        <button class="nav-btn" (click)="redirectToAgenda()">
+          Agenda
+        </button>
+        <button class="nav-btn" (click)="redirectToDashboard()">
+          Dashboard
+        </button>
+        <button class="nav-btn" (click)="redirectToStudyMethods()">
+          Study Methods
+        </button>
+      </div>
+      <ion-buttons slot="end" class="right-actions">
+        <ion-button shape="round" class="profile-btn" (click)="signOut()">
+          Log Out
+        </ion-button>
+        <ion-avatar class="profile-picture">
+        <img src="https://cdn.pfps.gg/pfps/8250-default-18.png"/>
+      </ion-avatar>
+      </ion-buttons>
+
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="homepage-content">
+
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+  </ion-content>
+</div>

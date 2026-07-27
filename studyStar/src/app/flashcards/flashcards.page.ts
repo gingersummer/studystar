@@ -134,6 +134,12 @@ export class FlashcardsPage implements OnInit {
     this.router.navigate(['/dashboard'])
     this.menuCtrl.close('flashcards')
   }
+
+  redirectToStudyMethods() {
+    this.router.navigate(['/study-methods'])
+    this.menuCtrl.close('home')
+  }
+  
   addNewSet() {
     this.addingSet = true
   }
