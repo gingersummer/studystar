@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth/auth';
 import { Firebaseservice } from '../services/firebase/firebaseservice';
 import { Subscription } from 'rxjs';
 import { User } from '../models/user';
+import { StreakService } from '../services/streak/streak-service';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +20,8 @@ export class ProfilePage implements OnInit {
 
   userSubscription?: Subscription;
 
+  streakCount: number = 1;
+
 
   constructor(
 
@@ -26,10 +29,21 @@ export class ProfilePage implements OnInit {
     private menuCtrl: MenuController,
     private userService: UserService,
     private authService: AuthService,
+    private streakService: StreakService,
   ) {
     this.currentUser = userService.currentUser
     this.userSubscription = userService.userSubscription
 
+  }
+
+    async ngOnInit() {
+    // Update streak when page loads
+    this.streakCount = await this.streakService.updateStreak();
+  }
+
+  async onAction() {
+    // Call when user completes the daily action
+    this.streakCount = await this.streakService.updateStreak();
   }
 
   ngOnDestroy() {
@@ -60,6 +74,11 @@ export class ProfilePage implements OnInit {
     this.router.navigate(['/dashboard'])
   }
 
+   redirectToStudyMethods() {
+      this.router.navigate(['/study-methods'])
+      this.menuCtrl.close('home')
+    }
+
   redirectToProfile() {
     this.router.navigate(['/profile'])
     this.menuCtrl.close('profile')
@@ -77,8 +96,6 @@ export class ProfilePage implements OnInit {
   redirectToLogin() {
     this.router.navigate(['/login'])
     this.menuCtrl.close('profile')
-  }
-  ngOnInit() {
   }
 
   async signOut() {
