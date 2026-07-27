@@ -19,7 +19,7 @@ import { UserService } from '../services/user/user-service';
 })
 export class StudyCardsPage implements OnInit {
 
-  flashcardSet: Set = new Set('', false, '', [], '')
+  flashcardSet: Set = new Set('', false, '', [new FlashCard('loading', "loading")], '')
   indexOfCards: number = 0
   indexOfEditedCard: number = 0
   cardToDisplay: FlashCard = this.flashcardSet.setOfCards[0]
@@ -36,7 +36,10 @@ export class StudyCardsPage implements OnInit {
   constructor(private setService: Flashcardsets, private router: Router, private menuCtrl: MenuController, private userService: UserService,
     private authService: AuthService) { }
 
+  ionViewDidEnter() {
+    console.log(this.flashcardSet.name)
 
+  }
   ionViewWillLeave() {
 
     if (this.userSubscription) {
@@ -54,14 +57,17 @@ export class StudyCardsPage implements OnInit {
     // }
 
     this.hopeTSWorks()
-    if (!this.flashcardSet ||this.flashcardSet.name == "xxxDONOTLOADxxx") {
+
+    this.flashcardSet = this.setService.selectedSet
+    this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
+
+    console.log(this.flashcardSet.name)
+    if (!this.flashcardSet || this.flashcardSet.name == "xxxDONOTLOADxxx") {
       this.redirectToFlashcards()
       console.log("tryingtoRedireittoflashcards")
     }
-    this.flashcardSet = this.setService.selectedSet
-    this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
     this.cardToDisplay.frontSide = true
-      
+
 
   }
 

@@ -124,6 +124,7 @@ export class FlashcardsPage implements OnInit {
 
   redirectToStudyCards(setIn: Set, indexIn: number) {
     this.flashCardService.selectSet(setIn, indexIn)
+    console.log(setIn)
     this.router.navigate(['/study-cards'])
     this.menuCtrl.close('collection')
   }
