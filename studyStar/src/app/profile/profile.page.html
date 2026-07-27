@@ -54,6 +54,9 @@
             <h1>
                 {{currentUser.username}}
               </h1>
+            <h1>
+              {{currentUser.email}}
+            </h1>
           </ion-col>
           <ion-col size="2">
             <ion-row>
@@ -71,9 +74,6 @@
               <ion-col>
                 
               </ion-col>
-              <ion-col>
-
-              </ion-col>
             </ion-row>
           </ion-col>
           <ion-col></ion-col>
@@ -82,17 +82,6 @@
       <p class="date-title" style="text-align: center;">
         Welcome back. Let's check out some of your stats!
       </p>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-card shape="round" class="profile-card">
-              <h1>
-                Email: {{currentUser.email}}
-              </h1>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
 
       }
 
