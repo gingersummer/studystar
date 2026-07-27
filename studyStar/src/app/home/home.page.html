@@ -21,11 +21,17 @@
         <button class="nav-btn" (click)="redirectToDashboard()">
           Dashboard
         </button>
+        <button class="nav-btn" (click)="redirectToStudyMethods()">
+          Study Methods
+        </button>
       </div>
       <ion-buttons slot="end" class="right-actions">
-        <ion-button shape="round" fill="solid" class="profile-btn" (click)="redirectToProfile()">
-          Profile
+        <ion-button shape="round" class="profile-btn" (click)="signOut()">
+          Log Out
         </ion-button>
+        <ion-avatar class="profile-picture">
+        <img src="https://cdn.pfps.gg/pfps/8250-default-18.png"/>
+      </ion-avatar>
       </ion-buttons>
 
     </ion-toolbar>
@@ -51,7 +57,7 @@
           <ion-row>
 
             <ion-col>
-              <button class="flashcardCard" (click)="redirectToFlashcards()">
+              <ion-card class="flashcardCard" (click)="redirectToFlashcards()">
                 <h1 class="card-title" style="text-align: center;">
                   Continue Studying
                 </h1>
@@ -66,11 +72,11 @@
                   </ion-row>
                 </ion-grid>
 
-                <h1 class="setName">
+                <h1 class="date-title">
                   {{arrayOfSets[0].name}}
                 </h1>
 
-              </button>
+              </ion-card>
             </ion-col>
 
             <ion-col>
@@ -81,13 +87,15 @@
                 </h1>
                 <ion-grid>
                   <ion-row>
+                    <ion-col></ion-col>
                     <ion-col>
                       <ion-icon name="flame-outline" color="danger" class="flame"></ion-icon>
                     </ion-col>
+                    <ion-col></ion-col>
                   </ion-row>
-                </ion-grid>
+              </ion-grid>
                 <h1 class=date-title>
-                  7 Day Streak!
+                  {{streakCount}} Day Streak!
                 </h1>
               </ion-card>
             </ion-col>

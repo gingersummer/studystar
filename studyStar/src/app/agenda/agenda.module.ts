@@ -10,6 +10,8 @@ import { AgendaPage } from './agenda.page';
 import { CalendarComponent } from '../components/calendar/calendar.component';
 import { TaskmodalComponent } from '../components/taskmodal/taskmodal.component';
 import { TaskComponent } from '../components/task/task.component';
+import { DeadlineComponent } from '../components/deadline/deadline.component';
+import { DeadlineCreationComponent } from '../components/deadline-creation/deadline-creation.component';
 
 @NgModule({
   imports: [
@@ -22,7 +24,9 @@ import { TaskComponent } from '../components/task/task.component';
     AgendaPage,
     CalendarComponent,
     TaskmodalComponent,
-    TaskComponent
+    TaskComponent,
+    DeadlineComponent,
+    DeadlineCreationComponent,
   ]
 })
 export class AgendaPageModule {}

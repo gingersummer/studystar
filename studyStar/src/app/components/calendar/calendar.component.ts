@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { AgendaService } from 'src/app/services/agenda-service/agenda-service';
+import { Task } from 'src/app/models/task';
 
 export interface TaskItem {
   id: string;
@@ -13,7 +16,7 @@ export interface CalendarEvent {
   durationHours: number;
   title: string;
   themeColor: 'blue' | 'green' | 'amber' | 'rose';
-  tasks: TaskItem[];
+  tasks: Task[];
 }
 
 export interface ClassColumn {
@@ -52,7 +55,7 @@ export class CalendarComponent implements OnInit {
       durationHours: 2,  
       title: 'Cell Division Review',
       themeColor: 'green',
-      tasks: [{ id: 't1', text: 'Read Chapter 4' }]
+      tasks: []
     }
   ];
 
@@ -70,7 +73,9 @@ export class CalendarComponent implements OnInit {
   resizeStartY = 0;
   initialDuration = 1;
 
-  constructor() {}
+  constructor(
+    private agendaService: AgendaService,
+  ) {}
 
   ngOnInit() {}
 
@@ -111,7 +116,7 @@ export class CalendarComponent implements OnInit {
         durationHours: duration,
         title,
         themeColor: 'blue',
-        tasks: [{ id: Date.now().toString(), text: 'Default task' }]
+        tasks: []
       });
     }
 
@@ -184,14 +189,15 @@ export class CalendarComponent implements OnInit {
     window.addEventListener('mouseup', onMouseUp);
   }
 
-  addTask(evt: CalendarEvent, event: Event) {
+  async addTask(evt: CalendarEvent, event: Event) {
     event.stopPropagation();
-    const taskText = prompt('Enter new task:');
-    if (taskText && taskText.trim()) {
-      evt.tasks.push({
-        id: Date.now().toString(),
-        text: taskText.trim()
-      });
-    }
+    // const taskText = prompt('Enter new task:');
+    // if (taskText && taskText.trim()) {
+    //   evt.tasks.push({
+    //     id: Date.now().toString(),
+    //     text: taskText.trim()
+    //   });
+    // }
+    await this.agendaService.openCreateTaskModal(evt)
   }
 }

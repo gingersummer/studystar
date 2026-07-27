@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { UserService } from '../services/user/user-service';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth/auth';
+import { Alert } from '../services/alert';
 
 
 @Component({
@@ -35,7 +36,8 @@ export class FlashcardsPage implements OnInit {
     private menuCtrl: MenuController,
     private flashCardService: Flashcardsets,
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private alert: Alert
   ) { }
 
 
@@ -133,6 +135,12 @@ export class FlashcardsPage implements OnInit {
     this.router.navigate(['/dashboard'])
     this.menuCtrl.close('flashcards')
   }
+
+  redirectToStudyMethods() {
+    this.router.navigate(['/study-methods'])
+    this.menuCtrl.close('home')
+  }
+  
   addNewSet() {
     this.addingSet = true
   }
@@ -172,5 +180,11 @@ export class FlashcardsPage implements OnInit {
     this.tempCardArray = []
     this.addingSet = false
   }
+
+  async signOut() {
+
+    await this.alert.createAlert("If I were you I'd keep studying ;)", "Did you even try?")
+  }
+
 
 }

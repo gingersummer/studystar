@@ -9,7 +9,19 @@
   <ion-card>
     <ion-list>
       <ion-item>
-        <ion-input label="Task Text: " [(ngModel)]="taskText"></ion-input>
+        <ion-input label="Task Name: " [(ngModel)]="taskName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Task Month Due: " [(ngModel)]="taskMonth"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Task Day Due: " [(ngModel)]="taskDay"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Task Year Due: " [(ngModel)]="taskYear"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Task Priority: " [(ngModel)]="taskPriority"></ion-input>
       </ion-item>
     </ion-list>
   </ion-card>

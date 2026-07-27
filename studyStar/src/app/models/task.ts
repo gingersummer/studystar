@@ -1,5 +1,3 @@
-import da from "@mobiscroll/angular/dist/js/i18n/da"
-
 export class Task {
     isCompleted: boolean = false
     taskToDo: string
