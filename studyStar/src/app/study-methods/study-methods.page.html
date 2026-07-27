@@ -10,7 +10,7 @@
       </div>
 
       <div class="center-nav">
-        <button class="nav-btn active">
+        <button class="nav-btn" (click)="redirectToHome()">
           Home
         </button>
         <button class="nav-btn" (click)="redirectToFlashcards()">
@@ -22,7 +22,7 @@
         <button class="nav-btn" (click)="redirectToDashboard()">
           Dashboard
         </button>
-        <button class="nav-btn" (click)="redirectToStudyMethods()">
+        <button class="nav-btn active" (click)="redirectToStudyMethods()">
           Study Methods
         </button>
       </div>
@@ -42,5 +42,66 @@
     <div id="stars"></div>
     <div id="stars2"></div>
     <div id="stars3"></div>
+
+    <h1 class="studyStar">
+      Explore New Ways To Study!
+    </h1>
+    <ion-grid>
+      <ion-row>
+<ion-col>
+
+<ion-card class="studyType">
+<h1 style="text-align: center;" class="date-title">
+  Leitner Box Method
+</h1>
+
+<h2 class="date-subtitle">
+  Flashcard study system that helps you focus more on the information you struggle with. 
+  You place flashcards into different boxes based on how well you know them. 
+  Cards you know well are reviewed less often, while harder cards are reviewed more frequently until you remember them.
+</h2>
+</ion-card>
+</ion-col>
+<ion-col>
+<ion-card class="studyType">
+  <h1 style="text-align: center;" class="date-title">
+  Active Recall
+</h1>
+
+<h2 class="date-subtitle">
+ You test yourself instead of just rereading notes. 
+ You try to remember information from memory by answering questions, explaining concepts, or using flashcards. 
+ This strengthens your ability to recall information during exams.
+</h2>
+</ion-card>
+</ion-col>
+<ion-col>
+<ion-card class="studyType">
+  <h1 style="text-align: center;" class="date-title">
+  Pomodoro Technique
+</h1>
+
+<h2 class="date-subtitle">
+ Time-management method that breaks studying into short focused sessions. 
+ Typically, you study for 25 minutes and then take a 5-minute break. 
+ After completing several sessions, you take a longer break to rest and recharge.
+</h2>
+</ion-card>
+</ion-col>
+</ion-row>
+<ion-row>
+<ion-card class="studyType">
+  <h1 style="text-align: center;" class="date-title">
+  Feynman Techniques
+</h1>
+
+<h2 class="date-subtitle">
+  Helps you understand difficult topics by explaining them in simple words. 
+  You pretend you are teaching the concept to someone else and identify areas where your explanation is unclear. 
+  This helps you find gaps in your knowledge and improve your understanding.
+</h2>
+</ion-card>
+</ion-row>
+    </ion-grid>
   </ion-content>
 </div>
