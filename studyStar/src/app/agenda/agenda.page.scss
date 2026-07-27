@@ -121,12 +121,14 @@ ion-toolbar.nav-toolbar {
     width: 50em;
     height: 20em;
     margin-top: 0px;
+   --background: #eeddff; 
 }
 
 .upcoming-card {
     width: 50em;
     height: 13em;
     margin-top: 0px;
+    --background: #eeddff;
 }
 
 .add-task {
@@ -233,3 +235,4 @@ $stars-large:  generate-stars(100);
   }
 }
   }}
+ 
