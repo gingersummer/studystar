@@ -74,6 +74,7 @@ export class StudyMethodsPage implements OnInit {
   }
 
 
+
   async signOut() {
 
     await this.alert.createAlert("If I were you I'd keep studying ;)", "Did you even try?")
