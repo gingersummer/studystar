@@ -18,7 +18,7 @@
         <button class="nav-btn" (click)="redirectToAgenda()">
           Agenda
         </button>
-        <button class="nav-btn" (click)="redirectToDashboard()">
+        <button class="nav-btn" (click)="redirectToProfile()">
           Dashboard
         </button>
         <button class="nav-btn" (click)="redirectToStudyMethods()">
@@ -67,11 +67,9 @@
                       <ion-card class="currentSetCard" align="center">
                         <img [src]="arrayOfSets[0].icon">
                       </ion-card>
-
                     </ion-col>
                   </ion-row>
                 </ion-grid>
-
                 <h1 class="date-title">
                   {{arrayOfSets[0].name}}
                 </h1>
