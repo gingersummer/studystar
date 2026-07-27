@@ -3,14 +3,14 @@
     <ion-toolbar class="nav-toolbar">
       <div slot="start" class="brand-container">
         <ion-icon name="star" class="logo-icon"></ion-icon>
-        <span class="brand-title"> StudyStar </span>
+        <span class="brand-title" (click)="redirectToHome()"> StudyStar </span>
       </div>
 
       <div class="center-nav">
         <button class="nav-btn" (click)="redirectToHome()">Home</button>
         <button class="nav-btn" (click)="redirectToFlashcards()">Flashcards</button>
         <button class="nav-btn active" (click)="redirectToAgenda()">Agenda</button>
-        <button class="nav-btn" (click)="redirectToDashboard()">Dashboard</button>
+        <button class="nav-btn" (click)="redirectToProfile()">Dashboard</button>
         <button class="nav-btn" (click)="redirectToStudyMethods()">Study Methods</button>
       </div>
 
@@ -72,7 +72,7 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-button shape="round" class="add-task"> Add Event </ion-button>
+            <ion-button shape="round" class="add-task" (click)="presentCalendarInfo()"> Add Event? </ion-button>
           </ion-col>
           <ion-col>
             <ion-button shape="round" class="add-task" (click)="presentCreateDeadlineModal()"> Add Deadline </ion-button>
