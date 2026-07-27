@@ -128,8 +128,11 @@ export class AgendaPage implements OnInit {
   }
 
   async presentCreateDeadlineModal() {
-    console.log("present create deadine modal. Deadlines are " + this.currentUser?.allDeadlines) // success
     await this.agendaService.openCreateDeadlineModal()
+  }
+
+  presentCalendarInfo() {
+    window.alert('click on the body of the Calendar to add an event!')
   }
 
   async getUserTasks() {

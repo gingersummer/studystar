@@ -47,17 +47,7 @@ export class CalendarComponent implements OnInit {
     { name: 'Chemistry', subtitle: 'Mon 20', color: '#1111' }
   ];
 
-  events: CalendarEvent[] = [
-    {
-      id: '1',
-      className: 'Biology',
-      startHourIndex: 9,
-      durationHours: 2,  
-      title: 'Cell Division Review',
-      themeColor: 'green',
-      tasks: []
-    }
-  ];
+  events: CalendarEvent[] = this.agendaService.currentUser!.allEvents;
 
   
   isCreating = false;
@@ -199,5 +189,6 @@ export class CalendarComponent implements OnInit {
     //   });
     // }
     await this.agendaService.openCreateTaskModal(evt)
+    this.agendaService.updateEvents(evt)
   }
 }
