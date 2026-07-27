@@ -125,6 +125,13 @@ ion-toolbar.nav-toolbar {
    width:auto;
    color: White;
 }
+.full-screen-grid {
+  height: 100vh; /* Fills 100% of the visible viewport height */
+  width: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
 
 .smallcard {
   width: 90%;          /* Responsive width on small screens */
