@@ -63,7 +63,7 @@ export class StudyCardsPage implements OnInit {
 
     console.log(this.flashcardSet.name)
     if (!this.flashcardSet || this.flashcardSet.name == "xxxDONOTLOADxxx") {
-      this.redirectToFlashcards()
+      this.redirectToFlashcards(true)
       console.log("tryingtoRedireittoflashcards")
     }
     this.cardToDisplay.frontSide = true
@@ -88,7 +88,11 @@ export class StudyCardsPage implements OnInit {
     this.menuCtrl.close('collection')
   }
 
-  redirectToFlashcards() {
+  redirectToFlashcards(reload: boolean) {
+    if(reload)
+    {
+      this.setService.reloadPage = true
+    }
     this.router.navigate(['/flashcards'])
     this.menuCtrl.close('collection')
   }
