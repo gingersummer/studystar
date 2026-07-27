@@ -26,19 +26,33 @@
   text-decoration: none;
 }
 
-.profile-page-items {
-  position: relative;
-  z-index: 2;
-  padding: 1em;
-  font-size: 1.5rem;
+.date-subtitle {
+  font-size: 16px;
   font-weight: 600;
-  color: #003d6b;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #c084fc; 
+  margin-bottom: 8px;
 }
 
-ion-content {
-   --background: radial-gradient(circle at top, #141033 0%, #08061a 100%) !important;
+.date-title {
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  color: #ffffff; 
+  margin-top: 0;
+  text-align: center;
 }
 
+.suggestions-title {
+  font-size: 26px;
+  text-align: center;
+}
+
+ion-content.homepage-content {
+  position: relative;
+  --background: radial-gradient(circle at top, #141033 0%, #08061a 100%) !important;
+}
 
 ion-toolbar.nav-toolbar {
   --background: radial-gradient(circle at top, #141033 0%, #08061a 100%) !important;
@@ -71,10 +85,7 @@ ion-toolbar.nav-toolbar {
     color: #c3d3df; 
   }
 }
-.userFlashcards {
-  height:30em;
-  width: 40em;
-}
+
 .center-nav {
   position: absolute;
   left: 50%;
@@ -102,7 +113,7 @@ ion-toolbar.nav-toolbar {
   }
 
   &.active {
-   background: #a855f7;
+    background: #a855f7;
   }
 }
 
@@ -112,33 +123,53 @@ ion-toolbar.nav-toolbar {
   gap: 16px;
 
   .profile-btn {
-     --background: #a855f7;
+   --background: #a855f7;
    height:2em;
    width:8em;
    color: White;
   }
 }
 
-.addNewStudySet {
-  --background: #a855f7;
-   height:auto;
-   width:auto;
-   color: White;
+.studyStar{
+   background: linear-gradient(45deg, #bb76eb, #8546c5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 70px;
+    font-weight: 800;
+    font-family: Arial, sans-serif;
+    text-align: center;
 }
 
-.smallcard {
-  width: 90%;          /* Responsive width on small screens */
-  max-width: 400px;
-  margin-top: 100px;    /* Pushes it down from the top */
-  margin-left: 40px;    /* Spaces it away from the left edge */
-  margin-right: auto;   /* Prevents it from centering */    /* Prevents the card from expanding too much */
+
+.studyType{
+  border: none;
+--background: #9e51e650;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  height:28em;
+  width: 33em;
+ 
+  &:hover {
+    color: #dbcde1;
+    box-shadow: 0 0 5px #1a0451, 0 0 10px #48025f, 0 0 20px #4508a7;
+  animation: glow-box-animation 1s definite;
+  }
+
+  &.active {
+    background: #a855f7;
+  }
 }
 
-.searchBar {
-  max-width: unset;
-  width: 30em;
+.missionStatement{
+  color: rgb(194, 142, 215);
+  text-align: center;
+  font-family:'Courier New', Courier, monospace;
 }
 
+// SCSS Star Generator Function
 @function generate-stars($n) {
   $value: '#{math.random(2000)}px #{math.random(2000)}px #FFF';
   @for $i from 2 through $n {
