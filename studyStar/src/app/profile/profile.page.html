@@ -43,6 +43,7 @@
     <div id="stars2"></div>
     <div id="stars3"></div>
     <div class="profile-page-items">
+      @if(currentUser) {
       <ion-grid>
         <ion-row>
           <ion-col></ion-col>
@@ -50,6 +51,9 @@
             <ion-avatar class="profile-picture">
               <img src="https://cdn.pfps.gg/pfps/8250-default-18.png" />
             </ion-avatar>
+            <h1>
+                {{currentUser.username}}
+              </h1>
           </ion-col>
           <ion-col size="2">
             <ion-row>
@@ -72,14 +76,10 @@
       <p class="date-title" style="text-align: center;">
         Welcome back. Let's check out some of your stats!
       </p>
-      @if(currentUser) {
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-card shape="round" class="profile-card">
-              <h1>
-                Username: {{currentUser.username}}
-              </h1>
               <h1>
                 Email: {{currentUser.email}}
               </h1>

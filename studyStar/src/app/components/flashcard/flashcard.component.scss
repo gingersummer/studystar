@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: column;
   left: 50%;
+  --backround: #ce98e3 !important;
+
 }
 
 .ratio-3x4 ion-card-content {
@@ -10,12 +12,29 @@
   overflow: auto;
 }
 
-.term-style{
-  position: relative;
-  margin-top: 28%;
+.flashcard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Centers vertically */
+  align-items: center;
+  /* Centers horizontally */
+  text-align: center;
+  /* Ensures text lines align in the middle */
+  height: 100%;
+  /* Fills the 3x4 card height */
 }
 
-.confidence-level-style{
+.term-style {
+  margin: 0;
+  font-size: 1.5rem;
+  /* Shrink this if your terms are very long words */
+  word-wrap: break-word;
+  /* Forces long definitions to wrap to a new line */
+  overflow-wrap: break-word;
+}
+
+.confidence-level-style {
   position: relative;
   top: 47%;
 }
