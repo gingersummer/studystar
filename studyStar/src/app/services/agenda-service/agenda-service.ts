@@ -18,7 +18,8 @@ export class AgendaService {
   currentUser?: User
 
   private _tasks: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>([]);
-  private _deadlines: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([])
+  private _deadlines: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
+  private _events: BehaviorSubject<CalendarEvent[]> = new BehaviorSubject<CalendarEvent[]>([])
 
   constructor(
     private modalController: ModalController,
@@ -30,6 +31,7 @@ export class AgendaService {
         console.log('user found', this.currentUser)
         this._tasks.next(this.currentUser.allTasks)
         this._deadlines.next(this.currentUser.allDeadlines)
+        this._events.next(this.currentUser.allEvents)
       }
     })
   }
@@ -39,6 +41,9 @@ export class AgendaService {
   }
   get currentDeadlines(): Observable<string[]> {
     return this._deadlines.asObservable()
+  }
+  get currentEvents(): Observable<CalendarEvent[]> {
+    return this._events.asObservable()
   }
 
   /**
@@ -107,6 +112,22 @@ export class AgendaService {
     try {
       this.userService.updateUser(this.currentUser)
       console.log("Current user's deadlines: " + this.currentUser.allDeadlines)
+    } catch (error: any) {
+      console.error(error.message)
+    }
+  }
+  async updateEvents(newCalenderEvent: CalendarEvent) {
+    if (!this.currentUser) {
+      throw new Error('No user found!')
+    }
+    // add my new task to my current user object.
+    console.log("Current user: " + this.currentUser.username + ", " + this.currentUser.allEvents + ", " + newCalenderEvent)
+    this.currentUser.allEvents.push(newCalenderEvent)
+    console.log("ROUND 2: Current user: " + this.currentUser.username + ", " + this.currentUser.allEvents + ", " + newCalenderEvent)
+    // update firebase user
+    try {
+      this.userService.updateUser(this.currentUser)
+      console.log("Current user's events: " + this.currentUser.allEvents)
     } catch (error: any) {
       console.error(error.message)
     }

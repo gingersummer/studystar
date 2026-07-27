@@ -40,7 +40,7 @@ export class UsercreationComponent implements OnInit {
   async register() {
     try {
       let result = await this.authService.register(this.regEmailIn, this.regPasswordIn, this.regPasswordConfIn)
-      let userToAdd: User = new User(this.regUsernameIn, this.regEmailIn, 0, "no sets completed", [], [], [], this.authService.getCurrentUserUid())
+      let userToAdd: User = new User(this.regUsernameIn, this.regEmailIn, 0, "no sets completed", [], [], [], [], this.authService.getCurrentUserUid())
       this.userService.saveUser(userToAdd)
 
 
