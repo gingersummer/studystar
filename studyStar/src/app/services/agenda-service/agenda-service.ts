@@ -6,6 +6,7 @@ import { Task } from 'src/app/models/task';
 import { User } from 'src/app/models/user';
 import { UserService } from '../user/user-service';
 import { DeadlineCreationComponent } from 'src/app/components/deadline-creation/deadline-creation.component';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,9 @@ export class AgendaService {
 
   currentUser?: User
 
+  private _tasks: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>([]);
+  private _deadlines: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([])
+
   constructor(
     private modalController: ModalController,
     private userService: UserService,
@@ -23,8 +27,18 @@ export class AgendaService {
     this.userService.users.subscribe((users: User[]) => {
       if (users?.length > 0) {
         this.currentUser = users[0]
+        console.log('user found', this.currentUser)
+        this._tasks.next(this.currentUser.allTasks)
+        this._deadlines.next(this.currentUser.allDeadlines)
       }
     })
+  }
+
+  get currentTasks(): Observable<Task[]> {
+    return this._tasks.asObservable()
+  }
+  get currentDeadlines(): Observable<string[]> {
+    return this._deadlines.asObservable()
   }
 
   /**
@@ -58,6 +72,7 @@ export class AgendaService {
     this.currentUser.allTasks.push(newTask)
     // update firebase user
     try {
+      console.log('current user', this.currentUser)
       this.userService.updateUser(this.currentUser)
     } catch (error: any) {
       console.error(error.message)

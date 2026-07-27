@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs';
 })
 export class AgendaPage implements OnInit {
 
-  taskList: Task[] = [new Task("make bed", 7, 16, 2026, 5), new Task("scroll", 7, 16, 2026, 5)]
+  taskList: Task[] = [ /*new Task("make bed", 7, 16, 2026, 5), new Task("scroll", 7, 16, 2026, 5)*/ ]
   deadlineList!: string[]
   completedTasks: Task[] = []
   isMakingTask = false
@@ -32,14 +32,13 @@ export class AgendaPage implements OnInit {
 
   currentUser?: User
 
-  userSubscription?: Subscription;
+  taskSub?: Subscription
+  deadlineSub?: Subscription
 
   constructor(
     private router: Router,
     private menuCtrl: MenuController,
     private agendaService: AgendaService,
-    private userService: UserService,
-    private modalController: ModalController,
     private alert: Alert,
   ){}
 
@@ -79,6 +78,7 @@ export class AgendaPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    console.log('agenda page did enter')
     this.getUserTasks()
     this.getUserDeadlines()
   }
@@ -87,9 +87,8 @@ export class AgendaPage implements OnInit {
     this.taskList = []
     this.deadlineList = []
 
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe()
-    }
+    this.taskSub?.unsubscribe()
+    this.deadlineSub?.unsubscribe()
 
   }
   checkOffTask(idx: number) {
@@ -129,47 +128,57 @@ export class AgendaPage implements OnInit {
   }
 
   async getUserTasks() {
-    this.userSubscription = this.userService.users.subscribe((data: User[]) => {
 
-      this.currentUser = data[data.length - 1]
-
-      if (this.currentUser) {
-        if (this.currentUser.allTasks == undefined) {
-          this.currentUser.allTasks = []
-        }
-        // for (let i = 0; i < this.currentUser.allTasks.length; i++) {
-        //   console.log(this.currentUser.allTasks[i])
-        //   this.taskList.push(this.currentUser.allTasks[i])
-        // }
-        console.log('User tasks from Firebase', this.currentUser.allTasks)
-        this.taskList = this.currentUser.allTasks
-      }
-      else {
-        // throw Error("what is going on gang")
-      }
+    this.agendaService.currentTasks.subscribe((tasks: Task[]) => {
+      this.taskList = tasks
     })
+
+    // this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+
+    //   this.currentUser = data[data.length - 1]
+
+    //   if (this.currentUser) {
+    //     if (this.currentUser.allTasks == undefined) {
+    //       this.currentUser.allTasks = []
+    //     }
+    //     // for (let i = 0; i < this.currentUser.allTasks.length; i++) {
+    //     //   console.log(this.currentUser.allTasks[i])
+    //     //   this.taskList.push(this.currentUser.allTasks[i])
+    //     // }
+    //     console.log('User tasks from Firebase', this.currentUser.allTasks)
+    //     this.taskList = this.currentUser.allTasks
+    //   }
+    //   else {
+    //     // throw Error("what is going on gang")
+    //   }
+    // })
 
   }
   async getUserDeadlines() {
-    this.userSubscription = this.userService.users.subscribe((data: User[]) => {
 
-      this.currentUser = data[data.length - 1]
-
-      if (this.currentUser) {
-        if (this.currentUser.allDeadlines == undefined) {
-          this.currentUser.allDeadlines = []
-        }
-        // for (let i = 0; i < this.currentUser.allTasks.length; i++) {
-        //   console.log(this.currentUser.allTasks[i])
-        //   this.taskList.push(this.currentUser.allTasks[i])
-        // }
-        console.log('User deadlines from Firebase', this.currentUser.allDeadlines)
-        this.deadlineList = this.currentUser.allDeadlines
-      }
-      else {
-        // throw Error("what is going on gang")
-      }
+    this.agendaService.currentDeadlines.subscribe((deadlines: string[]) => {
+      this.deadlineList = deadlines
     })
+
+    // this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+
+    //   this.currentUser = data[data.length - 1]
+
+    //   if (this.currentUser) {
+    //     if (this.currentUser.allDeadlines == undefined) {
+    //       this.currentUser.allDeadlines = []
+    //     }
+    //     // for (let i = 0; i < this.currentUser.allTasks.length; i++) {
+    //     //   console.log(this.currentUser.allTasks[i])
+    //     //   this.taskList.push(this.currentUser.allTasks[i])
+    //     // }
+    //     console.log('User deadlines from Firebase', this.currentUser.allDeadlines)
+    //     this.deadlineList = this.currentUser.allDeadlines
+    //   }
+    //   else {
+    //     // throw Error("what is going on gang")
+    //   }
+    // })
 
   }
 
