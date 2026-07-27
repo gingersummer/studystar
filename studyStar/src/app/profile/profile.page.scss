@@ -1,6 +1,7 @@
 @use "sass:math";
 @use "sass:string";
 
+
 .profile-page-items {
   margin-bottom: 30em;
   font-size: 1.5rem;
@@ -8,22 +9,26 @@
   color: var(--ion-color-dark);
 }
 
-.profile-picture {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  overflow: hidden;
-
-}
 .profile-page-items {
   margin-bottom: 30em;
   font-size: 1.5rem;
   font-weight: 600;
   color: #003d6b;
   text-align: center;
-  /* Add your font here */
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
 }
+
+ .profile-btn {
+   --background: #a855f7;
+   height:2em;
+   width:8em;
+   color: White;
+  }
+
+  .profile-picture {
+    height: 10em;
+    width: 10em;
+  }
 
 .profile-card {
   padding: 1.5rem;
@@ -42,6 +47,37 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+.profile-page-items {
+  padding: 1em;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #003d6b;
+}
+
+.tasks-card {
+  padding: 1em;
+  width: 40em;
+  height: 23em;
+  margin-top: 0px;
+  color: #003d6b;
 }
 
 #container strong {
@@ -108,11 +144,13 @@
 }
 
 .date-title {
-  font-size: 42px;
-  font-weight: 800;
+  font-size: 32px;
+  font-weight: 500;
   letter-spacing: -1px;
-  color: #ffffff; 
+  color: #d0aaf7; 
+  font-family: 'Andale Mono', monospace; 
   margin-top: 0;
+  text-align: center;
 }
 
 .suggestions-title {
@@ -138,10 +176,8 @@ ion-content.homepage-content {
   --background: radial-gradient(circle at top, #141033 0%, #08061a 100%) !important;
 }
 
-
 ion-toolbar.nav-toolbar {
-  --background: linear-gradient(90deg, rgb(225, 199, 275) 0%, rgba(225, 199, 275, 1.0) 100%) !important;
-  --color: #003d6b;
+  --background: radial-gradient(circle at top, #141033 0%, #08061a 100%) !important;
   --padding-start: 24px;
   --padding-end: 24px;
   display: flex;
@@ -168,15 +204,10 @@ ion-toolbar.nav-toolbar {
     font-size: 22px;
     font-weight: 700;
     letter-spacing: -0.5px;
-    color: #003d6b; 
+    color: #c3d3df; 
   }
 }
 
-.profile-card {
-height: auto;
-width: auto;
-border-radius: 50px;
-}
 .center-nav {
   position: absolute;
   left: 50%;
@@ -191,7 +222,7 @@ border-radius: 50px;
 .nav-btn {
   background: transparent;
   border: none;
-  color: #475569;
+  color: #e4e8ed;
   font-size: 15px;
   font-weight: 600;
   padding: 10px 20px;
@@ -204,7 +235,7 @@ border-radius: 50px;
   }
 
   &.active {
-    
+    background: #a855f7;
   }
 }
 
@@ -213,18 +244,101 @@ border-radius: 50px;
   align-items: center;
   gap: 16px;
 
-  .signOut-btn {
-    --background: #a855f7;
+  .profile-btn {
+   --background: #a855f7;
    height:2em;
    width:8em;
+   color: White;
   }
 }
 
- .edit-profile-btn {
-    --background: #a855f7;
-   height:2em;
-   width:12em;
+.studyStar{
+   background: linear-gradient(45deg, #bb76eb, #8546c5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 100px;
+    font-weight: 800;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.setName {
+  text-align: center;
+  font-size: 35px;
+  font-weight: 200;
+  letter-spacing: -1px;
+  color: #ffffff; 
+  margin-top: 0;
+}
+
+
+.flashcardCard{
+  border: none;
+--background: #36175275;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  height:17em;
+  width: 22em;
+ 
+  &:hover {
+    color: #dbcde1;
+    box-shadow: 0 0 5px #1a0451, 0 0 10px #48025f, 0 0 20px #4508a7;
+  animation: glow-box-animation 1s definite;
   }
+
+  &.active {
+    background: #a855f7;
+  }
+}
+
+.flame {
+  height: 9em;
+  width: 9em;
+}
+
+.arrow{
+  color:white;
+}
+
+.currentSetCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   
+  justify-content: center; 
+  line-height: 0.5;
+  width: 100%;        
+  margin: 0 auto;        
+  img {
+    width: 60%;          
+    max-width: 200px;     
+    height: auto;
+    object-fit: contain;  
+    display: block;
+    margin: 0 auto;        
+  }
+}
+
+.card-title{
+ font-size: 37px;
+    font-weight: 700;
+     color: #f6e4e4;
+  text-shadow:
+      0 0 3px rgba(255, 255, 255, 0.8),
+      0 0 6px rgba(255, 0, 230, 0.7),
+      0 0 12px rgba(191, 0, 255, 0.5);
+    text-align: center;
+}
+
+.missionStatement{
+  color: rgb(194, 142, 215);
+  text-align: center;
+  font-family:'Courier New', Courier, monospace;
+}
 
 @function generate-stars($n) {
   $value: '#{math.random(2000)}px #{math.random(2000)}px #FFF';
@@ -283,5 +397,3 @@ $stars-large:  generate-stars(100);
   30% { opacity: 0.4; }
   70% { opacity: 0.1; }
 }
-
-
