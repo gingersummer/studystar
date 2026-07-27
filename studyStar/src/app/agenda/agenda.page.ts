@@ -65,6 +65,11 @@ export class AgendaPage implements OnInit {
     this.menuCtrl.close('agenda')
   }
 
+  redirectToStudyMethods() {
+    this.router.navigate(['/study-methods'])
+    this.menuCtrl.close('home')
+  }
+
   ngOnInit() {
   }
 

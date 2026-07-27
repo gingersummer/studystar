@@ -15,22 +15,22 @@ import { FlashcardcollectionComponent } from '../components/flashcardcollection/
 })
 export class DashboardPage implements OnInit {
 
-  @Input({required: true}) flashcardToDisplay!: Set
-  
+  @Input({ required: true }) flashcardToDisplay!: Set
+
   today = new Date();
   set: Set = new Set('', false, '', [], '');
   arrayOfSets: Set[] = []
   streakCount: number = 1;
 
   constructor(
-    private router: Router, 
-    private menuCtrl: MenuController, 
-    private flashCardService: Flashcardsets, 
+    private router: Router,
+    private menuCtrl: MenuController,
+    private flashCardService: Flashcardsets,
     private streakService: StreakService,
     private alert: Alert
   ) {
-    this.arrayOfSets=this.flashCardService.arrayOfSets
-   }
+    this.arrayOfSets = this.flashCardService.arrayOfSets
+  }
 
   async ngOnInit() {
     // Update streak when page loads
@@ -67,6 +67,11 @@ export class DashboardPage implements OnInit {
     this.menuCtrl.close('dashboard')
 
   }
+  
+  redirectToStudyMethods() {
+    this.router.navigate(['/study-methods'])
+    this.menuCtrl.close('home')
+  }
 
   redirectToStudyCards(setToOpen: Set, setIndex: number) {
     this.flashCardService.selectSet(setToOpen, setIndex)
@@ -77,7 +82,7 @@ export class DashboardPage implements OnInit {
 
     await this.alert.createAlert("If I were you I'd keep studying ;)", "Did you even try?")
   }
-  
+
 }
 
 

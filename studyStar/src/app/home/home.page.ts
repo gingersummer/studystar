@@ -96,6 +96,11 @@ export class HomePage {
     this.router.navigate(['/study-cards'])
   }
 
+  redirectToStudyMethods() {
+    this.router.navigate(['/study-methods'])
+    this.menuCtrl.close('home')
+  }
+
   async signOut() {
 
     await this.alert.createAlert("If I were you I'd keep studying ;)", "Did you even try?")
