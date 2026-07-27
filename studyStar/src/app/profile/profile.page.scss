@@ -31,7 +31,7 @@
   }
 
 .profile-card {
-  padding: 1.5rem;
+  padding: 8px;
   height:10em;
   width: 50em;
   margin: 0 auto;
@@ -41,8 +41,8 @@
 }
 
 .icon-formatting {
-  height: 10em;
-  width: 10em;
+  height: 8em;
+  width: 8em;
 }
 
 #container {
@@ -401,4 +401,8 @@ $stars-large:  generate-stars(100);
   0%, 100% { opacity: 1; }
   30% { opacity: 0.4; }
   70% { opacity: 0.1; }
+}
+
+.streak-alignment{
+  text-align: end;
 }
