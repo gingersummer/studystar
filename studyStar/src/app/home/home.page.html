@@ -30,8 +30,8 @@
           Log Out
         </ion-button>
         <ion-avatar class="profile-picture">
-        <img src="https://cdn.pfps.gg/pfps/8250-default-18.png"/>
-      </ion-avatar>
+          <img src="https://cdn.pfps.gg/pfps/8250-default-18.png" />
+        </ion-avatar>
       </ion-buttons>
 
     </ion-toolbar>
@@ -51,29 +51,45 @@
         <p class="missionStatement">
           Welcome back {{currentUser.username}}!
         </p>
-      }
+        }
         <ion-grid>
 
           <ion-row>
 
             <ion-col>
-              <ion-card class="flashcardCard" (click)="redirectToFlashcards()">
-                <h1 class="card-title" style="text-align: center;">
-                  Continue Studying
-                </h1>
+              <ion-card class="flashcardCard">
                 <ion-grid>
                   <ion-row>
+                    
                     <ion-col>
-                      <ion-card class="currentSetCard" align="center">
-                        <img [src]="arrayOfSets[0].icon">
-                      </ion-card>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-                <h1 class="date-title">
-                  {{arrayOfSets[0].name}}
+                <h1 class="card-title">
+                  Continue Studying
                 </h1>
-
+                </ion-col>
+                
+                </ion-row>
+                <ion-row>
+                  <ion-col></ion-col>
+                  <ion-col>
+                <ion-button shape="round" (click)="redirectToFlashcards()" class="goTo">
+                  Go to Flashcards
+                </ion-button>
+                </ion-col>
+                <ion-col></ion-col>
+                </ion-row>
+                <h1 style="text-align: center;" class="card-title">
+                  OR
+                </h1>
+                <ion-row>
+                  <ion-col></ion-col>
+                  <ion-col>
+                <ion-button shape="round" (click)="redirectToStudyMethods()" class="goTo">
+                  Discover New Ways To Study
+                </ion-button>
+                </ion-col>
+                <ion-col></ion-col>
+                </ion-row>
+                </ion-grid>
               </ion-card>
             </ion-col>
 
@@ -91,7 +107,7 @@
                     </ion-col>
                     <ion-col></ion-col>
                   </ion-row>
-              </ion-grid>
+                </ion-grid>
                 <h1 class=date-title>
                   {{streakCount}} Day Streak!
                 </h1>
@@ -100,7 +116,7 @@
             <ion-col>
               <ion-card class="flashcardCard">
                 <h1 class="card-title" style="text-align: center;">
-                  Today's Tasks
+                  Your Flashcard Sets
                 </h1>
                 <p class="date-subtitle" style="text-align: center;">
                   {{ today | date:'MMMM d, y' }}
