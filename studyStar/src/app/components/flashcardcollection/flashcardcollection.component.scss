@@ -1,0 +1,15 @@
+.fixed-rect-card {
+//   width: 200px !important;
+//   height: 150px !important;
+//   max-width: none !important;
+//   display: flex;
+//   flex-direction: row;
+  --background: #a855f7;
+   color: White;
+
+  padding: 16px;
+  border-radius: 8px;
+  height: 100%; /* Keeps heights equal safely */
+  box-sizing: border-box; /* Prevents padding from breaking layout */
+
+}

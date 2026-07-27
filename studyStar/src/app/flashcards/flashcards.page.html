@@ -42,7 +42,7 @@
       <ion-toolbar class="nav-toolbar">
         <div slot="start" class="brand-container">
           <ion-icon name="star" class="logo-icon"></ion-icon>
-          <span class="brand-title">
+          <span class="brand-title" (click)="redirectToHome()">
             StudyStar
           </span>
         </div>
@@ -87,10 +87,10 @@
     <ion-button shape="round" class="addNewStudySet" (click)="addNewSet()"> + Add New Study Set </ion-button>
 
 
-    <ion-grid>
+    <ion-grid class="full-screen-grid">
       <ion-row>
         @for(item of arrayOfSets; track $index) {
-        <ion-col>
+        <ion-col   size-lg="6">
           <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item, $index)">
 
           </app-flashcardcollection>

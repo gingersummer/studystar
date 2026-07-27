@@ -1,7 +1,4 @@
-<ion-card>
-  <ion-card-title>{{flashcardToDisplay.name}}</ion-card-title>
-  <ion-card-subtitle>Completed?: {{flashcardToDisplay.progress}}</ion-card-subtitle>
+<ion-card class="fixed-rect-card">
+  <ion-card-title color="White">{{flashcardToDisplay.name}}</ion-card-title>
   
-  <ion-img [src]="flashcardToDisplay.icon"></ion-img>
-  <ion-progress-bar type="determinate" color="primary"></ion-progress-bar>
 </ion-card>
