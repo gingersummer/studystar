@@ -21,6 +21,7 @@ export class StudyCardsPage implements OnInit {
 
   flashcardSet: Set = new Set('', false, '', [new FlashCard('loading', "loading")], '')
   indexOfCards: number = 0
+  yikes: boolean = false
   indexOfEditedCard: number = 0
   cardToDisplay: FlashCard = this.flashcardSet.setOfCards[0]
   progressPercent: number = 0;
@@ -38,6 +39,15 @@ export class StudyCardsPage implements OnInit {
 
   ionViewDidEnter() {
     console.log(this.flashcardSet.name)
+    if (this.flashcardSet.isNew) {
+      console.log("new set")
+      this.yikes = true
+      this.editingSet = this.flashcardSet.isNew
+      this.flashcardSet.isNew = false
+      this.currentUser!.allSets[this.setService.indexOfSet] = this.flashcardSet
+      this.userService.updateUser(this.currentUser!)
+    }
+
 
   }
   ionViewWillLeave() {
@@ -89,8 +99,7 @@ export class StudyCardsPage implements OnInit {
   }
 
   redirectToFlashcards(reload: boolean) {
-    if(reload)
-    {
+    if (reload || this.yikes) {
       this.setService.reloadPage = true
     }
     this.router.navigate(['/flashcards'])
