@@ -19,7 +19,7 @@ import { UserService } from '../services/user/user-service';
 })
 export class StudyCardsPage implements OnInit {
 
-  flashcardSet: Set = new Set('', false, '', [], '')
+  flashcardSet: Set = new Set('', false, '', [new FlashCard('loading', "loading")], '')
   indexOfCards: number = 0
   indexOfEditedCard: number = 0
   cardToDisplay: FlashCard = this.flashcardSet.setOfCards[0]
@@ -37,7 +37,8 @@ export class StudyCardsPage implements OnInit {
     private authService: AuthService) { }
 
   ionViewDidEnter() {
-    this.hopeTSWorks()
+    console.log(this.flashcardSet.name)
+
   }
   ionViewWillLeave() {
 
@@ -56,9 +57,17 @@ export class StudyCardsPage implements OnInit {
     // }
 
     this.hopeTSWorks()
+
     this.flashcardSet = this.setService.selectedSet
     this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
+
+    console.log(this.flashcardSet.name)
+    if (!this.flashcardSet || this.flashcardSet.name == "xxxDONOTLOADxxx") {
+      this.redirectToFlashcards(true)
+      console.log("tryingtoRedireittoflashcards")
+    }
     this.cardToDisplay.frontSide = true
+
 
   }
 
@@ -79,7 +88,11 @@ export class StudyCardsPage implements OnInit {
     this.menuCtrl.close('collection')
   }
 
-  redirectToFlashcards() {
+  redirectToFlashcards(reload: boolean) {
+    if(reload)
+    {
+      this.setService.reloadPage = true
+    }
     this.router.navigate(['/flashcards'])
     this.menuCtrl.close('collection')
   }
@@ -159,8 +172,8 @@ export class StudyCardsPage implements OnInit {
 
   }
 
-  clearAddingNewCard(){
-      this.termCreator = ''
+  clearAddingNewCard() {
+    this.termCreator = ''
     this.definitionCreator = ''
     this.addingCard = false
   }

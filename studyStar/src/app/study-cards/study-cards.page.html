@@ -7,7 +7,7 @@
         {{flashcardSet.name}}
       </ion-title>
 
-      <ion-item [button]="true" (click)="redirectToFlashcards()">
+      <ion-item [button]="true" (click)="redirectToFlashcards(false)">
 
         <ion-icon name="close-circle-outline" color="danger">
 
@@ -27,11 +27,7 @@
   <app-flashcard class="flashcard-actual" [flashcardIn]="cardToDisplay">
 
   </app-flashcard>
-    @if(!cardToDisplay.frontSide){
-  <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
-
-  </app-confidence>
-  }
+    
   <ion-button class="prev-button-style" (click)="previousCard()">
     Previous Card
   </ion-button>
@@ -44,6 +40,11 @@
   <p class="progress-p-style">
     Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
   </p>
+  @if(!cardToDisplay.frontSide){
+  <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
+
+  </app-confidence>
+  }
  
 </ion-content>
 }

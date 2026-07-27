@@ -8,6 +8,9 @@ import { AgendaService } from '../services/agenda-service/agenda-service';
 import { Alert } from '../services/alert';
 
 import { Task } from '../models/task';
+import { UserService } from '../services/user/user-service';
+import { User } from '../models/user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-agenda',
@@ -17,7 +20,8 @@ import { Task } from '../models/task';
 })
 export class AgendaPage implements OnInit {
 
-  taskList: Task[] = [new Task("make bed", 7, 16, 2026, 5), new Task("scroll", 7, 16, 2026, 5)]
+  taskList: Task[] = [ /*new Task("make bed", 7, 16, 2026, 5), new Task("scroll", 7, 16, 2026, 5)*/ ]
+  deadlineList!: string[]
   completedTasks: Task[] = []
   isMakingTask = false
   toDoCreator: string = ''
@@ -26,12 +30,17 @@ export class AgendaPage implements OnInit {
   yearCreator: number = 0
   priorityCreator: number = 0
 
+  currentUser?: User
+
+  taskSub?: Subscription
+  deadlineSub?: Subscription
+
   constructor(
-    private router: Router, 
+    private router: Router,
     private menuCtrl: MenuController,
-    private modalController: ModalController,
+    private agendaService: AgendaService,
     private alert: Alert,
-  ) { }
+  ){}
 
   openMenu() {
     this.menuCtrl.open('agenda')
@@ -65,9 +74,28 @@ export class AgendaPage implements OnInit {
     this.menuCtrl.close('agenda')
   }
 
+  redirectToStudyMethods() {
+    this.router.navigate(['/study-methods'])
+    this.menuCtrl.close('home')
+  }
+
   ngOnInit() {
   }
 
+  ionViewDidEnter() {
+    console.log('agenda page did enter')
+    this.getUserTasks()
+    this.getUserDeadlines()
+  }
+
+  ionViewWillLeave() {
+    this.taskList = []
+    this.deadlineList = []
+
+    this.taskSub?.unsubscribe()
+    this.deadlineSub?.unsubscribe()
+
+  }
   checkOffTask(idx: number) {
     this.taskList[idx].isCompleted = true
     let tempTask = this.taskList[idx]
@@ -79,16 +107,14 @@ export class AgendaPage implements OnInit {
     this.isMakingTask = true
   }
 
-  createTask()
-  {
+  createTask() {
     let newTask: Task = new Task(this.toDoCreator, this.monthCreator, this.dayCreator, this.yearCreator, this.priorityCreator)
     this.resetTasks()
     this.taskList.push(newTask)
     this.isMakingTask = false
   }
 
-  resetTasks()
-  {
+  resetTasks() {
     this.toDoCreator = ''
     this.monthCreator = 0
     this.dayCreator = 0
@@ -98,10 +124,67 @@ export class AgendaPage implements OnInit {
   }
 
   async presentCreateTaskModal() {
-    let modal = await this.modalController.create({
-      component: TaskmodalComponent
+    await this.agendaService.openCreateTaskModal()
+  }
+
+  async presentCreateDeadlineModal() {
+    console.log("present create deadine modal. Deadlines are " + this.currentUser?.allDeadlines) // success
+    await this.agendaService.openCreateDeadlineModal()
+  }
+
+  async getUserTasks() {
+
+    this.agendaService.currentTasks.subscribe((tasks: Task[]) => {
+      this.taskList = tasks
     })
-    await modal.present()
+
+    // this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+
+    //   this.currentUser = data[data.length - 1]
+
+    //   if (this.currentUser) {
+    //     if (this.currentUser.allTasks == undefined) {
+    //       this.currentUser.allTasks = []
+    //     }
+    //     // for (let i = 0; i < this.currentUser.allTasks.length; i++) {
+    //     //   console.log(this.currentUser.allTasks[i])
+    //     //   this.taskList.push(this.currentUser.allTasks[i])
+    //     // }
+    //     console.log('User tasks from Firebase', this.currentUser.allTasks)
+    //     this.taskList = this.currentUser.allTasks
+    //   }
+    //   else {
+    //     // throw Error("what is going on gang")
+    //   }
+    // })
+
+  }
+  async getUserDeadlines() {
+
+    this.agendaService.currentDeadlines.subscribe((deadlines: string[]) => {
+      this.deadlineList = deadlines
+    })
+
+    // this.userSubscription = this.userService.users.subscribe((data: User[]) => {
+
+    //   this.currentUser = data[data.length - 1]
+
+    //   if (this.currentUser) {
+    //     if (this.currentUser.allDeadlines == undefined) {
+    //       this.currentUser.allDeadlines = []
+    //     }
+    //     // for (let i = 0; i < this.currentUser.allTasks.length; i++) {
+    //     //   console.log(this.currentUser.allTasks[i])
+    //     //   this.taskList.push(this.currentUser.allTasks[i])
+    //     // }
+    //     console.log('User deadlines from Firebase', this.currentUser.allDeadlines)
+    //     this.deadlineList = this.currentUser.allDeadlines
+    //   }
+    //   else {
+    //     // throw Error("what is going on gang")
+    //   }
+    // })
+
   }
 
   async signOut() {

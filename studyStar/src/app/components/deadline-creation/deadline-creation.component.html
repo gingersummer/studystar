@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Task</ion-title>
+    <ion-button slot="end" (click)="dismissModal()">X</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-list>
+      <ion-item>
+        <ion-input label="Deadline Name and date: " [(ngModel)]="deadlineName"></ion-input>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button slot="start" (click)="addDeadline()">Add Deadline</ion-button>
+  </ion-toolbar>
+</ion-footer>

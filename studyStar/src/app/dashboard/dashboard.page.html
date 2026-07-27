@@ -21,6 +21,9 @@
         <button class="nav-btn active">
           Dashboard
         </button>
+        <button class="nav-btn" (click)="redirectToStudyMethods()">
+          Study Methods
+        </button>
       </div>
 
       <ion-buttons slot="end" class="right-actions">
@@ -49,105 +52,103 @@
       </div>
     </div>
 
-   <div class="dashboard-first-card-row">
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-card class="dashboard-first-cards">
-          <ion-grid class="ion-padding">
-            <ion-row>
-              <ion-col>
-                <ion-row>
-                  <ion-icon name="flame-outline" style="color: rgb(168, 85, 247);" class="icon-formatting"></ion-icon>
-                </ion-row>
-                <ion-row class="big-dashboard-numbers">
-                  <strong>{{ streakCount }}</strong>
-                </ion-row>
-                <ion-row>
-                  Day Streak
-                </ion-row>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card class="dashboard-first-cards">
-          <ion-grid class="ion-padding">
-            <ion-row>
-              <ion-col>
-                <ion-row>
-                  <ion-icon name="copy-outline" style="color: rgb(168, 85, 247);" class="icon-formatting"></ion-icon>
-                </ion-row>
-                <ion-row class="big-dashboard-numbers">
-                  <strong>64</strong>
-                </ion-row>
-                <ion-row>
-                  Cards Today
-                </ion-row>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card class="dashboard-first-cards">
-          <ion-grid class="ion-padding">
-            <ion-row>
-              <ion-col>
-                <ion-row>
-                  <ion-icon name="time-outline" style="color: rgb(168, 85, 247);" class="icon-formatting"></ion-icon>
-                </ion-row>
-                <ion-row class="big-dashboard-numbers">
-                  <strong>2.34</strong>
-                </ion-row>
-                <ion-row>
-                  Study Hours This Week
-                </ion-row>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card class="dashboard-first-cards">
-          <ion-grid class="ion-padding">
-            <ion-row>
-              <ion-col>
-                <ion-row>
-                  <ion-icon name="checkmark-done-outline" style="color: rgb(168, 85, 247);" class="icon-formatting"></ion-icon>
-                </ion-row>
-                <ion-row class="big-dashboard-numbers">
-                  <strong>3</strong>
-                </ion-row>
-                <ion-row>
-                  Sets Mastered (Lifetime)
-                </ion-row>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-card class="ion-padding">
-          <app-bar-chart class="bar-chart"></app-bar-chart>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card>
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <ion-row>
-                  Recent Activity
-                </ion-row>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <div class="dashboard-first-card-row">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card class="dashboard-first-cards">
+              <ion-grid class="ion-padding">
+                <ion-col>
+                  <ion-row>
+                    <ion-icon name="flame-outline" color="primary" class="icon-formatting"></ion-icon>
+                  </ion-row>
+                  <ion-row class="big-dashboard-numbers">
+                    <strong>{{ streakCount }}</strong>
+                  </ion-row>
+                  <ion-row>
+                    Day Streak
+                  </ion-row>
+                </ion-col>
+              </ion-grid>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card class="dashboard-first-cards">
+              <ion-grid class="ion-padding">
+                <ion-col>
+                  <ion-row>
+                    <ion-icon name="copy-outline" color="primary" class="icon-formatting"></ion-icon>
+                  </ion-row>
+                  <ion-row class="big-dashboard-numbers">
+                    <strong></strong>
+                  </ion-row>
+                  <ion-row>
+                    Cards Today
+                  </ion-row>
+                </ion-col>
+              </ion-grid>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card class="dashboard-first-cards">
+              <ion-grid class="ion-padding">
+                <ion-col>
+                  <ion-row>
+                    <ion-icon name="time-outline" color="primary" class="icon-formatting"></ion-icon>
+                  </ion-row>
+                  <ion-row class="big-dashboard-numbers">
+                    <strong></strong>
+                  </ion-row>
+                  <ion-row>
+                    Study Hours This Week
+                  </ion-row>
+                </ion-col>
+              </ion-grid>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card class="dashboard-first-cards">
+              <ion-grid class="ion-padding">
+                <ion-col>
+                  <ion-row>
+                    <ion-icon name="checkmark-done-outline" color="primary" class="icon-formatting"></ion-icon>
+                  </ion-row>
+                  <ion-row class="big-dashboard-numbers">
+                    <strong></strong>
+                  </ion-row>
+                  <ion-row>
+                    Sets Mastered (Lifetime)
+                  </ion-row>
+                </ion-col>
+              </ion-grid>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-card class="ion-padding">
+              <app-bar-chart></app-bar-chart>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card>
+              <ion-grid>
+                <ion-col>
+                  <ion-row>
+                    Recent Activity
+                  </ion-row>
+                  <ion-row>
+                    
+                  </ion-row>
+                  <ion-row>
+
+                  </ion-row>
+                </ion-col>
+              </ion-grid>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-content>
 </div>

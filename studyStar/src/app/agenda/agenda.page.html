@@ -11,10 +11,11 @@
         <button class="nav-btn" (click)="redirectToFlashcards()">Flashcards</button>
         <button class="nav-btn active" (click)="redirectToAgenda()">Agenda</button>
         <button class="nav-btn" (click)="redirectToDashboard()">Dashboard</button>
+        <button class="nav-btn" (click)="redirectToStudyMethods()">Study Methods</button>
       </div>
 
       <ion-buttons slot="end" class="right-actions">
-        <ion-button shape="round" class="profile-btn" (click)="signOut()">
+         <ion-button shape="round" class="profile-btn" (click)="signOut()">
           Log Out
         </ion-button>
         <ion-avatar class="profile-picture">
@@ -62,20 +63,22 @@
             <ion-card class="upcoming-card">
               <ion-header class="ion-padding"> Upcoming </ion-header>
               <ion-list>
-                <!-- upcoming events here -->
+                @for(deadline of deadlineList; track $index) {
+                  <app-deadline [deadlineToDisplay]="deadline"></app-deadline>
+                }
               </ion-list>
             </ion-card>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-button class="add-event" class="nav-btn2"> Add Event </ion-button>
+            <ion-button shape="round" class="add-task"> Add Event </ion-button>
           </ion-col>
           <ion-col>
-            <ion-button class="add-deadline" class="nav-btn2"> Add Deadline </ion-button>
+            <ion-button shape="round" class="add-task" (click)="presentCreateDeadlineModal()"> Add Deadline </ion-button>
           </ion-col>
           <ion-col>
-            <ion-button  class="add-task" (click)="presentCreateTaskModal()" class="nav-btn2">
+            <ion-button shape="round" class="add-task" (click)="presentCreateTaskModal()">
               Add Task
             </ion-button>
           </ion-col>

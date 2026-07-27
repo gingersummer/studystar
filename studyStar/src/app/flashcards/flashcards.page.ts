@@ -38,6 +38,7 @@ export class FlashcardsPage implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private alert: Alert
+
   ) { }
 
 
@@ -57,6 +58,10 @@ export class FlashcardsPage implements OnInit {
   ionViewDidEnter() {
 
     this.hopeTSWorks()
+    if (this.flashCardService.reloadPage) {
+      window.location.reload();
+
+    }
 
 
   }
@@ -126,6 +131,7 @@ export class FlashcardsPage implements OnInit {
 
   redirectToStudyCards(setIn: Set, indexIn: number) {
     this.flashCardService.selectSet(setIn, indexIn)
+    console.log(setIn)
     this.router.navigate(['/study-cards'])
     this.menuCtrl.close('collection')
   }
@@ -134,6 +140,12 @@ export class FlashcardsPage implements OnInit {
     this.router.navigate(['/dashboard'])
     this.menuCtrl.close('flashcards')
   }
+
+  redirectToStudyMethods() {
+    this.router.navigate(['/study-methods'])
+    this.menuCtrl.close('home')
+  }
+
   addNewSet() {
     this.addingSet = true
   }

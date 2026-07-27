@@ -30,7 +30,7 @@ export class UserService {
         (res: any[]) => {
           //map JSON from firebase to User
           let users = res.map((user: any) => new
-            User(user.username, user.email, user.setsCompleted, user.lastSet, user.allSets, user.uid,
+            User(user.username, user.email, user.setsCompleted, user.lastSet, user.allSets, user.allTasks, user.allDeadlines, user.uid,
               user.picture, user.id))
           //update BehaviorSubject to have newest Firebase values
           this._users.next(users)
