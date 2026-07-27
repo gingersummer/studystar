@@ -68,6 +68,11 @@ export class StudyMethodsPage implements OnInit {
     this.menuCtrl.close('studymethods')
   }
 
+  redirectToHome() {
+    this.router.navigate(['/home'])
+    this.menuCtrl.close('collection')
+  }
+
 
   async signOut() {
 
