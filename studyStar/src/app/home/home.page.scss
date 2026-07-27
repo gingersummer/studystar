@@ -33,6 +33,14 @@
   color: #003d6b;
 }
 
+.goTo {
+  height: 4em;
+  width: 25em;
+  border-radius: 10px;
+  --background: #7e4ca2;
+text-align: center;
+}
+
 .tasks-card {
   padding: 1em;
   width: 40em;
@@ -134,7 +142,7 @@ ion-toolbar.nav-toolbar {
     font-size: 22px;
     font-weight: 700;
     letter-spacing: -0.5px;
-    color: #c3d3df; 
+    color: #f9f9f9; 
   }
 }
 
