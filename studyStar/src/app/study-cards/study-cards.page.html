@@ -22,30 +22,48 @@
   </ion-header>
   @if(flashcardSet.setOfCards.length > 0)
   {
-  <div class="first-div"></div>
+      
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <p class="confidence-text" style="text-align: center;">
+          Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
+        </p>
+               @if(!cardToDisplay.frontSide){ 
+          <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
+
+          </app-confidence>
+      }
+     
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+
+      <ion-col size="6">
+        <app-flashcard [flashcardIn]="cardToDisplay" > </app-flashcard>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button class="prev-button-style" (click)="previousCard()">
+          Previous Card
+        </ion-button>
+
+        <ion-button class="next-button-style" (click)="nextCard()">
+          Next Card
+        </ion-button>
+        <ion-button class="next-button-style" (click)="startEditSet()"> Edit Set </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <!-- hides confidence if on front sdie of card -->
 
-  <p class="confidence-text" style="text-align: center;">
-    Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
-  </p>
-  <app-flashcard [flashcardIn]="cardToDisplay" >
 
-  </app-flashcard>
 
-  <ion-button class="prev-button-style" (click)="previousCard()">
-    Previous Card
-  </ion-button>
 
-  <ion-button class="next-button-style" (click)="nextCard()">
-    Next Card
-  </ion-button>
-  <ion-button class="next-button-style" (click)="startEditSet()"> Edit Set </ion-button>
 
-  @if(!cardToDisplay.frontSide){
-  <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
 
-  </app-confidence>
-  }
   }
   <!-- shows blank -->
   @else{
