@@ -83,7 +83,6 @@ ion-toolbar.nav-toolbar {
   }
 }
 
-// ---- Profile page specific ----
 .profile-summary {
   display: flex;
   flex-direction: column;
@@ -116,7 +115,6 @@ ion-toolbar.nav-toolbar {
 
 .streak-badge {
   display: flex;
-  align-items: center;
   gap: 8px;
   margin-top: 16px;
   background: #241040;
