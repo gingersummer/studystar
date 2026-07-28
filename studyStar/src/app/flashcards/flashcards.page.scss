@@ -156,7 +156,8 @@ ion-toolbar.nav-toolbar {
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    color: #003d6b;
+   color: #ffffff;
+    background: rgba(168, 85, 247, 0.25);
   }
 
   &.active {
