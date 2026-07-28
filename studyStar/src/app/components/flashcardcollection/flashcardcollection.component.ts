@@ -10,6 +10,7 @@ import { Set } from 'src/app/models/Set';
 export class FlashcardcollectionComponent  implements OnInit {
 
   @Input({required: true}) flashcardToDisplay!: Set
+  value: number = 0;
 
   constructor() { }
 
