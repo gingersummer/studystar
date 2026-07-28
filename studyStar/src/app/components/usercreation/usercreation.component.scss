@@ -1,7 +1,29 @@
 .background {
-    --background: radial-gradient(circle at top, #141033 0%, #08061a 100%)
+border: none;
+--background:#1f1947;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  color: white;
 }
 
-.card-bg {
-    --background: #2c2751;
+.register-account {
+border: none;
+--background: #553574;
+  font-size: 20px;
+  font-weight: 200;
+  font-family: 'Space Grotesk', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  color: white;
+  text-align: center;
+}
+
+.date-title {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  text-align: center;
 }
