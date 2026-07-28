@@ -119,36 +119,49 @@ ion-toolbar.nav-toolbar {
 
 .to-do-card,
 .upcoming-card {
-  width:50em;
-  height: 10em;
+  width: 50em;
   margin-top: 0px;
   --background: rgba(94, 35, 146, 0.46) !important;
   background: rgba(94, 35, 146, 0.46) !important;
+  --color: #ffffff !important;
+  color: #ffffff !important;
+
   border: 1px solid rgba(192, 132, 252, 0.2);
   border-radius: 16px;
   backdrop-filter: blur(10px);
---color: #ffffff !important;
-  color: #ffffff !important;
-  /* Force every child element inside to drop its default light background */
+
+  /* Force all internal Ionic list components to be completely transparent */
+  ion-list,
+  ion-item,
+  ion-item-sliding,
+  ion-item-options,
+  ion-card-content,
+  ion-header,
+  ion-toolbar {
+    --background: transparent !important;
+    --background-focused: transparent !important;
+    --background-hover: transparent !important;
+    --border-color: transparent !important;
+    --border-width: 0px !important;
+    --inner-border-width: 0px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* Force white text down into item children & Shadow DOM */
   ::ng-deep {
-    ion-header,
-    ion-toolbar,
-    ion-item,
     ion-list,
-    ion-card-header,
-    ion-card-content,
-    div {
+    ion-item,
+    ion-label,
+    ion-checkbox,
+    ion-input,
+    p, span, div {
       --background: transparent !important;
-      background: transparent !important;
-      --border-color: transparent !important;
-      --border-width: 0 !important;
-      --inner-border-width: 0 !important;
-      border: none !important;
-      box-shadow: none !important;
+      --color: #ffffff !important;
+      color: #ffffff !important;
     }
   }
 }
-
 .add-task {
   border: none;
   --background: rgba(94, 35, 146, 0.46);
