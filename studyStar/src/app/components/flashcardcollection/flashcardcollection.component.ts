@@ -22,7 +22,7 @@ export class FlashcardcollectionComponent  implements OnInit {
       
     this.progress = this.flashcardToDisplay.setOfCards.filter(card => card.confidenceLevel > 3).length;
     this.totalProgress = this.flashcardToDisplay.setOfCards.length;
-    this.value = (this.progress / this.totalProgress) * 100;
+    this.value = (this.progress / this.totalProgress) * 95;
   }
 
 }
