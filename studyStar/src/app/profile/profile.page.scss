@@ -1,7 +1,7 @@
 @use "sass:math";
 @use "sass:string";
 
-// ---- Shared (recommend moving to global.scss eventually) ----
+
 ion-content.homepage-content {
   position: relative;
   --background: radial-gradient(circle at top, #141033 0%, #08061a 100%) !important;
@@ -149,7 +149,7 @@ ion-toolbar.nav-toolbar {
   text-align: center;
 }
 
-// ---- Stat cards row ----
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -186,7 +186,7 @@ ion-toolbar.nav-toolbar {
   }
 }
 
-// ---- Chart + activity row ----
+
 .dashboard-panels {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -245,7 +245,7 @@ ion-toolbar.nav-toolbar {
   }
 }
 
-// star background function (unchanged)
+
 @function generate-stars($n) {
   $value: '#{math.random(2000)}px #{math.random(2000)}px #FFF';
   @for $i from 2 through $n {
