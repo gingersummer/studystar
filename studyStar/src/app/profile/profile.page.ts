@@ -7,6 +7,7 @@ import { Firebaseservice } from '../services/firebase/firebaseservice';
 import { Subscription } from 'rxjs';
 import { User } from '../models/user';
 import { StreakService } from '../services/streak/streak-service';
+import { Alert } from '../services/alert';
 
 @Component({
   selector: 'app-profile',
@@ -30,6 +31,7 @@ export class ProfilePage implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private streakService: StreakService,
+    private alert: Alert,
   ) {
     this.currentUser = userService.currentUser
     this.userSubscription = userService.userSubscription
@@ -99,9 +101,9 @@ export class ProfilePage implements OnInit {
   }
 
   async signOut() {
-    await this.authService.logout()
-    this.router.navigateByUrl('login')
-    this.userService.reset()
+
+    await this.alert.createAlert("If I were you I'd keep studying ;)", "Did you even try?")
   }
+
 
 }
