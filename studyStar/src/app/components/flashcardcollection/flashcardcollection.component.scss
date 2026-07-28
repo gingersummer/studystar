@@ -13,3 +13,18 @@
   box-sizing: border-box; /* Prevents padding from breaking layout */
   text-align: center;
 }
+
+.progress-bar-container {
+  width: 100%;
+  height: 20px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  padding: 8px;
+}
+
+.separation{
+  height: 40%;
+  width: 100%;
+  position: relative;
+}

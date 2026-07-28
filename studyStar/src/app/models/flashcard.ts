@@ -9,8 +9,7 @@ export class FlashCard {
         this.term = termIn
         this.definition = defIn
         this.frontSide = true
-        this.confidenceLevel = 1
-
+        this.confidenceLevel = 0
     }
 
   
