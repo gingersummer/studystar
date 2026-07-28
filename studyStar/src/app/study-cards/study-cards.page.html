@@ -1,36 +1,37 @@
 @if(!editingSet){
 
 
-
 <ion-content [fullscreen]="true">
-  <ion-header >
-  <ion-grid>
-    <ion-row>
-      <ion-title >
-        {{flashcardSet.name}}
-      </ion-title>
+  <ion-header>
+    <ion-grid>
+      <ion-row>
+        <ion-title>
+          {{flashcardSet.name}}
+        </ion-title>
 
-      <ion-item [button]="true" (click)="redirectToFlashcards(false)">
+        <ion-item [button]="true" (click)="redirectToFlashcards(false)">
 
-        <ion-icon name="close-circle-outline" color="danger">
+          <ion-icon name="close-circle-outline" color="danger">
 
-        </ion-icon>
+          </ion-icon>
 
-      </ion-item>
+        </ion-item>
 
-    </ion-row>
-  </ion-grid>
-</ion-header>
+      </ion-row>
+    </ion-grid>
+  </ion-header>
+  @if(flashcardSet.setOfCards.length > 0)
+  {
   <div class="first-div"></div>
   <!-- hides confidence if on front sdie of card -->
 
   <p class="confidence-text" style="text-align: center;">
     Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
   </p>
-  <app-flashcard  [flashcardIn]="cardToDisplay">
+  <app-flashcard [flashcardIn]="cardToDisplay" >
 
   </app-flashcard>
-    
+
   <ion-button class="prev-button-style" (click)="previousCard()">
     Previous Card
   </ion-button>
@@ -40,13 +41,26 @@
   </ion-button>
   <ion-button class="next-button-style" (click)="startEditSet()"> Edit Set </ion-button>
 
-
   @if(!cardToDisplay.frontSide){
   <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
 
   </app-confidence>
   }
- 
+  }
+  <!-- shows blank -->
+  @else{
+  <p>
+    Add New Cards
+    <ion-button class="next-button-style" (click)="startEditSet()"> Edit Set </ion-button>
+
+  </p>
+
+  }
+
+
+
+
+
 </ion-content>
 }
 @else{
@@ -105,19 +119,30 @@
 </ion-grid>
 }
 @else{
-<ion-grid>
-  <ion-col>
-    @for(item of flashcardSet.setOfCards; track $index; let idx = $index){
-    <ion-row>
-      <ion-button (click)="startEditCard(item, idx)"> {{idx}}. {{item.term}} </ion-button>
-    </ion-row>
-    }
-  </ion-col>
-</ion-grid>
-<ion-button (click)="startAddCard()"> Add Card </ion-button>
-<ion-button (click)="doneEditing()"> Save </ion-button>
+<ion-content>
+  <ion-button (click)="startAddCard()"> Add Card </ion-button>
+  <ion-button (click)="doneEditing()"> Save </ion-button>
+  <ion-input class="name-input" [(ngModel)]="flashcardSet.name" label="Set Name:"> </ion-input>
+  <ion-grid>
+    <ion-col>
+      @for(item of flashcardSet.setOfCards; track $index; let idx = $index){
+      <ion-row>
+        <ion-button (click)="startEditCard(item, idx)"> {{idx}}. {{item.term}} </ion-button>
+        <!-- delete button -->
+        <ion-button (click)="deleteItem(idx)"> <img src="https://static.thenounproject.com/png/2265632-200.png"
+            alt=""></ion-button>
+      </ion-row>
+
+      }
+    </ion-col>
+
+  </ion-grid>
+
+
+
+
+
+</ion-content>
 
 }
-
-
 }

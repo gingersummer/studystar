@@ -69,7 +69,14 @@ export class StudyCardsPage implements OnInit {
     this.hopeTSWorks()
 
     this.flashcardSet = this.setService.selectedSet
-    this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
+    if (this.flashcardSet.setOfCards.length > 0) {
+      this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
+
+    }
+    else {
+      this.cardToDisplay = new FlashCard("", "")
+
+    }
 
     console.log(this.flashcardSet.name)
     if (!this.flashcardSet || this.flashcardSet.name == "xxxDONOTLOADxxx") {
@@ -112,6 +119,7 @@ export class StudyCardsPage implements OnInit {
   }
 
   previousCard() {
+    
     if (this.indexOfCards > 0) {
       this.indexOfCards--
       this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
@@ -126,6 +134,7 @@ export class StudyCardsPage implements OnInit {
       this.indexOfCards++
     }
     this.updateProgress()
+ 
 
     this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
     this.cardToDisplay.frontSide = true
@@ -146,17 +155,43 @@ export class StudyCardsPage implements OnInit {
 
   addNewCard() {
     this.flashcardSet.setOfCards.push(new FlashCard(this.termCreator, this.definitionCreator))
+
+    if (this.flashcardSet.setOfCards.length == 1) {
+      this.cardToDisplay = this.flashcardSet.setOfCards[0]
+    }
+
     this.clearAddingNewCard()
     this.currentUser!.allSets[this.setService.indexOfSet] = this.flashcardSet
     this.userService.updateUser(this.currentUser!)
 
   }
 
+  deleteItem(index: number) {
+    this.flashcardSet.setOfCards.splice(index, 1)
+    this.currentUser!.allSets[this.setService.indexOfSet] = this.flashcardSet
+    this.userService.updateUser(this.currentUser!)
+    if (this.flashcardSet.setOfCards.length >= this.indexOfCards + 1) {
+      this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
+
+    }
+    else if (this.flashcardSet.setOfCards.length > 0) {
+      this.cardToDisplay = this.flashcardSet.setOfCards[0]
+    }
+    else {
+      this.cardToDisplay = new FlashCard("", "")
+    }
+  }
+
   doneEditing() {
     this.editingSet = false
+    this.currentUser!.allSets[this.setService.indexOfSet] = this.flashcardSet
+    this.userService.updateUser(this.currentUser!)
   }
 
   ngOnDestroy() {
+      this.currentUser!.allSets[this.setService.indexOfSet] = this.flashcardSet
+      this.userService.updateUser(this.currentUser!)
+    
     if (this.userSubscription) {
       this.userService.updateUser(this.currentUser!)
       this.userSubscription.unsubscribe()
