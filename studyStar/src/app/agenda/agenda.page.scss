@@ -121,7 +121,6 @@ ion-toolbar.nav-toolbar {
     width: 50em;
     height: 20em;
     margin-top: 0px;
-   --background: #eeddff; 
 }
 
 .upcoming-card {
@@ -133,16 +132,21 @@ ion-toolbar.nav-toolbar {
 
 .add-task {
 border: none;
---background: #a955f79e;
-  font-size: 15px;
-  font-weight: 500;
-  font-family:'Courier New', Courier, monospace;
-  color: white;
+--background: #5e239275;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  height:4em;
-  width: 30em;
+  height:3em;
+  width: 23em;
+  color: var(--text-primary);
+  text-shadow:
+    0 0 4px rgba(192, 132, 252, 0.6),
+    0 0 12px rgba(139, 92, 246, 0.4);
+  text-align: center;
+
  
   &:hover {
     color:#003d6b;
