@@ -117,47 +117,62 @@ ion-toolbar.nav-toolbar {
   }
 }
 
-.to-do-card {
-    width: 50em;
-    height: 20em;
-    margin-top: 0px;
-}
-
+.to-do-card,
 .upcoming-card {
-    width: 50em;
-    height: 13em;
-    margin-top: 0px;
-    --background: #eeddff;
+  width:50em;
+  height: 10em;
+  margin-top: 0px;
+  --background: rgba(94, 35, 146, 0.46) !important;
+  background: rgba(94, 35, 146, 0.46) !important;
+  border: 1px solid rgba(192, 132, 252, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+--color: #ffffff !important;
+  color: #ffffff !important;
+  /* Force every child element inside to drop its default light background */
+  ::ng-deep {
+    ion-header,
+    ion-toolbar,
+    ion-item,
+    ion-list,
+    ion-card-header,
+    ion-card-content,
+    div {
+      --background: transparent !important;
+      background: transparent !important;
+      --border-color: transparent !important;
+      --border-width: 0 !important;
+      --inner-border-width: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+  }
 }
 
 .add-task {
-border: none;
---background: #5e239275;
+  border: none;
+  --background: rgba(94, 35, 146, 0.46);
+  background: rgba(94, 35, 146, 0.46);
   font-size: 20px;
   font-weight: 600;
   font-family: 'Space Grotesk', sans-serif;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  height:3em;
+  height: 3em;
   width: 23em;
-  color: var(--text-primary);
+  color: #ffffff;
   text-shadow:
     0 0 4px rgba(192, 132, 252, 0.6),
     0 0 12px rgba(139, 92, 246, 0.4);
   text-align: center;
 
- 
   &:hover {
-    color:#003d6b;
+    color: #ffffff;
     box-shadow: 0 0 5px #1a0451, 0 0 10px #48025f, 0 0 20px #4508a7;
-  animation: glow-box-animation 1s definite;
-  }
-
-  &.active {
-    background: #a855f7;
   }
 }
+
 
 @function generate-stars($n) {
   $value: '#{math.random(2000)}px #{math.random(2000)}px #FFF';
@@ -239,4 +254,3 @@ $stars-large:  generate-stars(100);
   }
 }
   }}
- 
