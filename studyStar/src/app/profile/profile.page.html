@@ -34,13 +34,19 @@
           <ion-avatar class="profile-picture">
             <img src="https://cdn.pfps.gg/pfps/8250-default-18.png" />
           </ion-avatar>
+          <ion-row>
+            <ion-col>
           <h1 class="profile-username">{{currentUser.username}}</h1>
           <p class="profile-email">{{currentUser.email}}</p>
-
+</ion-col>
+<ion-col>
           <div class="streak-badge">
             <ion-icon name="flame" class="streak-icon"></ion-icon>
             <p class="streak-text"><strong>{{streakCount}}</strong> Day Streak</p>
+           
           </div>
+           </ion-col>
+          </ion-row>
         </div>
 
         <p class="date-title">
