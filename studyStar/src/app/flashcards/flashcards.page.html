@@ -92,7 +92,6 @@
         @for(item of arrayOfSets; track $index) {
         <ion-col   size-lg="6">
           <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item, $index)">
-
           </app-flashcardcollection>
         </ion-col>
         }
