@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>New Task</ion-title>
-    <ion-button slot="end" (click)="dismissModal()">X</ion-button>
+    <ion-title class="text">New Task</ion-title>
+    <ion-button class="background" slot="end" (click)="dismissModal()">X</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +9,7 @@
   <ion-card>
     <ion-list>
       <ion-item>
-        <ion-input label="Deadline Name and date: " [(ngModel)]="deadlineName"></ion-input>
+        <ion-input class="input-text" label="Deadline Name and date: " [(ngModel)]="deadlineName"></ion-input>
       </ion-item>
     </ion-list>
   </ion-card>
@@ -17,6 +17,6 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button slot="start" (click)="addDeadline()">Add Deadline</ion-button>
+    <ion-button class="background" slot="start" (click)="addDeadline()">Add Deadline</ion-button>
   </ion-toolbar>
 </ion-footer>
