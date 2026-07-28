@@ -8,6 +8,24 @@
  * For more information on global stylesheets, visit the documentation:
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
+ @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+}
+
+:root {
+  --bg-void: #08061a;
+  --bg-nebula: #141033;
+  --card-bg: #241040;
+  --card-bg-elevated: #2f1552;
+  --accent-primary: #a855f7;
+  --accent-glow: #c084fc;
+  --text-primary: #f5f0fa;
+  --text-muted: #b9a8d9;
+}
 
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
