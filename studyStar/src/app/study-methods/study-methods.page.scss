@@ -29,23 +29,43 @@
 .date-subtitle {
   font-size: 20px;
   font-weight: 600;
-  color: #d0aaf7; 
-  font-family: 'Andale Mono', monospace;
+  color: #d0aaf7;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
-.date-title {
-  font-size: 30px;
-  font-weight: 500;
-  letter-spacing: -1px;
-
-  margin-top: 0;
+.method-title {
+  font-size: 26px;
+  font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
   color: #f6e4e4;
   text-shadow:
-      0 0 3px rgba(255, 255, 255, 0.8),
-      0 0 6px rgba(255, 0, 230, 0.7),
-      0 0 12px rgba(191, 0, 255, 0.5);
+    0 0 3px rgba(255, 255, 255, 0.6),
+    0 0 8px rgba(191, 0, 255, 0.4);
+  margin: 16px 0 12px;
+  min-height: 68px;      
+  display: flex;
+  align-items: center;   
 }
 
+.method-description {
+  font-size: 15px;
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: #cbb8e0;
+  text-align: left;
+}
+
+.method-icon-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+
+  ion-icon {
+    color: #c084fc;
+  }
+}
 
 .suggestions-title {
   font-size: 26px;
@@ -85,7 +105,7 @@ ion-toolbar.nav-toolbar {
     font-size: 22px;
     font-weight: 700;
     letter-spacing: -0.5px;
-    color: #f9f9f9; 
+    color: #f9f9f9;
   }
 }
 
@@ -112,7 +132,8 @@ ion-toolbar.nav-toolbar {
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    color: #003d6b;
+    color: #ffffff;
+    background: rgba(168, 85, 247, 0.25);
   }
 
   &.active {
@@ -126,49 +147,54 @@ ion-toolbar.nav-toolbar {
   gap: 16px;
 }
 
-
- .fun-btn {
-   --background: #a855f7;
-   height:2em;
-   width:8em;
-   color: White;
-  }
-
-.profile-btn {
-   --background: #a855f750;
-   height:1.3em;
-   width:8em;
-   color: White;
-   border-radius: 50px;
-   text-align: center;
-  }
-
-.studyStar{
-   background: linear-gradient(45deg, #bb76eb, #8546c5);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-size: 70px;
-    font-weight: 800;
-    font-family: Arial, sans-serif;
-    text-align: center;
+.fun-btn {
+  --background: #a855f7;
+  height: 2em;
+  width: 8em;
+  color: white;
 }
 
+.profile-btn {
+  --background: #a855f750;
+  height: 1.6em;
+  width: auto;
+  padding: 0 14px;
+  font-size: 12px;
+  color: white;
+  border-radius: 50px;
+  text-align: center;
+}
 
-.studyType{
---background: #36175275;
+.studyStar {
+  background: linear-gradient(45deg, #bb76eb, #8546c5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 70px;
+  font-weight: 800;
+  font-family: 'Space Grotesk', sans-serif;
+  text-align: center;
+}
+
+.studyType {
+  --background: #36175275;
   padding: 10px 20px;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  height:32em;
+  height: 27em;
   width: 24em;
+
+  &:hover {
+    box-shadow: 0 0 8px #4508a7, 0 0 20px rgba(139, 92, 246, 0.3);
+    transform: translateY(-2px);
+  }
 }
 
-.missionStatement{
+.missionStatement {
   color: rgb(194, 142, 215);
   text-align: center;
-  font-family:'Courier New', Courier, monospace;
+  font-family: 'Inter', sans-serif;
 }
 
 // SCSS Star Generator Function
@@ -180,9 +206,9 @@ ion-toolbar.nav-toolbar {
   @return string.unquote($value);
 }
 
-$stars-small:  generate-stars(500);
+$stars-small: generate-stars(500);
 $stars-medium: generate-stars(200);
-$stars-large:  generate-stars(100);
+$stars-large: generate-stars(100);
 
 #stars, #stars2, #stars3 {
   position: absolute;
