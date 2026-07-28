@@ -128,32 +128,10 @@ ion-toolbar.nav-toolbar {
     width: 50em;
     height: 13em;
     margin-top: 0px;
-    --background: #eeddff;
+    --background: #36175275;
 }
 
-.add-task {
-border: none;
---background: #a955f79e;
-  font-size: 15px;
-  font-weight: 500;
-  font-family:'Courier New', Courier, monospace;
-  color: white;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  height:4em;
-  width: 30em;
- 
-  &:hover {
-    color:#003d6b;
-    box-shadow: 0 0 5px #1a0451, 0 0 10px #48025f, 0 0 20px #4508a7;
-  animation: glow-box-animation 1s definite;
-  }
 
-  &.active {
-    background: #a855f7;
-  }
-}
 
 @function generate-stars($n) {
   $value: '#{math.random(2000)}px #{math.random(2000)}px #FFF';
