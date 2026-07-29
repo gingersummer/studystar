@@ -11,6 +11,7 @@ import { FlashCard } from '../models/flashcard';
 import { FlashcardComponent } from '../components/flashcard/flashcard.component';
 import { ConfidenceComponent } from '../confidence/confidence.component';
 
+
 @NgModule({
   imports: [
     CommonModule,

@@ -9,13 +9,15 @@ import { FlashcardsPageRoutingModule } from './flashcards-routing.module';
 import { FlashcardsPage } from './flashcards.page';
 import { FlashcardcollectionComponent } from '../components/flashcardcollection/flashcardcollection.component';
 import { NewcardComponent } from '../components/newcard/newcard.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FlashcardsPageRoutingModule
+    FlashcardsPageRoutingModule,
+    MatProgressBarModule,
   ],
   declarations: [FlashcardsPage, FlashcardcollectionComponent, NewcardComponent]
 })
