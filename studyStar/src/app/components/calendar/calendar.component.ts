@@ -34,17 +34,17 @@ export interface ClassColumn {
 export class CalendarComponent implements OnInit {
  
   hours: string[] = [
-    '12 AM', '1 AM', '2 AM', '3 AM', '4 AM', '5 AM', 
     '6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', 
     '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', 
-    '6 PM', '7 PM', '8 PM', '9 PM', '10 PM', '11 PM'
+    '6 PM', '7 PM', '8 PM', '9 PM', '10 PM', '11 PM',  
+    '12 AM', '1 AM', '2 AM', '3 AM', '4 AM', '5 AM', 
   ];
 
   classes: ClassColumn[] = [
-    { name: 'Speech', subtitle: 'Mon 20', color: '#1111' },
-    { name: 'Biology', subtitle: 'Mon 20', color: '#1111' },
-    { name: 'Calculus', subtitle: 'Mon 20', color: '#1111' },
-    { name: 'Chemistry', subtitle: 'Mon 20', color: '#1111' }
+    { name: 'Speech', subtitle: 'Thurs 30', color: '#1111' },
+    { name: 'Biology', subtitle: 'Thurs 30', color: '#1111' },
+    { name: 'Calculus', subtitle: 'Thurs 30', color: '#1111' },
+    { name: 'Chemistry', subtitle: 'Thurs 30', color: '#1111' }
   ];
 
   events: CalendarEvent[] = this.agendaService.currentUser!.allEvents;
