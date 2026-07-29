@@ -1,11 +1,14 @@
 @if(addingSet){
-
+  <ion-content>
 <div class="ion-page" id="main-content">
   <h1 style="text-align: center;" class="date-title">
     What would you like to call your new flashcard set?
   </h1>
   <div class="center">
-  <ion-input lines="none" class="input" placeholder="Enter Name Here" [(ngModel)]="newSetName"></ion-input>
+  <ion-input lines="none" class="input" placeholder="Enter Name Here" [(ngModel)]="newSetName">
+          <div slot="label"> <ion-text style="--color: #546c5;"> Name: </ion-text></div>
+
+  </ion-input>
   </div>
   <ion-footer class="header">
     <ion-toolbar class="nav-toolbar">
@@ -22,6 +25,9 @@
     </ion-toolbar>
   </ion-footer>
 </div>
+  </ion-content>
+
+
 
 
   <!-- <ion-row>
