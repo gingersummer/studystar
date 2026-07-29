@@ -30,6 +30,7 @@ export class FlashcardsPage implements OnInit {
   currentUser?: User
 
   userSubscription?: Subscription;
+  flashcardCollectionComponent: any;
 
   constructor(
     private router: Router,

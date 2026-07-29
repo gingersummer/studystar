@@ -9,6 +9,7 @@ import { User } from '../models/user';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth/auth';
 import { UserService } from '../services/user/user-service';
+import { FlashcardcollectionComponent } from '../components/flashcardcollection/flashcardcollection.component';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class StudyCardsPage implements OnInit {
   currentUser?: User
   userSubscription?: Subscription;
   cardToEdit: FlashCard = this.flashcardSet.setOfCards[0]
+  flashcardCollectionComponent: any;
 
   constructor(private setService: Flashcardsets, private router: Router, private menuCtrl: MenuController, private userService: UserService,
     private authService: AuthService) { }
@@ -134,6 +136,7 @@ export class StudyCardsPage implements OnInit {
       this.indexOfCards++
     }
     this.updateProgress()
+    this.flashcardCollectionComponent.updateProgressBar();
  
 
     this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]

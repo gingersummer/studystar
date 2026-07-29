@@ -8,19 +8,16 @@
                 <ion-card-content class="flashcard"   (click)="switchSides()" class="flashcard">
                     @if(flashcardIn.frontSide){
 
-                    <h1 class="term-style">
-                        {{flashcardIn.term}}
-                    </h1>
-                    }
-                    @else{
+        <h1 class="term-style">
+            {{flashcardIn.term}}
+        </h1>
+        }
+        @else{
 
-                    <h1 class="term-style">{{flashcardIn.definition}}</h1>
-                    }
-                    <p class="confidence-level-style">Confidence: {{flashcardIn.confidenceLevel}}</p>
+        <h1 class="term-style">{{flashcardIn.definition}}</h1>
+        }
+        <p class="confidence-level-style">Confidence: {{flashcardIn.confidenceLevel}}</p>
 
 
-                </ion-card-content>
-            </ion-card>
-         <!-- </ion-col> -->
-    <!-- </ion-row>
-</ion-grid> -->
+    </ion-card-content>
+</ion-card>

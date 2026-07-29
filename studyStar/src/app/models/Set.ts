@@ -8,6 +8,7 @@ export class Set {
     setOfCards: FlashCard[]
     category: string
     isNew: boolean = true;
+  flashcards: any
     //constructor
     constructor(nameIn: string, progressIn: boolean, iconIn: string, setOfCardsIn: FlashCard[], categoryIn: string) {
         this.name = nameIn,
