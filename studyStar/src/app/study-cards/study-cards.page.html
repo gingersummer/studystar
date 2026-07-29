@@ -1,166 +1,138 @@
-@if(!editingSet){
+@if (!editingSet) {
+<div class="ion-page" id="main-content">
 
+  <ion-header>
+    <ion-toolbar class="nav-toolbar">
+      <ion-title slot="start" class="set-title">{{ flashcardSet.name }}</ion-title>
+
+      <div class="center-nav">
+        <span class="progress-text">
+          Progress: {{ indexOfCards + 1 }} / {{ flashcardSet.setOfCards.length }}
+        </span>
+      </div>
+
+      <ion-buttons slot="end">
+        <ion-button class="nav-btn-purple" (click)="startEditSet()">Edit Set</ion-button>
+        <ion-button fill="clear" (click)="redirectToFlashcards(false)" title="Close">
+          <ion-icon name="close-circle-outline" color="danger" class="close-icon"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    @if (flashcardSet.setOfCards.length > 0) {
+      <ion-grid class="study-grid">
+
+        <ion-row class="center-row">
+          <ion-col size="12" size-md="8" class="confidence-col">
+            @if (!cardToDisplay.frontSide) {
+              <app-confidence [flashcardIn]="cardToDisplay"></app-confidence>
+            }
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="center-row">
+          <ion-col size="12" size-md="8">
+            <app-flashcard [flashcardIn]="cardToDisplay"></app-flashcard>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="center-row">
+          <ion-col size="12" size-md="8" class="nav-col">
+            <button class="nav-btn-purple" (click)="previousCard()">&larr; Previous Card</button>
+            <button class="nav-btn-purple" (click)="nextCard()">Next Card &rarr;</button>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+    } @else {
+      <div class="empty-state">
+        <p>No cards in this set yet.</p>
+        <ion-button class="purple-action-btn" (click)="startEditSet()">Edit Set & Add Cards</ion-button>
+      </div>
+    }
+  </ion-content>
+
+</div>
+} @else {
 
 <ion-content [fullscreen]="true">
-  <ion-header>
-    <ion-grid>
+  @if (editingCard) {
+    <ion-grid class="edit-grid">
       <ion-row>
-        <ion-title>
-          {{flashcardSet.name}}
-        </ion-title>
-
-        <ion-item [button]="true" (click)="redirectToFlashcards(false)">
-
-          <ion-icon name="close-circle-outline" color="danger">
-
-          </ion-icon>
-
-        </ion-item>
-
+        <ion-col>
+          <ion-card class="userFlashcards">
+            <h2>Front Side</h2>
+            <ion-input placeholder="Enter Term Here" label="Term" [(ngModel)]="termCreator"></ion-input>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="userFlashcards">
+            <h2>Back Side</h2>
+            <ion-input placeholder="Enter Definition Here" label="Definition" [(ngModel)]="definitionCreator"></ion-input>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row class="center-row">
+        <ion-button class="purple-action-btn" (click)="endCardEdit()">Done Editing</ion-button>
       </ion-row>
     </ion-grid>
-  </ion-header>
-  @if(flashcardSet.setOfCards.length > 0)
-  {
-      
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <p class="confidence-text" style="text-align: center;">
-          Progress: {{indexOfCards +1}}/{{flashcardSet.setOfCards.length}}
-        </p>
-               @if(!cardToDisplay.frontSide){ 
-          <app-confidence class="confidence-actual" [flashcardIn]="cardToDisplay">
-
-          </app-confidence>
-      }
-     
-      </ion-col>
-
-    </ion-row>
-    <ion-row>
-
-      <ion-col size="6">
-        <app-flashcard [flashcardIn]="cardToDisplay" > </app-flashcard>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-button class="prev-button-style" (click)="previousCard()">
-          Previous Card
-        </ion-button>
-
-        <ion-button class="next-button-style" (click)="nextCard()">
-          Next Card
-        </ion-button>
-        <ion-button class="next-button-style" (click)="startEditSet()"> Edit Set </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <!-- hides confidence if on front sdie of card -->
-
-
-
-
-
-
-  }
-  <!-- shows blank -->
-  @else{
-  <p>
-    Add New Cards
-    <ion-button class="next-button-style" (click)="startEditSet()"> Edit Set </ion-button>
-
-  </p>
-
-  }
-
-
-
-
-
-</ion-content>
-}
-@else{
-
-
-
-
-@if(editingCard)
-{
-<ion-grid>
-  <ion-row>
-    <ion-col>
-      <ion-card class="userFlashcards">
-        <h1>
-          Front Side
-        </h1>
-        <ion-input placeholder="Enter Term" label="Term" [(ngModel)]="termCreator"></ion-input>
-      </ion-card>
-    </ion-col>
-    <ion-col>
-      <ion-card class="userFlashcards">
-        <h1>
-          Back Side
-        </h1>
-        <ion-input placeholder="Enter Definition" label="Term" [(ngModel)]="definitionCreator"></ion-input>
-      </ion-card>
-    </ion-col>
-  </ion-row>
-  <ion-button (click)="endCardEdit()">Done Editing</ion-button>
-</ion-grid>
-}
-
-@else if(addingCard)
-{
-<ion-grid>
-  <ion-row>
-    <ion-col>
-      <ion-card class="userFlashcards">
-        <h1>
-          Front Side
-        </h1>
-        <ion-input placeholder="Enter Term" label="Term" [(ngModel)]="termCreator"></ion-input>
-      </ion-card>
-    </ion-col>
-    <ion-col>
-      <ion-card class="userFlashcards">
-        <h1>
-          Back Side
-        </h1>
-        <ion-input placeholder="Enter Definition" label="Term" [(ngModel)]="definitionCreator"></ion-input>
-      </ion-card>
-    </ion-col>
-  </ion-row>
-  <ion-button (click)="addNewCard()">Submit Flashcard</ion-button>
-  <ion-button (click)="clearAddingNewCard()"> Back</ion-button>
-</ion-grid>
-}
-@else{
-<ion-content>
-  <ion-button (click)="startAddCard()"> Add Card </ion-button>
-  <ion-button (click)="doneEditing()"> Save </ion-button>
-  <ion-input class="name-input" [(ngModel)]="flashcardSet.name" label="Set Name:"> </ion-input>
-  <ion-grid>
-    <ion-col>
-      @for(item of flashcardSet.setOfCards; track $index; let idx = $index){
+  } @else if (addingCard) {
+    <ion-grid class="edit-grid">
       <ion-row>
-        <ion-button (click)="startEditCard(item, idx)"> {{idx}}. {{item.term}} </ion-button>
-        <!-- delete button -->
-        <ion-button (click)="deleteItem(idx)"> <img src="https://static.thenounproject.com/png/2265632-200.png"
-            alt=""></ion-button>
+        <ion-col>
+          <ion-card class="userFlashcards">
+            <h2>Front Side</h2>
+            <ion-input placeholder="Enter Term" label="Term" labelPlacement="floating" [(ngModel)]="termCreator"></ion-input>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="userFlashcards">
+            <h2>Back Side</h2>
+            <ion-input placeholder="Enter Definition" label="Definition" labelPlacement="floating" [(ngModel)]="definitionCreator"></ion-input>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row class="center-row">
+        <ion-button class="purple-action-btn" (click)="addNewCard()">Submit Flashcard</ion-button>
+        <ion-button fill="outline" color="light" (click)="clearAddingNewCard()">Back</ion-button>
+      </ion-row>
+    </ion-grid>
+  } @else {
+    <ion-grid>
+      <ion-row class="edit-set-header align-center-row">
+        <ion-col size="auto">
+          <ion-button class="purple-action-btn" (click)="startAddCard()">Add Card</ion-button>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-button class="purple-action-btn" (click)="doneEditing()">Save</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-input class="name-input" [(ngModel)]="flashcardSet.name" label="Set Name:"></ion-input>
+        </ion-col>
       </ion-row>
 
-      }
-    </ion-col>
-
-  </ion-grid>
-
-
-
-
-
+      <ion-row>
+        <ion-col>
+          @for (item of flashcardSet.setOfCards; track $index; let idx = $index) {
+            <ion-row class="edit-item-row align-center-row">
+              <ion-col>
+                <ion-button fill="clear" class="item-btn" (click)="startEditCard(item, idx)">
+                  {{ idx + 1 }}. {{ item.term }}
+                </ion-button>
+              </ion-col>
+              <ion-col size="auto">
+                <ion-button fill="clear" color="danger" (click)="deleteItem(idx)">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          }
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  }
 </ion-content>
-
-}
 }

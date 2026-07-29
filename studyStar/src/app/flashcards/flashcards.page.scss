@@ -88,13 +88,19 @@
   font-size: 50px;
   font-weight: 700;
   letter-spacing: -1px;
-   color:black;
+   color:#8546c5;
   font-family: 'Space Grotesk', sans-serif;
   text-align: center;
+
+  
 }
 
 ion-content {
    --background: radial-gradient(circle at top, #141033 0%, #08061a 100%) !important;
+}
+.custom-label {
+  --label-color: #8546c5 ;
+
 }
 
 
@@ -156,7 +162,8 @@ ion-toolbar.nav-toolbar {
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    color: #003d6b;
+   color: #ffffff;
+    background: rgba(168, 85, 247, 0.25);
   }
 
   &.active {
