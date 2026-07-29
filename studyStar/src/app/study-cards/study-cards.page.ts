@@ -136,7 +136,7 @@ export class StudyCardsPage implements OnInit {
       this.indexOfCards++
     }
     this.updateProgress()
-    this.flashcardCollectionComponent.updateProgressBar();
+    // this.flashcardCollectionComponent.updateProgressBar();
  
 
     this.cardToDisplay = this.flashcardSet.setOfCards[this.indexOfCards]
