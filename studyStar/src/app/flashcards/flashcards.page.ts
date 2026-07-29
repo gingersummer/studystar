@@ -147,8 +147,17 @@ export class FlashcardsPage implements OnInit {
     this.menuCtrl.close('home')
   }
 
+  deleteSet(index: number)
+  {
+    this.arrayOfSets.splice(index, 1)
+    this.currentUser!.allSets.splice(index, 1)
+    this.userService.updateUser(this.currentUser!)
+    
+  }
+
   addNewSet() {
     this.addingSet = true
+    
   }
   createNewSet() {
     let newSet: Set = new Set(this.newSetName, false, '', this.tempCardArray, '')
