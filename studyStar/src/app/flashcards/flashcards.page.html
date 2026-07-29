@@ -1,98 +1,110 @@
 @if(addingSet){
-  <ion-content>
-<div class="ion-page" id="main-content">
-  <h1 style="text-align: center;" class="date-title">
-    What would you like to call your new flashcard set?
-  </h1>
-  <div class="center">
-  <ion-input lines="none" class="input" placeholder="Enter Name Here" [(ngModel)]="newSetName">
-          <div slot="label"> <ion-text style="--color: #546c5;"> Name: </ion-text></div>
+<ion-content>
+  <div class="ion-page" id="main-content">
+    <h1 style="text-align: center;" class="date-title">
+      What would you like to call your new flashcard set?
+    </h1>
+    <div class="center">
+      <ion-input lines="none" class="input" placeholder="Enter Name Here" [(ngModel)]="newSetName">
+        <div slot="label"> <ion-text style="--color: #546c5;"> Name: </ion-text></div>
 
-  </ion-input>
-  </div>
-  <ion-footer class="header">
-    <ion-toolbar class="nav-toolbar">
-      <div slot="start" class="brand-container">
-        <button class="nav-btn" (click)="exitCreator()">
-          Back
-        </button>
-      </div>
-      <div slot="end">
-      <button class="nav-btn" (click)="createNewSet()">
-          Create
-        </button>
+      </ion-input>
+    </div>
+    <ion-footer class="header">
+      <ion-toolbar class="nav-toolbar">
+        <div slot="start" class="brand-container">
+          <button class="nav-btn" (click)="exitCreator()">
+            Back
+          </button>
         </div>
-    </ion-toolbar>
-  </ion-footer>
-</div>
-  </ion-content>
+        <div slot="end">
+          <button class="nav-btn" (click)="createNewSet()">
+            Create
+          </button>
+        </div>
+      </ion-toolbar>
+    </ion-footer>
+  </div>
+</ion-content>
 
 
 
-  }
+}
 
-  @else{
-  <ion-content>
-    <div class="ion-page" id="main-content">
-      <ion-header class="header">
-        <ion-toolbar class="nav-toolbar">
-          <div slot="start" class="brand-container">
-            <ion-icon name="star" class="logo-icon"></ion-icon>
-            <span class="brand-title" (click)="redirectToHome()">
-              StudyStar
-            </span>
-          </div>
+@else{
+<ion-content>
+  <div class="ion-page" id="main-content">
+    <ion-header class="header">
+      <ion-toolbar class="nav-toolbar">
+        <div slot="start" class="brand-container">
+          <ion-icon name="star" class="logo-icon"></ion-icon>
+          <span class="brand-title" (click)="redirectToHome()">
+            StudyStar
+          </span>
+        </div>
 
-          <div class="center-nav">
-            <button class="nav-btn" (click)="redirectToHome()">
-              Home
-            </button>
-            <button class="nav-btn active" (click)="redirectToFlashcards()">
-              Flashcards
-            </button>
-            <button class="nav-btn" (click)="redirectToAgenda()">
-              Agenda
-            </button>
-            <button class="nav-btn" (click)="redirectToProfile()">
-              Dashboard
-            </button>
-            <button class="nav-btn" (click)="redirectToStudyMethods()">
-              Study Methods
-            </button>
+        <div class="center-nav">
+          <button class="nav-btn" (click)="redirectToHome()">
+            Home
+          </button>
+          <button class="nav-btn active" (click)="redirectToFlashcards()">
+            Flashcards
+          </button>
+          <button class="nav-btn" (click)="redirectToAgenda()">
+            Agenda
+          </button>
+          <button class="nav-btn" (click)="redirectToProfile()">
+            Dashboard
+          </button>
+          <button class="nav-btn" (click)="redirectToStudyMethods()">
+            Study Methods
+          </button>
 
-          </div>
+        </div>
 
-          <ion-buttons slot="end" class="right-actions">
-            <ion-button shape="round" class="profile-btn" (click)="signOut()">
-              Log Out
-            </ion-button>
-            <ion-avatar class="profile-picture">
-              <img src="https://cdn.pfps.gg/pfps/8250-default-18.png" />
-            </ion-avatar>
-          </ion-buttons>
-          <!-- <ion-searchbar class=searchBar search-icon="star" placeholder="Search"></ion-searchbar> -->
+        <ion-buttons slot="end" class="right-actions">
+          <ion-button shape="round" class="profile-btn" (click)="signOut()">
+            Log Out
+          </ion-button>
+          <ion-avatar class="profile-picture">
+            <img src="https://cdn.pfps.gg/pfps/8250-default-18.png" />
+          </ion-avatar>
+        </ion-buttons>
+        <!-- <ion-searchbar class=searchBar search-icon="star" placeholder="Search"></ion-searchbar> -->
 
-        </ion-toolbar>
-      </ion-header>
-    </div>
+      </ion-toolbar>
+    </ion-header>
+  </div>
 
-    <div class="smallcard">
-      <div id="stars"></div>
-      <div id="stars2"></div>
-      <div id="stars3"></div>
-      <ion-button shape="round" class="addNewStudySet" (click)="addNewSet()"> + Add New Study Set </ion-button>
+  <div class="smallcard">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+    <ion-button shape="round" class="addNewStudySet" (click)="addNewSet()"> + Add New Study Set </ion-button>
 
 
-      <ion-grid class="full-screen-grid">
-        <ion-row>
-          @for(item of arrayOfSets; track $index) {
-          <ion-col size-lg="6">
-            <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item, $index)">
-            </app-flashcardcollection>
-          </ion-col>
-          }
-        </ion-row>
-      </ion-grid>
-    </div>
-  </ion-content>
-  }
+    <ion-grid class="full-screen-grid">
+      <!-- <ion-row> -->
+      @for(item of arrayOfSets; track $index) {
+      <ion-row>
+
+        <ion-col size="6">
+          <app-flashcardcollection [flashcardToDisplay]="item" (click)="redirectToStudyCards(item, $index)">
+          </app-flashcardcollection>
+        
+        </ion-col>
+        <ion-col size="12">
+            <ion-button fill="clear" color="danger" (click)="deleteSet($index)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+      </ion-row>
+
+      }
+      <!-- </ion-row> -->
+
+    </ion-grid>
+  </div>
+</ion-content>
+}
